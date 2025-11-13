@@ -1456,38 +1456,109 @@ def parse_item_masters_data(csv_content):
         result = str(value).strip()
         return result[:max_length] if max_length else result
 
+    def safe_datetime(value):
+        """Safely convert value to datetime with robust error handling."""
+        if value is None or str(value).strip() in ['', 'NULL', 'N/A', 'NONE']:
+            return None
+        try:
+            from datetime import datetime
+            str_value = str(value).strip()
+            # Try parsing common datetime formats (including MM/DD/YYYY for Molo exports)
+            for fmt in [
+                '%m/%d/%Y %H:%M:%S',  # MM/DD/YYYY HH:MM:SS (Molo format)
+                '%Y-%m-%d %H:%M:%S',  # YYYY-MM-DD HH:MM:SS
+                '%Y-%m-%dT%H:%M:%S',  # ISO format
+                '%m/%d/%Y',           # MM/DD/YYYY date only
+                '%Y-%m-%d'            # YYYY-MM-DD date only
+            ]:
+                try:
+                    return datetime.strptime(str_value, fmt)
+                except ValueError:
+                    continue
+            return None
+        except Exception:
+            return None
+
     item_masters = []
     csv_reader = csv.DictReader(io.StringIO(csv_content))
     
     for row in csv_reader:
         try:
             item_master_data = (
-                safe_string(row.get('Id'), allow_null=False) or '',  # ID cannot be null
-                safe_string(row.get('Name'), 255, allow_null=False) or 'Unknown Item',  # Name cannot be null
-                safe_float(row.get('Amount'), 0.0),  # Ensure default 0.0, not NULL
-                safe_int(row.get('ItemChargeMethodId'), 0),  # Ensure default 0, not NULL
-                safe_bool_as_int(row.get('Taxable'), 0),  # Boolean as 1/0
-                safe_bool_as_int(row.get('AvailableAsAddOn'), 0),  # Boolean as 1/0
-                safe_int(row.get('MarinaLocationId'), 0),  # Ensure default 0, not NULL
-                safe_float(row.get('Price'), 0.0),  # Ensure default 0.0, not NULL
-                safe_float(row.get('Tax'), 0.0),  # Ensure default 0.0, not NULL
-                safe_bool_as_int(row.get('Single'), 0),  # Boolean as 1/0
-                safe_string(row.get('ChargeCategory'), 100, allow_null=False) or '',
-                safe_bool_as_int(row.get('AmountIsDecimal'), 0),  # Boolean as 1/0
-                safe_int(row.get('NumberOfDecimals'), 0),  # Ensure default 0, not NULL
-                safe_string(row.get('ItemShortName'), 100, allow_null=False) or '',
-                safe_string(row.get('ItemCode'), 100, allow_null=False) or '',
-                safe_bool_as_int(row.get('TrackedInventory'), 0),  # Boolean as 1/0
-                safe_float(row.get('QuantityOnHand'), 0.0),  # Ensure default 0.0, not NULL
-                safe_float(row.get('PurchasePrice'), 0.0),  # Ensure default 0.0, not NULL
-                safe_string(row.get('FirstTrackingCategory'), 255, allow_null=False) or '',
-                safe_string(row.get('SecondTrackingCategory'), 255, allow_null=False) or '',
-                safe_string(row.get('XeroID'), 255, allow_null=False) or '',
-                safe_float(row.get('SaleFrequency'), 0.0),  # Ensure default 0.0, not NULL
-                safe_float(row.get('LowQuantityWarning'), 0.0),  # Ensure default 0.0, not NULL
-                safe_string(row.get('HashId'), 50, allow_null=False) or '',
-                safe_int(row.get('RecordStatusId'), 0)  # Ensure default 0, not NULL
+                safe_string(row.get('Id'), allow_null=False) or '',  # 1
+                safe_string(row.get('Name'), 255, allow_null=False) or 'Unknown Item',  # 2
+                safe_float(row.get('Amount'), 0.0),  # 3
+                safe_int(row.get('ItemChargeMethodId'), 0),  # 4
+                safe_bool_as_int(row.get('Taxable'), 0),  # 5
+                safe_bool_as_int(row.get('AvailableAsAddOn'), 0),  # 6
+                safe_int(row.get('MarinaLocationId'), 0),  # 7
+                safe_float(row.get('Price'), 0.0),  # 8
+                safe_float(row.get('Tax'), 0.0),  # 9
+                safe_bool_as_int(row.get('Single'), 0),  # 10
+                safe_string(row.get('ChargeCategory'), 100, allow_null=False) or '',  # 11
+                safe_bool_as_int(row.get('AmountIsDecimal'), 0),  # 12
+                safe_int(row.get('NumberOfDecimals'), 0),  # 13
+                safe_string(row.get('ItemShortName'), 100, allow_null=False) or '',  # 14
+                safe_string(row.get('ItemCode'), 100, allow_null=False) or '',  # 15
+                safe_bool_as_int(row.get('TrackedInventory'), 0),  # 16
+                safe_float(row.get('QuantityOnHand'), 0.0),  # 17
+                safe_float(row.get('PurchasePrice'), 0.0),  # 18
+                safe_string(row.get('FirstTrackingCategory'), 255, allow_null=False) or '',  # 19
+                safe_string(row.get('SecondTrackingCategory'), 255, allow_null=False) or '',  # 20
+                safe_string(row.get('XeroID'), 255, allow_null=False) or '',  # 21
+                safe_float(row.get('SaleFrequency'), 0.0),  # 22
+                safe_float(row.get('LowQuantityWarning'), 0.0),  # 23
+                safe_int(row.get('MarinaLocation1Id'), None),  # 24
+                safe_int(row.get('MarinaLocation2Id'), None),  # 25
+                safe_int(row.get('PedestalId'), None),  # 26
+                safe_int(row.get('Pedestal1Id'), None),  # 27
+                safe_int(row.get('QbItemId'), None),  # 28
+                safe_int(row.get('XeroItemId'), None),  # 29
+                safe_string(row.get('Barcode'), 100, allow_null=True),  # 30
+                safe_bool_as_int(row.get('DistributeToOwners'), 0),  # 31
+                safe_string(row.get('FuelCloudProductId'), 100, allow_null=True),  # 32
+                safe_string(row.get('HashId'), 50, allow_null=False) or '',  # 33
+                safe_bool_as_int(row.get('RequiresAgeVerification'), 0),  # 34
+                safe_int(row.get('MinimumAge'), None),  # 35
+                safe_datetime(row.get('CreationDateTime')),  # 36 - DATETIME FIELD!
+                safe_string(row.get('CreationAspNetUserId'), 256, allow_null=True),  # 37
+                safe_int(row.get('RecordStatusId'), 0),  # 38
+                safe_string(row.get('UpdateHash'), 100, allow_null=True),  # 39
+                safe_bool_as_int(row.get('SubletItem'), 0),  # 40
+                safe_int(row.get('InternalRevenueXeroAccountId'), None),  # 41
+                safe_int(row.get('InternalCogsXeroAccountId'), None),  # 42
+                safe_int(row.get('WipXeroAccountId'), None),  # 43
+                safe_int(row.get('InventoryRevaluationId'), None),  # 44
+                safe_int(row.get('MarinaLocation6Id'), None),  # 45
+                safe_string(row.get('FinaleProductUrl'), 500, allow_null=True),  # 46
+                safe_string(row.get('RevenueGLCode'), 50, allow_null=True),  # 47
+                safe_string(row.get('CogsGLCode'), 50, allow_null=True),  # 48
+                safe_string(row.get('InventoryGLCode'), 50, allow_null=True),  # 49
+                safe_string(row.get('ARGLCode'), 50, allow_null=True),  # 50
+                safe_string(row.get('SalesTaxGLCode'), 50, allow_null=True),  # 51
+                safe_bool_as_int(row.get('OnlyUseLast2Average'), 0),  # 52
+                safe_bool_as_int(row.get('DeferredRevenueRecognition'), 0),  # 53
+                safe_string(row.get('DeferredRecognitionGLCode'), 50, allow_null=True),  # 54
+                safe_string(row.get('TrackingCode'), 100, allow_null=True),  # 55
+                safe_bool_as_int(row.get('AddDescriptionToInvoiceNote'), 0),  # 56
+                safe_int(row.get('MarinaLocation7Id'), None),  # 57
+                safe_bool_as_int(row.get('IgnoreInventoryQoh'), 0),  # 58
+                safe_float(row.get('QohCommitted'), 0.0),  # 59
+                safe_float(row.get('QohOnOrder'), 0.0),  # 60
+                safe_bool_as_int(row.get('AllowTotalPriceEntry'), 0),  # 61
+                safe_int(row.get('MarinaLocation9Id'), None),  # 62
+                safe_bool_as_int(row.get('AllowPostingToNonIncomeAccounts'), 0),  # 63
+                safe_int(row.get('OrderColumn'), None),  # 64
+                safe_bool_as_int(row.get('EnableNegativeInventory'), 0),  # 65
+                safe_float(row.get('Wip'), 0.0)  # 66
             )
+            
+            # DEBUG: Log CreationDateTime for first 3 rows
+            if len(item_masters) < 3:
+                creation_dt_raw = row.get('CreationDateTime')
+                creation_dt_parsed = item_master_data[35]  # Position 36 (0-indexed)
+                logger.info(f"DEBUG ItemMaster ID={row.get('Id')}: CreationDateTime raw='{creation_dt_raw}' parsed={creation_dt_parsed}")
+            
             item_masters.append(item_master_data)
         except Exception as e:
             logger.warning(f"Error parsing item master row {row.get('Id', 'Unknown')}: {e}")
@@ -1563,45 +1634,79 @@ def parse_transient_prices_data(csv_content):
     Returns:
         list: List of tuples containing transient price data for database insertion
     """
+    # Helper function to safely parse datetime values with MM/DD/YYYY format support
+    def safe_datetime(value):
+        """Parse datetime with multiple format support including MM/DD/YYYY for Molo exports."""
+        if not value or value in ('', 'NULL', None):
+            return None
+        try:
+            # Try multiple datetime formats, including MM/DD/YYYY for Molo exports
+            for fmt in [
+                '%m/%d/%Y %H:%M:%S',  # MM/DD/YYYY HH:MM:SS (Molo format)
+                '%Y-%m-%d %H:%M:%S',  # YYYY-MM-DD HH:MM:SS
+                '%Y-%m-%dT%H:%M:%S',  # ISO format
+                '%m/%d/%Y',           # MM/DD/YYYY date only
+                '%Y-%m-%d'            # YYYY-MM-DD date only
+            ]:
+                try:
+                    return datetime.strptime(str(value).strip(), fmt)
+                except ValueError:
+                    continue
+            return None
+        except:
+            return None
+    
     transient_prices = []
     csv_reader = csv.DictReader(io.StringIO(csv_content))
     
     for row in csv_reader:
         try:
             transient_price_data = (
-                parse_int(row.get('Id', '')),
-                parse_datetime(row.get('StartDate', '')),
-                parse_datetime(row.get('EndDate', '')),
-                parse_float(row.get('Fee', '0')),
-                row.get('RateName', '').strip()[:255],
-                parse_int(row.get('TransientChargeMethodId', '')),
-                parse_int(row.get('MarinaLocationId', '')),
-                parse_boolean(row.get('Taxable', '')),  # Convert TRUE/FALSE to 1/0
-                parse_float(row.get('Tax', '0')),
-                row.get('RateDetails', '').strip()[:500] if row.get('RateDetails') else '',
-                row.get('RateShortName', '').strip()[:100],
-                row.get('OnlinePaymentPlaceholder', '').strip()[:255],
-                row.get('XeroItemCode', '').strip()[:100],
-                row.get('XeroID', '').strip()[:255],
-                row.get('FirstTrackingCategory', '').strip()[:255],
-                row.get('SecondTrackingCategory', '').strip()[:255],
-                parse_int(row.get('TransientInvoicingMethod_Id', '')),
-                parse_datetime(row.get('CreationDateTime', '')),
-                row.get('AspNetUser_Id', '').strip()[:255],
-                row.get('CheckInTerms', '').strip()[:2000] if row.get('CheckInTerms') else '',
-                row.get('CheckOutTerms', '').strip()[:2000] if row.get('CheckOutTerms') else '',
-                row.get('OnlinePaymentCompletion', '').strip()[:500],
-                parse_int(row.get('DueDateDays', '')),
-                parse_int(row.get('DueDateSettings_Id', '')),
-                parse_boolean(row.get('HourlyCalculation', '')),  # TRUE/FALSE to 1/0
-                parse_int(row.get('RoundMinutes', '')),
-                parse_int(row.get('MinimumHours', '')),
-                parse_int(row.get('NumHoursBlock', '')),
-                row.get('ChargeCategory', '').strip()[:100],
-                row.get('IntroText', '').strip()[:1000] if row.get('IntroText') else '',
-                row.get('RevenueGLCode', '').strip()[:50],
-                row.get('ARGLCode', '').strip()[:50],
-                row.get('SalesTaxGLCode', '').strip()[:50]
+                parse_int(row.get('Id', '')),                                           # 1
+                safe_datetime(row.get('StartDate')),                                    # 2
+                safe_datetime(row.get('EndDate')),                                      # 3
+                parse_float(row.get('Fee', '0')),                                       # 4
+                row.get('RateName', '').strip()[:1000] if row.get('RateName') else '',  # 5
+                parse_int(row.get('TransientChargeMethodId', '')),                      # 6
+                parse_int(row.get('MarinaLocationId', '')),                             # 7
+                parse_boolean(row.get('Taxable', '')),                                  # 8
+                parse_float(row.get('Tax', '0')),                                       # 9
+                row.get('RateDetails', '').strip()[:1000] if row.get('RateDetails') else '',  # 10
+                row.get('RateShortName', '').strip()[:1000] if row.get('RateShortName') else '',  # 11
+                row.get('OnlinePaymentPlaceholder', '').strip()[:1000] if row.get('OnlinePaymentPlaceholder') else '',  # 12
+                row.get('XeroItemCode', '').strip()[:1000] if row.get('XeroItemCode') else '',  # 13
+                row.get('XeroID', '').strip()[:1000] if row.get('XeroID') else '',      # 14
+                parse_int(row.get('FirstTrackingCategory', '')),                        # 15
+                parse_int(row.get('SecondTrackingCategory', '')),                       # 16
+                parse_int(row.get('TransientInvoicingMethod_Id', '')),                  # 17
+                parse_int(row.get('SV_InventoryCategory_Id', '')),                      # 18
+                parse_int(row.get('SV_InventorySubCategory_Id', '')),                   # 19
+                safe_datetime(row.get('CreationDateTime')),                             # 20
+                row.get('AspNetUser_Id', '').strip()[:256] if row.get('AspNetUser_Id') else '',  # 21
+                row.get('CheckInTerms', '').strip()[:1000] if row.get('CheckInTerms') else '',  # 22
+                row.get('CheckOutTerms', '').strip()[:1000] if row.get('CheckOutTerms') else '',  # 23
+                row.get('OnlinePaymentCompletion', '').strip()[:1000] if row.get('OnlinePaymentCompletion') else '',  # 24
+                parse_int(row.get('DueDateDays', '')),                                  # 25
+                parse_int(row.get('DueDateSettings_Id', '')),                           # 26
+                row.get('HourlyCalculation', '').strip()[:1000] if row.get('HourlyCalculation') else '',  # 27
+                parse_int(row.get('RoundMinutes', '')),                                 # 28
+                parse_int(row.get('MinimumHours', '')),                                 # 29
+                parse_int(row.get('NumHoursBlock', '')),                                # 30
+                row.get('ChargeCategory', '').strip()[:1000] if row.get('ChargeCategory') else '',  # 31
+                row.get('IntroText', '').strip()[:1000] if row.get('IntroText') else '',  # 32
+                row.get('RevenueGLCode', '').strip()[:1000] if row.get('RevenueGLCode') else '',  # 33
+                row.get('ARGLCode', '').strip()[:1000] if row.get('ARGLCode') else '',  # 34
+                row.get('SalesTaxGLCode', '').strip()[:1000] if row.get('SalesTaxGLCode') else '',  # 35
+                safe_datetime(row.get('DeletionDatetime')),                             # 36
+                row.get('DeletionAspNetUser_Id', '').strip()[:256] if row.get('DeletionAspNetUser_Id') else '',  # 37
+                parse_int(row.get('RecordStatus_Id', '')),                              # 38
+                parse_int(row.get('RecurringInvoiceOptions_Id', '')),                   # 39
+                parse_boolean(row.get('Recurring', '')),                                # 40
+                row.get('TrackingCode', '').strip()[:1000] if row.get('TrackingCode') else '',  # 41
+                row.get('AlternateReservationName', '').strip()[:1000] if row.get('AlternateReservationName') else '',  # 42
+                parse_boolean(row.get('ResourceRate', '')),                             # 43
+                parse_int(row.get('QuantityCap', '')),                                  # 44
+                parse_boolean(row.get('AllowPostingToNonIncomeAccounts', ''))           # 45
             )
             transient_prices.append(transient_price_data)
         except Exception as e:
