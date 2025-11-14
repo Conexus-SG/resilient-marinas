@@ -4,7 +4,9 @@
 -- ============================================================================
 CREATE OR REPLACE PROCEDURE SP_MERGE_STELLAR_POS_ITEMS
 IS
-    v_merged NUMBER := 0;
+    v_inserted NUMBER := 0;
+    v_updated NUMBER := 0;
+    v_timestamp TIMESTAMP := SYSTIMESTAMP;
 BEGIN
     MERGE INTO DW_STELLAR_POS_ITEMS tgt
     USING STG_STELLAR_POS_ITEMS src
@@ -19,7 +21,18 @@ BEGIN
             tgt.TAX_EXEMPT = src.TAX_EXEMPT,
             tgt.CREATED_AT = src.CREATED_AT,
             tgt.UPDATED_AT = src.UPDATED_AT,
-            tgt.DW_LAST_UPDATED = SYSTIMESTAMP
+            tgt.DW_LAST_UPDATED = v_timestamp
+        WHERE (
+            NVL(tgt.ID, -999) <> NVL(src.ID, -999) OR
+            NVL(tgt.LOCATION_ID, -999) <> NVL(src.LOCATION_ID, -999) OR
+            NVL(tgt.SKU, '~NULL~') <> NVL(src.SKU, '~NULL~') OR
+            NVL(tgt.ITEM_NAME, '~NULL~') <> NVL(src.ITEM_NAME, '~NULL~') OR
+            NVL(tgt.COST, -999.999) <> NVL(src.COST, -999.999) OR
+            NVL(tgt.PRICE, -999.999) <> NVL(src.PRICE, -999.999) OR
+            NVL(tgt.TAX_EXEMPT, '~NULL~') <> NVL(src.TAX_EXEMPT, '~NULL~') OR
+            NVL(tgt.CREATED_AT, TO_TIMESTAMP('1900-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) <> NVL(src.CREATED_AT, TO_TIMESTAMP('1900-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) OR
+            NVL(tgt.UPDATED_AT, TO_TIMESTAMP('1900-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) <> NVL(src.UPDATED_AT, TO_TIMESTAMP('1900-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))
+        )
     WHEN NOT MATCHED THEN
         INSERT (
             ID, LOCATION_ID, SKU, ITEM_NAME, COST, PRICE, TAX_EXEMPT, CREATED_AT, UPDATED_AT,
@@ -28,14 +41,23 @@ BEGIN
         )
         VALUES (
             src.ID, src.LOCATION_ID, src.SKU, src.ITEM_NAME, src.COST, src.PRICE, src.TAX_EXEMPT, src.CREATED_AT, src.UPDATED_AT,
-            SYSTIMESTAMP,
-            SYSTIMESTAMP
+            v_timestamp,
+            v_timestamp
         );
     
-    v_merged := SQL%ROWCOUNT;
+    -- Count inserts and updates
+    SELECT COUNT(*) INTO v_inserted 
+    FROM DW_STELLAR_POS_ITEMS 
+    WHERE DW_LAST_INSERTED = v_timestamp;
+    
+    SELECT COUNT(*) INTO v_updated 
+    FROM DW_STELLAR_POS_ITEMS 
+    WHERE DW_LAST_UPDATED = v_timestamp 
+    AND DW_LAST_INSERTED < v_timestamp;
+    
     COMMIT;
     
-    DBMS_OUTPUT.PUT_LINE('DW_STELLAR_POS_ITEMS: Merged ' || v_merged || ' records');
+    DBMS_OUTPUT.PUT_LINE('DW_STELLAR_POS_ITEMS: ' || v_inserted || ' inserted, ' || v_updated || ' updated');
     
 EXCEPTION
     WHEN OTHERS THEN
