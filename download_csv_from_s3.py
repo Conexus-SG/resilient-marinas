@@ -3538,20 +3538,16 @@ if __name__ == "__main__":
             logger.info("STEP 2: Processing Stellar Business Data")
             logger.info("=" * 80)
             logger.info("")
-            logger.info("📊 Expected tables to process:")
-            logger.info("   • DW_STELLAR_CUSTOMERS (1,296 records)")
-            logger.info("   • DW_STELLAR_LOCATIONS (1 record)")
-            logger.info("   • DW_STELLAR_SEASONS (3 records)")
-            logger.info("   • DW_STELLAR_ACCESSORIES (1 record)")
-            logger.info("   • DW_STELLAR_ACCESSORY_OPTIONS (3 records)")
-            logger.info("   • DW_STELLAR_ACCESSORY_TIERS (2 records)")
-            logger.info("   • DW_STELLAR_AMENITIES (3 records)")
-            logger.info("   • DW_STELLAR_CATEGORIES (3 records)")
-            logger.info("   • DW_STELLAR_HOLIDAYS (1 record)")
+            logger.info("📊 Processing Stellar Business data from S3...")
+            logger.info(f"   Bucket: {stellar_bucket}")
+            logger.info(f"   Region: {args.region}")
+            logger.info("")
+            logger.info("📊 Expected tables in backup: 29 tables")
+            logger.info("   (Reference data, bookings, boats, pricing, POS, etc.)")
             logger.info("")
             
             try:
-                process_stellar_data_from_s3(
+                stellar_results = process_stellar_data_from_s3(
                     bucket=stellar_bucket,
                     region=args.region,
                     db_user=db_user,
@@ -3560,23 +3556,35 @@ if __name__ == "__main__":
                     aws_access_key_id=aws_access_key,
                     aws_secret_access_key=aws_secret_key
                 )
+                
+                # Display results dynamically
                 logger.info("")
                 logger.info("=" * 80)
-                logger.info("✅ STELLAR DATA PROCESSING COMPLETED SUCCESSFULLY")
+                logger.info("✅ STELLAR DATA PROCESSING COMPLETED")
                 logger.info("=" * 80)
-                logger.info("📊 Successfully loaded 9 tables with 1,312 total records:")
+                
+                successful_count = len(stellar_results['successful_tables'])
+                total_records = stellar_results['total_records']
+                total_tables = stellar_results['total_tables']
+                
+                logger.info(f"📊 Successfully processed: {successful_count}/{total_tables} tables")
+                logger.info(f"📊 Total records loaded: {total_records:,}")
                 logger.info("")
-                logger.info("   ✅ DW_STELLAR_CUSTOMERS        → 1,296 records")
-                logger.info("   ✅ DW_STELLAR_LOCATIONS        →     1 record")
-                logger.info("   ✅ DW_STELLAR_SEASONS          →     3 records")
-                logger.info("   ✅ DW_STELLAR_ACCESSORIES      →     1 record")
-                logger.info("   ✅ DW_STELLAR_ACCESSORY_OPTIONS→     3 records")
-                logger.info("   ✅ DW_STELLAR_ACCESSORY_TIERS  →     2 records")
-                logger.info("   ✅ DW_STELLAR_AMENITIES        →     3 records")
-                logger.info("   ✅ DW_STELLAR_CATEGORIES       →     3 records")
-                logger.info("   ✅ DW_STELLAR_HOLIDAYS         →     1 record")
+                
+                if stellar_results['successful_tables']:
+                    logger.info("✅ Successfully processed tables:")
+                    for table_name, record_count in sorted(stellar_results['successful_tables'].items()):
+                        table_display = f"DW_STELLAR_{table_name.upper()}"
+                        logger.info(f"   ✅ {table_display:<35} → {record_count:>6,} records")
+                
+                if stellar_results['failed_tables']:
+                    logger.info("")
+                    logger.info("⚠️  Failed/Missing tables:")
+                    for table_name, reason in sorted(stellar_results['failed_tables'].items()):
+                        table_display = f"DW_STELLAR_{table_name.upper()}"
+                        logger.info(f"   ❌ {table_display:<35} → {reason}")
+                
                 logger.info("")
-                logger.info("   Total: 1,312 records loaded with 0 errors!")
                 logger.info("=" * 80)
             except Exception as e:
                 logger.exception(f"❌ Error processing Stellar data: {e}")

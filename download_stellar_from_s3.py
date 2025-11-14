@@ -1461,6 +1461,7 @@ def process_stellar_data_from_s3(
     # Process each table
     total_records = 0
     successful_tables = 0
+    successful_tables_details = {}  # Track successful tables with record counts
     failed_tables = []
     failed_tables_details = {}  # Track error details for each failed table
     
@@ -1500,6 +1501,7 @@ def process_stellar_data_from_s3(
                 
                 total_records += len(data_rows)
                 successful_tables += 1
+                successful_tables_details[table_name] = len(data_rows)
                 logger.info(
                     f"✅ Successfully processed {table_name}: "
                     f"{len(data_rows)} records"
@@ -1559,3 +1561,11 @@ def process_stellar_data_from_s3(
         logger.info("All tables processed successfully!")
     
     logger.info("=" * 80)
+    
+    # Return processing results for caller to display
+    return {
+        'successful_tables': successful_tables_details,
+        'failed_tables': failed_tables_details,
+        'total_records': total_records,
+        'total_tables': len(tables_to_process)
+    }
