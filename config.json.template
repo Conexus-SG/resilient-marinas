@@ -25,6 +25,17 @@
     "stellar_bucket": "resilient-ims-backups"
   },
   
+  "email": {
+    "enabled": false,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "from_email": "your_email@gmail.com",
+    "to_emails": ["recipient1@example.com", "recipient2@example.com"],
+    "username": "your_email@gmail.com",
+    "password": "your_app_password_here",
+    "subject_prefix": "[Marina ETL]"
+  },
+  
   "logging": {
     "level": "INFO"
   }

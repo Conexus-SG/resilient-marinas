@@ -99,18 +99,6 @@ The pipeline downloads data from **AWS S3 buckets**, processes it, and loads it 
 
 **Security**: Never commit to version control. Use `config.json.template` as reference.
 
-#### `.env`
-**Purpose**: Environment variable alternative to config.json
-
-**Contains**: Same credentials in environment variable format
-```bash
-AWS_ACCESS_KEY_ID=AKIA...
-AWS_SECRET_ACCESS_KEY=secret...
-DB_USER=API_USER
-DB_PASSWORD=<password>
-DB_DSN=oax4504110443_low
-```
-
 #### `wallet_demo/`
 **Purpose**: Oracle Autonomous Database connection wallet
 
@@ -765,7 +753,7 @@ If source CSV structure changes:
 ## Security Considerations
 
 ### Credential Management
-- **Never commit**: `config.json`, `.env` to version control
+- **Never commit**: `config.json` to version control
 - **Use templates**: Commit `config.json.template` with placeholder values
 - **Rotate credentials**: Update credentials quarterly
 - **Least privilege**: Use database user with minimal required permissions

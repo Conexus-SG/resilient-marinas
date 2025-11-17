@@ -33,6 +33,11 @@ import logging
 import os
 import zipfile
 from datetime import datetime
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
 
 # Third-party imports
 import boto3
@@ -41,7 +46,6 @@ from botocore.exceptions import NoCredentialsError, ClientError
 
 # Local imports
 from molo_db_functions import OracleConnector
-from dotenv import load_dotenv
 
 # Optional validation imports
 try:
@@ -163,12 +167,13 @@ def load_config_file(config_path='config.json'):
 # ENVIRONMENT AND OCI SETUP (VAULT FUNCTIONALITY DISABLED)
 # =============================================================================
 
-# OCI Vault functionality has been disabled in favor of config file approach
-# Configuration is now loaded from config.json file
+# =============================================================================
+# CONFIGURATION & CREDENTIALS
+# =============================================================================
+# All configuration and credentials are loaded from config.json file
 # This simplifies deployment and keeps credentials in one secure location
+# No environment variables or .env files are used
 
-# Optional: Still load .env file for backward compatibility
-load_dotenv()
 oci = None  # OCI SDK not used
 
 
@@ -3035,7 +3040,7 @@ def read_s3_zip_and_insert_to_db(
         else:
             logger.info(
                 "Using Boto3's default credential discovery "
-                "(.env, ~/.aws/credentials)."
+                "(~/.aws/credentials or IAM roles)."
             )
             s3_client = boto3.client('s3', region_name=region)
 
@@ -3119,6 +3124,8 @@ def read_s3_zip_and_insert_to_db(
         processed_count = 0
         skipped_count = 0
         error_count = 0
+        table_record_counts = {}  # Track records per table like Stellar does
+        
         for csv_name, csv_content in extracted_csv_data.items():
             logger.info(f"\n--- Processing {csv_name}.csv ---")
             
@@ -3127,48 +3134,56 @@ def read_s3_zip_and_insert_to_db(
                 if csv_name == 'MarinaLocations':
                     parsed_data = parse_marina_locations_data(csv_content)
                     db.insert_marina_locations(parsed_data)
+                    table_record_counts['MARINA_LOCATIONS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} marina location records")
                     processed_count += 1
                     
                 elif csv_name == 'Piers':
                     parsed_data = parse_piers_data(csv_content)
                     db.insert_piers(parsed_data)
+                    table_record_counts['PIERS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} pier records")
-                    
                     processed_count += 1
+                    
                 elif csv_name == 'SlipTypes':
                     parsed_data = parse_slip_types_data(csv_content)
                     db.insert_slip_types(parsed_data)
+                    table_record_counts['SLIP_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} slip type records")
-                    
                     processed_count += 1
+                    
                 elif csv_name == 'Slips':
                     parsed_data = parse_slips_data(csv_content)
                     db.insert_slips(parsed_data)
+                    table_record_counts['SLIPS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} slip records")
-                    
                     processed_count += 1
+                    
                 elif csv_name == 'Reservations':
                     parsed_data = parse_reservations_data(csv_content)
                     db.insert_reservations(parsed_data)
+                    table_record_counts['RESERVATIONS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} reservation records")
-                    
                     processed_count += 1
+                    
                 elif csv_name == 'Companies':
                     parsed_data = parse_companies_data(csv_content)
                     db.insert_companies(parsed_data)
+                    table_record_counts['COMPANIES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} company records")
-                    
                     processed_count += 1
+                    
                 elif csv_name == 'Contacts':
                     parsed_data = parse_contacts_data(csv_content)
                     db.insert_contacts(parsed_data)
+                    table_record_counts['CONTACTS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} contact records")
-                    
                     processed_count += 1
+                    
                 elif csv_name == 'Boats':
                     parsed_data = parse_boats_data(csv_content)
                     db.insert_boats(parsed_data)
+                    table_record_counts['BOATS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} boat records")
                     
                     # Validate boats data if enabled
@@ -3185,12 +3200,14 @@ def read_s3_zip_and_insert_to_db(
                 elif csv_name == 'Accounts':
                     parsed_data = parse_accounts_data(csv_content)
                     db.insert_accounts(parsed_data)
+                    table_record_counts['ACCOUNTS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} account records")
                     
                     processed_count += 1
                 elif csv_name == 'InvoiceSet':
                     parsed_data = parse_invoices_data(csv_content)
                     db.insert_invoices(parsed_data)
+                    table_record_counts['INVOICES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} invoice records")
                     
                     # Validate invoices data
@@ -3209,18 +3226,21 @@ def read_s3_zip_and_insert_to_db(
                 elif csv_name == 'InvoiceItemSet':
                     parsed_data = parse_invoice_items_data(csv_content)
                     db.insert_invoice_items(parsed_data)
+                    table_record_counts['INVOICE_ITEMS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} invoice item records")
                     
                     processed_count += 1
                 elif csv_name == 'Transactions':
                     parsed_data = parse_transactions_data(csv_content)
                     db.insert_transactions(parsed_data)
+                    table_record_counts['TRANSACTIONS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} transaction records")
                     
                     processed_count += 1
                 elif csv_name == 'ItemMasters':
                     parsed_data = parse_item_masters_data(csv_content)
                     db.insert_item_masters(parsed_data)
+                    table_record_counts['ITEM_MASTERS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} item master records")
                     
                     # Validate item masters data (especially datetime fields)
@@ -3239,204 +3259,238 @@ def read_s3_zip_and_insert_to_db(
                 elif csv_name == 'SeasonalPrices':
                     parsed_data = parse_seasonal_prices_data(csv_content)
                     db.insert_seasonal_prices(parsed_data)
+                    table_record_counts['SEASONAL_PRICES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} seasonal price records")
                     
                     processed_count += 1
                 elif csv_name == 'TransientPrices':
                     parsed_data = parse_transient_prices_data(csv_content)
                     db.insert_transient_prices(parsed_data)
+                    table_record_counts['TRANSIENT_PRICES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} transient price records")
                     
                     processed_count += 1
                 elif csv_name == 'RecordStatusSet':
                     parsed_data = parse_record_status_data(csv_content)
                     db.insert_record_status(parsed_data)
+                    table_record_counts['RECORD_STATUS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} record status records")
                     
                     processed_count += 1
                 elif csv_name == 'BoatTypes':
                     parsed_data = parse_boat_types_data(csv_content)
                     db.insert_boat_types(parsed_data)
+                    table_record_counts['BOAT_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} boat type records")
                     
                     processed_count += 1
                 elif csv_name == 'PowerNeeds':
                     parsed_data = parse_power_needs_data(csv_content)
                     db.insert_power_needs(parsed_data)
+                    table_record_counts['POWER_NEEDS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} power need records")
                     
                     processed_count += 1
                 elif csv_name == 'ReservationStatus':
                     parsed_data = parse_reservation_status_data(csv_content)
                     db.insert_reservation_status(parsed_data)
+                    table_record_counts['RESERVATION_STATUS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} reservation status records")
                     
                     processed_count += 1
                 elif csv_name == 'ReservationTypes':
                     parsed_data = parse_reservation_types_data(csv_content)
                     db.insert_reservation_types(parsed_data)
+                    table_record_counts['RESERVATION_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} reservation type records")
                     
                     processed_count += 1
                 elif csv_name == 'ContactTypes':
                     parsed_data = parse_contact_types_data(csv_content)
                     db.insert_contact_types(parsed_data)
+                    table_record_counts['CONTACT_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} contact type records")
                     
                     processed_count += 1
                 elif csv_name == 'InvoiceStatusSet':
                     parsed_data = parse_invoice_status_data(csv_content)
                     db.insert_invoice_status(parsed_data)
+                    table_record_counts['INVOICE_STATUS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} invoice status records")
                     
                     processed_count += 1
                 elif csv_name == 'InvoiceTypeSet':
                     parsed_data = parse_invoice_types_data(csv_content)
                     db.insert_invoice_types(parsed_data)
+                    table_record_counts['INVOICE_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} invoice type records")
                     
                     processed_count += 1
                 elif csv_name == 'TransactionTypeSet':
                     parsed_data = parse_transaction_types_data(csv_content)
                     db.insert_transaction_types(parsed_data)
+                    table_record_counts['TRANSACTION_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} transaction type records")
                     
                     processed_count += 1
                 elif csv_name == 'TransactionMethodSet':
                     parsed_data = parse_transaction_methods_data(csv_content)
                     db.insert_transaction_methods(parsed_data)
+                    table_record_counts['TRANSACTION_METHODS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} transaction method records")
                     
                     processed_count += 1
                 elif csv_name == 'InsuranceSet':
                     parsed_data = parse_insurance_data(csv_content)
                     db.insert_insurance(parsed_data)
+                    table_record_counts['INSURANCE_STATUS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} insurance records")
                     
                     processed_count += 1
                 elif csv_name == 'EquipmentSet':
                     parsed_data = parse_equipment_data(csv_content)
                     db.insert_equipment(parsed_data)
+                    table_record_counts['EQUIPMENT'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} equipment records")
                     
                     processed_count += 1
                 elif csv_name == 'AccountStatus':
                     parsed_data = parse_account_status_data(csv_content)
                     db.insert_account_status(parsed_data)
+                    table_record_counts['ACCOUNT_STATUS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} account status records")
                     
                     processed_count += 1
                 elif csv_name == 'ContactAutoChargeSet':
                     parsed_data = parse_contact_auto_charge_data(csv_content)
                     db.insert_contact_auto_charge(parsed_data)
+                    table_record_counts['CONTACT_AUTO_CHARGE'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} contact auto charge records")
                     
                     processed_count += 1
                 elif csv_name == 'StatementsPreferenceSet':
                     parsed_data = parse_statements_preference_data(csv_content)
                     db.insert_statements_preference(parsed_data)
+                    table_record_counts['STATEMENTS_PREFERENCE'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} statements preference records")
                     
                     processed_count += 1
                 elif csv_name == 'InvoiceItemTypeSet':
                     parsed_data = parse_invoice_item_types_data(csv_content)
                     db.insert_invoice_item_types(parsed_data)
+                    table_record_counts['INVOICE_ITEM_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} invoice item type records")
                     
                     processed_count += 1
                 elif csv_name == 'PaymentMethods':
                     parsed_data = parse_payment_methods_data(csv_content)
                     db.insert_payment_methods(parsed_data)
+                    table_record_counts['PAYMENT_METHODS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} payment method records")
                     
                     processed_count += 1
                 elif csv_name == 'SeasonalChargeMethods':
                     parsed_data = parse_seasonal_charge_methods_data(csv_content)
                     db.insert_seasonal_charge_methods(parsed_data)
+                    table_record_counts['SEASONAL_CHARGE_METHODS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} seasonal charge method records")
                     
                     processed_count += 1
                 elif csv_name == 'SeasonalInvoicingMethodSet':
                     parsed_data = parse_seasonal_invoicing_methods_data(csv_content)
                     db.insert_seasonal_invoicing_methods(parsed_data)
+                    table_record_counts['SEASONAL_INVOICING_METHODS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} seasonal invoicing method records")
                     
                     processed_count += 1
                 elif csv_name == 'TransientChargeMethods':
                     parsed_data = parse_transient_charge_methods_data(csv_content)
                     db.insert_transient_charge_methods(parsed_data)
+                    table_record_counts['TRANSIENT_CHARGE_METHODS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} transient charge method records")
                     
                     processed_count += 1
                 elif csv_name == 'TransientInvoicingMethodSet':
                     parsed_data = parse_transient_invoicing_methods_data(csv_content)
                     db.insert_transient_invoicing_methods(parsed_data)
+                    table_record_counts['TRANSIENT_INVOICING_METHODS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} transient invoicing method records")
                     
                     processed_count += 1
                 elif csv_name == 'RecurringInvoiceOptionsSet':
                     parsed_data = parse_recurring_invoice_options_data(csv_content)
                     db.insert_recurring_invoice_options(parsed_data)
+                    table_record_counts['RECURRING_INVOICE_OPTIONS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} recurring invoice option records")
                     
                     processed_count += 1
                 elif csv_name == 'DueDateSettingsSet':
                     parsed_data = parse_due_date_settings_data(csv_content)
                     db.insert_due_date_settings(parsed_data)
+                    table_record_counts['DUE_DATE_SETTINGS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} due date setting records")
                     
                     processed_count += 1
                 elif csv_name == 'ItemChargeMethods':
                     parsed_data = parse_item_charge_methods_data(csv_content)
                     db.insert_item_charge_methods(parsed_data)
+                    table_record_counts['ITEM_CHARGE_METHODS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} item charge method records")
                     
                     processed_count += 1
                 elif csv_name == 'InsuranceStatusSet':
                     parsed_data = parse_insurance_status_data(csv_content)
                     db.insert_insurance_status(parsed_data)
+                    table_record_counts['INSURANCE_STATUS_ALT'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} insurance status records")
                     
                     processed_count += 1
                 elif csv_name == 'EquipmentTypeSet':
                     parsed_data = parse_equipment_types_data(csv_content)
                     db.insert_equipment_types(parsed_data)
+                    table_record_counts['EQUIPMENT_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} equipment type records")
                     
                     processed_count += 1
                 elif csv_name == 'EquipmentFuelTypeSet':
                     parsed_data = parse_equipment_fuel_types_data(csv_content)
                     db.insert_equipment_fuel_types(parsed_data)
+                    table_record_counts['EQUIPMENT_FUEL_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} equipment fuel type records")
                     
                     processed_count += 1
                 elif csv_name == 'VesselEngineClassSet':
                     parsed_data = parse_vessel_engine_class_data(csv_content)
                     db.insert_vessel_engine_class(parsed_data)
+                    table_record_counts['VESSEL_ENGINE_CLASS'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} vessel engine class records")
                     
                     processed_count += 1
                 elif csv_name == 'Cities':
                     parsed_data = parse_cities_data(csv_content)
                     db.insert_cities(parsed_data)
+                    table_record_counts['CITIES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} city records")
                     
                     processed_count += 1
                 elif csv_name == 'Countries':
                     parsed_data = parse_countries_data(csv_content)
                     db.insert_countries(parsed_data)
+                    table_record_counts['COUNTRIES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} country records")
                     
                     processed_count += 1
                 elif csv_name == 'CurrenciesSet':
                     parsed_data = parse_currencies_data(csv_content)
                     db.insert_currencies(parsed_data)
+                    table_record_counts['CURRENCIES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} currency records")
                     
                     processed_count += 1
                 elif csv_name == 'PhoneTypes':
                     parsed_data = parse_phone_types_data(csv_content)
                     db.insert_phone_types(parsed_data)
+                    table_record_counts['PHONE_TYPES'] = len(parsed_data)
                     logger.info(f"✅ Processed {len(parsed_data)} phone type records")
                     
                     processed_count += 1
@@ -3524,6 +3578,17 @@ def read_s3_zip_and_insert_to_db(
         logger.info(f"✅ Successfully processed: {processed_count} files")
         logger.info(f"⚠️  Skipped: {skipped_count} files")
         logger.info(f"❌ Errors: {error_count} files")
+        
+        # Display table-level statistics
+        if table_record_counts:
+            total_records = sum(table_record_counts.values())
+            logger.info(f"📊 Total records loaded: {total_records:,}")
+            logger.info("")
+            logger.info("✅ Successfully processed tables:")
+            for table_name, record_count in sorted(table_record_counts.items()):
+                table_display = f"DW_MOLO_{table_name}"
+                logger.info(f"   ✅ {table_display:<35} → {record_count:>6,} records")
+        
         logger.info("="*70)
         
         if skipped_count > 0:
@@ -3533,12 +3598,23 @@ def read_s3_zip_and_insert_to_db(
             logger.info("\n✅ All MOLO CSV files processed successfully!")
         else:
             logger.warning(f"\n⚠️  Processing completed with {error_count} error(s)")
+        
+        # Return processing statistics
+        return {
+            'processed_count': processed_count,
+            'skipped_count': skipped_count,
+            'error_count': error_count,
+            'files_processed': list(extracted_csv_data.keys()),
+            'zip_file': latest_zip_key,
+            'table_record_counts': table_record_counts  # Add table-level stats
+        }
     
     except NoCredentialsError:
         logger.error("AWS credentials not found.")
         logger.error(
-            "Please configure your AWS credentials (e.g., in .env file)."
+            "Please configure your AWS credentials in config.json file."
         )
+        return None
     except ClientError as e:
         if e.response['Error']['Code'] == 'NoSuchBucket':
             logger.error(f"The bucket '{bucket}' does not exist.")
@@ -3549,10 +3625,315 @@ def read_s3_zip_and_insert_to_db(
             )
         else:
             logger.exception(f"An S3 client error occurred: {e}")
+        return None
     except zipfile.BadZipFile:
         logger.error("The downloaded file is not a valid ZIP file.")
+        return None
     except Exception as e:
         logger.exception(f"An unexpected error occurred: {e}")
+        return None
+
+
+# =============================================================================
+# EMAIL NOTIFICATION FUNCTIONS
+# =============================================================================
+
+def send_email_notification(config, subject, summary_data, zip_file_paths=None, is_error=False):
+    """
+    Send HTML email notification with formatted results and ZIP file attachments.
+    
+    Args:
+        config (dict): Configuration dictionary with email settings
+        subject (str): Email subject line
+        summary_data (dict): Dictionary containing processing statistics
+        zip_file_paths (list): List of paths to ZIP files to attach (optional)
+        is_error (bool): Whether this is an error notification
+    """
+    # Check if email is enabled
+    if not config.get("email", {}).get("enabled", False):
+        logger.info("Email notifications disabled in config")
+        return
+    
+    try:
+        email_config = config["email"]
+        
+        # Create message
+        msg = MIMEMultipart('mixed')
+        msg['From'] = email_config["from_email"]
+        msg['To'] = ", ".join(email_config["to_emails"])
+        
+        # Add prefix to subject
+        subject_prefix = email_config.get("subject_prefix", "[Marina ETL]")
+        status = "ERROR" if is_error else "SUCCESS"
+        full_subject = f"{subject_prefix} {status} - {subject}"
+        msg['Subject'] = full_subject
+        
+        # Create alternative part for HTML and plain text
+        msg_alternative = MIMEMultipart('alternative')
+        
+        # Create HTML email content
+        html_content = create_html_report(summary_data, is_error)
+        
+        # Create plain text fallback
+        plain_text = create_plain_text_report(summary_data, is_error)
+        
+        # Attach both HTML and plain text
+        part1 = MIMEText(plain_text, 'plain')
+        part2 = MIMEText(html_content, 'html')
+        
+        msg_alternative.attach(part1)
+        msg_alternative.attach(part2)
+        msg.attach(msg_alternative)
+        
+        # Attach ZIP files if provided
+        if zip_file_paths:
+            for zip_path in zip_file_paths:
+                if os.path.exists(zip_path):
+                    try:
+                        with open(zip_path, 'rb') as attachment:
+                            part = MIMEBase('application', 'zip')
+                            part.set_payload(attachment.read())
+                            encoders.encode_base64(part)
+                            filename = os.path.basename(zip_path)
+                            part.add_header(
+                                'Content-Disposition',
+                                f'attachment; filename= {filename}'
+                            )
+                            msg.attach(part)
+                            logger.info(f"  📎 Attached file: {filename}")
+                    except Exception as e:
+                        logger.warning(f"Failed to attach {zip_path}: {e}")
+                else:
+                    logger.warning(f"ZIP file not found for attachment: {zip_path}")
+        
+        # Send email
+        with smtplib.SMTP(email_config["smtp_server"], 
+                         email_config["smtp_port"]) as server:
+            server.starttls()
+            server.login(email_config["username"], email_config["password"])
+            text = msg.as_string()
+            server.sendmail(email_config["from_email"], 
+                          email_config["to_emails"], text)
+        
+        logger.info(f"✅ Email notification sent successfully to: "
+                   f"{', '.join(email_config['to_emails'])}")
+        
+    except Exception as e:
+        logger.error(f"Failed to send email notification: {e}", exc_info=True)
+
+
+def create_html_report(summary_data, is_error=False):
+    """Create HTML formatted email report"""
+    status_icon = "❌" if is_error else "✅"
+    status_text = "COMPLETED WITH ERRORS" if is_error else "SUCCESS"
+    status_color = "#d32f2f" if is_error else "#388e3c"
+    
+    # Get data from summary
+    start_time = summary_data.get('start_time', 'Unknown')
+    end_time = summary_data.get('end_time', 'Unknown')
+    duration = summary_data.get('duration', 'Unknown')
+    molo_stats = summary_data.get('molo_stats', {})
+    stellar_stats = summary_data.get('stellar_stats', {})
+    errors = summary_data.get('errors', [])
+    warnings = summary_data.get('warnings', [])
+    
+    # Calculate totals
+    molo_records = sum(v for v in molo_stats.values() if isinstance(v, int))
+    stellar_records = sum(v for v in stellar_stats.values() if isinstance(v, int))
+    total_records = molo_records + stellar_records
+    
+    html = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body {{ font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }}
+            .container {{ background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }}
+            .header {{ background-color: {status_color}; color: white; padding: 15px; border-radius: 5px; margin-bottom: 20px; }}
+            .section {{ margin-bottom: 20px; }}
+            .section-header {{ background-color: #e3f2fd; padding: 10px; border-left: 4px solid #2196f3; margin-bottom: 10px; font-weight: bold; }}
+            .summary-table {{ width: 100%; border-collapse: collapse; margin-bottom: 20px; }}
+            .summary-table th, .summary-table td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
+            .summary-table th {{ background-color: #f2f2f2; }}
+            .data-table {{ width: 100%; border-collapse: collapse; margin-bottom: 15px; }}
+            .data-table th {{ background-color: #2196f3; color: white; padding: 8px; }}
+            .data-table td {{ padding: 8px; border: 1px solid #ddd; }}
+            .data-table td:first-child {{ text-align: left; }}
+            .data-table td:last-child {{ text-align: right; }}
+            .error-section {{ background-color: #ffebee; border: 1px solid #f44336; border-radius: 4px; padding: 10px; margin: 10px 0; }}
+            .warning-section {{ background-color: #fff3e0; border: 1px solid #ff9800; border-radius: 4px; padding: 10px; margin: 10px 0; }}
+            .subsection {{ margin-left: 20px; margin-top: 10px; }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>{status_icon} Marina Data Processing Pipeline Report</h2>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">📊 Summary</div>
+                <table class="summary-table">
+                    <tr><td><strong>Status</strong></td><td style="color: {status_color}; font-weight: bold;">{status_text}</td></tr>
+                    <tr><td><strong>Start Time</strong></td><td>{start_time}</td></tr>
+                    <tr><td><strong>End Time</strong></td><td>{end_time}</td></tr>
+                    <tr><td><strong>Duration</strong></td><td>{duration}</td></tr>
+                    <tr><td><strong>Total Records</strong></td><td>{total_records:,}</td></tr>
+                    <tr><td><strong>Errors</strong></td><td>{len(errors)}</td></tr>
+                    <tr><td><strong>Warnings</strong></td><td>{len(warnings)}</td></tr>
+                </table>
+            </div>"""
+    
+    # Add MOLO statistics
+    if molo_stats:
+        html += f"""
+            <div class="section">
+                <div class="section-header">🏢 MOLO System Data</div>
+                <div class="subsection">
+                    <p><strong>Total Records:</strong> {molo_records:,}</p>
+                    <table class="data-table">
+                        <tr><th>Table</th><th>Records Processed</th></tr>"""
+        
+        for table, count in sorted(molo_stats.items()):
+            if isinstance(count, int):
+                html += f'<tr><td>{table}</td><td>{count:,}</td></tr>'
+        
+        html += """
+                    </table>
+                </div>
+            </div>"""
+    
+    # Add Stellar statistics
+    if stellar_stats:
+        html += f"""
+            <div class="section">
+                <div class="section-header">⭐ Stellar Business Data</div>
+                <div class="subsection">
+                    <p><strong>Total Records:</strong> {stellar_records:,}</p>
+                    <table class="data-table">
+                        <tr><th>Table</th><th>Records Processed</th></tr>"""
+        
+        for table, count in sorted(stellar_stats.items()):
+            if isinstance(count, int):
+                html += f'<tr><td>{table}</td><td>{count:,}</td></tr>'
+        
+        html += """
+                    </table>
+                </div>
+            </div>"""
+    
+    # Add errors section if there are errors
+    if errors:
+        html += f"""
+            <div class="section">
+                <div class="section-header">❌ Errors ({len(errors)})</div>"""
+        for i, error in enumerate(errors[:10]):  # Show first 10 errors
+            html += f'<div class="error-section">• {error}</div>'
+        if len(errors) > 10:
+            html += f'<div class="error-section">... and {len(errors) - 10} more errors</div>'
+        html += "</div>"
+    
+    # Add warnings section if there are warnings
+    if warnings:
+        html += f"""
+            <div class="section">
+                <div class="section-header">⚠️ Warnings ({len(warnings)})</div>"""
+        for i, warning in enumerate(warnings[:10]):  # Show first 10 warnings
+            html += f'<div class="warning-section">• {warning}</div>'
+        if len(warnings) > 10:
+            html += f'<div class="warning-section">... and {len(warnings) - 10} more warnings</div>'
+        html += "</div>"
+    
+    html += """
+            <div style="margin-top: 30px; padding: 15px; background-color: #f5f5f5; border-radius: 4px; font-size: 12px; color: #666;">
+                This report was automatically generated by the Marina Data Processing Pipeline.<br>
+                For technical support, please contact your system administrator.
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    
+    return html
+
+
+def create_plain_text_report(summary_data, is_error=False):
+    """Create plain text fallback report"""
+    status_text = "COMPLETED WITH ERRORS" if is_error else "SUCCESS"
+    
+    # Get data from summary
+    start_time = summary_data.get('start_time', 'Unknown')
+    end_time = summary_data.get('end_time', 'Unknown')
+    duration = summary_data.get('duration', 'Unknown')
+    molo_stats = summary_data.get('molo_stats', {})
+    stellar_stats = summary_data.get('stellar_stats', {})
+    errors = summary_data.get('errors', [])
+    warnings = summary_data.get('warnings', [])
+    
+    # Calculate totals
+    molo_records = sum(v for v in molo_stats.values() if isinstance(v, int))
+    stellar_records = sum(v for v in stellar_stats.values() if isinstance(v, int))
+    total_records = molo_records + stellar_records
+    
+    text = f"""
+Marina Data Processing Pipeline Report
+{'='*70}
+
+Status: {status_text}
+Start Time: {start_time}
+End Time: {end_time}
+Duration: {duration}
+Total Records: {total_records:,}
+Errors: {len(errors)}
+Warnings: {len(warnings)}
+
+"""
+    
+    if molo_stats:
+        text += f"""
+MOLO System Data
+{'-'*70}
+Total Records: {molo_records:,}
+
+Table                                    Records
+{'-'*70}
+"""
+        for table, count in sorted(molo_stats.items()):
+            if isinstance(count, int):
+                text += f"{table:<40} {count:>10,}\n"
+    
+    if stellar_stats:
+        text += f"""
+
+Stellar Business Data
+{'-'*70}
+Total Records: {stellar_records:,}
+
+Table                                    Records
+{'-'*70}
+"""
+        for table, count in sorted(stellar_stats.items()):
+            if isinstance(count, int):
+                text += f"{table:<40} {count:>10,}\n"
+    
+    if errors:
+        text += f"\n\nErrors ({len(errors)}):\n{'-'*70}\n"
+        for error in errors[:10]:
+            text += f"• {error}\n"
+        if len(errors) > 10:
+            text += f"... and {len(errors) - 10} more errors\n"
+    
+    if warnings:
+        text += f"\n\nWarnings ({len(warnings)}):\n{'-'*70}\n"
+        for warning in warnings[:10]:
+            text += f"• {warning}\n"
+        if len(warnings) > 10:
+            text += f"... and {len(warnings) - 10} more warnings\n"
+    
+    text += f"\n\n{'='*70}\n"
+    text += "This report was automatically generated by the Marina Data Processing Pipeline.\n"
+    
+    return text
 
 
 # =============================================================================
@@ -3593,7 +3974,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--db-user",
-        default=os.getenv("DB_USER", "OAX_USER"),
+        default=os.getenv("DB_USER", "API_USER"),
         help="Oracle database username. (Env: DB_USER)"
     )
     parser.add_argument(
@@ -3603,7 +3984,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--db-dsn",
-        default=os.getenv("DB_DSN", "oax5007253621_low"),
+        default=os.getenv("DB_DSN", "oax4504110443_low"),
         help="Oracle database DSN. (Env: DB_DSN)"
     )
     parser.add_argument(
@@ -3659,9 +4040,9 @@ if __name__ == "__main__":
         aws_secret_key = config['aws'].get('secret_access_key')
         
         # Use config file for database credentials, allow command-line override
-        db_user = args.db_user or config['database'].get('user', 'OAX_USER')
+        db_user = args.db_user or config['database'].get('user', 'API_USER')
         db_password = args.db_password or config['database'].get('password')
-        db_dsn = args.db_dsn or config['database'].get('dsn', 'oax5007253621_low')
+        db_dsn = args.db_dsn or config['database'].get('dsn', 'oax4504110443_low')
         
         # Use config file for bucket names if not specified on command line
         bucket = args.bucket if args.bucket != 'cnxtestbucket' else config.get('s3', {}).get('molo_bucket', 'cnxtestbucket')
@@ -3686,8 +4067,8 @@ if __name__ == "__main__":
             db_password = os.getenv('DB_PASSWORD')
         
         # Use environment variables or command-line args
-        db_user = args.db_user or os.getenv('DB_USER', 'OAX_USER')
-        db_dsn = args.db_dsn or os.getenv('DB_DSN', 'oax5007253621_low')
+        db_user = args.db_user or os.getenv('DB_USER', 'API_USER')
+        db_dsn = args.db_dsn or os.getenv('DB_DSN', 'oax4504110443_low')
         bucket = args.bucket or os.getenv('S3_BUCKET', 'cnxtestbucket')
         stellar_bucket = args.stellar_bucket or os.getenv('STELLAR_S3_BUCKET', 'resilient-ims-backups')
     
@@ -3725,13 +4106,23 @@ if __name__ == "__main__":
         logger.info(f"  Sample size: {args.validation_sample_size} records")
     logger.info("=" * 80)
     
+    # Initialize processing tracking
+    start_time = datetime.now()
+    start_time_str = start_time.strftime('%Y-%m-%d %H:%M:%S')
+    errors = []
+    warnings = []
+    molo_stats = {}
+    stellar_stats = {}
+    zip_files_processed = []
+    has_errors = False
+    
     # Execute MOLO processing (ZIP files from main bucket)
     if args.process_molo:
         logger.info("\n" + "=" * 80)
         logger.info("STEP 1: Processing MOLO Data")
         logger.info("=" * 80)
         try:
-            read_s3_zip_and_insert_to_db(
+            molo_results = read_s3_zip_and_insert_to_db(
                 bucket,
                 args.s3_prefix,
                 args.region,
@@ -3744,9 +4135,26 @@ if __name__ == "__main__":
                 validate_merge_changes=args.validate_merge_changes,
                 validation_sample_size=args.validation_sample_size
             )
-            logger.info("✅ MOLO data processing completed successfully")
+            
+            if molo_results:
+                # Capture MOLO table-level statistics (like Stellar does)
+                molo_stats = molo_results.get('table_record_counts', {})
+                
+                # Track ZIP file for email attachment
+                if molo_results.get('zip_file'):
+                    zip_files_processed.append(molo_results['zip_file'])
+                
+                logger.info("✅ MOLO data processing completed successfully")
+            else:
+                error_msg = "MOLO processing returned no results"
+                errors.append(error_msg)
+                has_errors = True
+                
         except Exception as e:
-            logger.exception(f"❌ Error processing MOLO data: {e}")
+            error_msg = f"Error processing MOLO data: {str(e)}"
+            logger.exception(f"❌ {error_msg}")
+            errors.append(error_msg)
+            has_errors = True
     else:
         logger.info("\n⏭️  Skipping MOLO data processing (disabled)")
     
@@ -3776,6 +4184,9 @@ if __name__ == "__main__":
                     aws_secret_access_key=aws_secret_key
                 )
                 
+                # Capture Stellar statistics
+                stellar_stats = stellar_results.get('successful_tables', {})
+                
                 # Display results dynamically
                 logger.info("")
                 logger.info("=" * 80)
@@ -3802,19 +4213,95 @@ if __name__ == "__main__":
                     for table_name, reason in sorted(stellar_results['failed_tables'].items()):
                         table_display = f"DW_STELLAR_{table_name.upper()}"
                         logger.info(f"   ❌ {table_display:<35} → {reason}")
+                        warnings.append(f"Failed to process {table_display}: {reason}")
                 
                 logger.info("")
                 logger.info("=" * 80)
             except Exception as e:
-                logger.exception(f"❌ Error processing Stellar data: {e}")
-            else:
-                logger.warning(
-                    "\n⚠️  Stellar processing module not available. "
-                    "Install download_stellar_from_s3.py to enable Stellar processing."
-                )
+                error_msg = f"Error processing Stellar data: {str(e)}"
+                logger.exception(f"❌ {error_msg}")
+                errors.append(error_msg)
+                has_errors = True
         else:
-            logger.info("\n⏭️  Skipping Stellar data processing (disabled)")
+            warning_msg = "Stellar processing module not available"
+            logger.warning(f"\n⚠️  {warning_msg}. Install download_stellar_from_s3.py to enable Stellar processing.")
+            warnings.append(warning_msg)
+    else:
+        logger.info("\n⏭️  Skipping Stellar data processing (disabled)")
+    
+    # Calculate end time and duration
+    end_time = datetime.now()
+    end_time_str = end_time.strftime('%Y-%m-%d %H:%M:%S')
+    duration = end_time - start_time
+    duration_str = str(duration).split('.')[0]  # Remove microseconds
+    
+    logger.info("\n" + "=" * 80)
+    logger.info(f"✅ COMPLETE: All requested data processing finished")
+    logger.info(f"Duration: {duration_str}")
+    logger.info("=" * 80)
+    
+    # Display comprehensive summary
+    logger.info("\n" + "=" * 80)
+    logger.info("COMPREHENSIVE PROCESSING SUMMARY")
+    logger.info("=" * 80)
+    
+    if molo_stats:
+        logger.info("\n🏢 MOLO System:")
+        total_molo_records = sum(v for v in molo_stats.values() if isinstance(v, int))
+        logger.info(f"   Total Records: {total_molo_records:,}")
+        logger.info(f"   Tables Processed: {len(molo_stats)}")
+        for table, count in sorted(molo_stats.items())[:5]:  # Show first 5 tables
+            if isinstance(count, int):
+                logger.info(f"   • {table}: {count:,} records")
+        if len(molo_stats) > 5:
+            logger.info(f"   ... and {len(molo_stats) - 5} more tables")
+    
+    if stellar_stats:
+        logger.info("\n⭐ Stellar Business System:")
+        total_stellar_records = sum(v for v in stellar_stats.values() if isinstance(v, int))
+        logger.info(f"   Total Records: {total_stellar_records:,}")
+        logger.info(f"   Tables Processed: {len(stellar_stats)}")
+        for table, count in sorted(stellar_stats.items())[:5]:  # Show first 5 tables
+            if isinstance(count, int):
+                logger.info(f"   • {table}: {count:,} records")
+        if len(stellar_stats) > 5:
+            logger.info(f"   ... and {len(stellar_stats) - 5} more tables")
+    
+    if errors:
+        logger.info(f"\n❌ Errors: {len(errors)}")
+        for error in errors[:3]:
+            logger.info(f"   • {error}")
+        if len(errors) > 3:
+            logger.info(f"   ... and {len(errors) - 3} more errors")
+    
+    if warnings:
+        logger.info(f"\n⚠️ Warnings: {len(warnings)}")
+        for warning in warnings[:3]:
+            logger.info(f"   • {warning}")
+        if len(warnings) > 3:
+            logger.info(f"   ... and {len(warnings) - 3} more warnings")
+    
+    logger.info("\n" + "=" * 80)
+    
+    # Send email notification if configured
+    if config:
+        summary_data = {
+            'start_time': start_time_str,
+            'end_time': end_time_str,
+            'duration': duration_str,
+            'molo_stats': molo_stats,
+            'stellar_stats': stellar_stats,
+            'errors': errors,
+            'warnings': warnings
+        }
         
-        logger.info("\n" + "=" * 80)
-        logger.info("✅ COMPLETE: All requested data processing finished")
-        logger.info("=" * 80)
+        subject = f"Marina ETL Pipeline - {datetime.now().strftime('%Y-%m-%d')}"
+        
+        logger.info("\n📧 Sending email notification...")
+        send_email_notification(
+            config=config,
+            subject=subject,
+            summary_data=summary_data,
+            zip_file_paths=zip_files_processed,
+            is_error=has_errors
+        )
