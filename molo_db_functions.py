@@ -21,6 +21,7 @@ Dependencies:
 import os
 import logging
 import oracledb
+from datetime import datetime
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -732,6 +733,16 @@ class OracleConnector:
             logger.info(f"  Inserting {total_rows:,} invoice items in batches of {batch_size:,}...")
             sys.stdout.flush()
             
+            # Set input sizes for all 96 columns to avoid type detection issues
+            # Positions 23, 26, 32, 35, 49, 53, 54, 95, 96 are TIMESTAMP columns
+            input_sizes = [None] * 96  # Start with all None (auto-detect for non-datetime)
+            
+            # Mark datetime columns as TIMESTAMP type to prevent misdetection as VARCHAR
+            for pos in [22, 25, 31, 34, 48, 52, 53, 94, 95]:  # 0-indexed positions
+                input_sizes[pos] = oracledb.DB_TYPE_TIMESTAMP
+            
+            self.cursor.setinputsizes(input_sizes)
+            
             for i in range(0, total_rows, batch_size):
                 batch = data_rows[i:i + batch_size]
                 batch_num = (i // batch_size) + 1
@@ -740,8 +751,18 @@ class OracleConnector:
                 logger.info(f"  Inserting batch {batch_num}/{total_batches} ({len(batch):,} records)...")
                 sys.stdout.flush()
                 
-                self.cursor.executemany(insert_sql, batch)
-                self.connection.commit()
+                try:
+                    self.cursor.executemany(insert_sql, batch)
+                    self.connection.commit()
+                except Exception as e:
+                    # Analyze the failing batch to find datetime values
+                    if batch:
+                        logger.error(f"Batch {batch_num} failed. Checking for datetime values...")
+                        first_row = batch[0]
+                        for idx, val in enumerate(first_row, 1):
+                            if isinstance(val, datetime):
+                                logger.error(f"  ❌ Position {idx}: datetime = {val}")
+                    raise
                 
                 logger.info(f"  ✅ Batch {batch_num}/{total_batches} committed")
                 sys.stdout.flush()

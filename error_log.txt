@@ -1,0 +1,1885 @@
+2025-12-21 20:39:45,076 - __main__ - INFO - Stellar processing module loaded successfully
+2025-12-21 20:39:45,077 - INFO - ================================================================================
+2025-12-21 20:39:45,077 - __main__ - INFO - ================================================================================
+2025-12-21 20:39:45,078 - INFO - LOADING CONFIGURATION
+2025-12-21 20:39:45,078 - __main__ - INFO - LOADING CONFIGURATION
+2025-12-21 20:39:45,078 - INFO - ================================================================================
+2025-12-21 20:39:45,078 - __main__ - INFO - ================================================================================
+2025-12-21 20:39:45,081 - INFO - ✅ Successfully loaded configuration from config.json
+2025-12-21 20:39:45,081 - __main__ - INFO - ✅ Successfully loaded configuration from config.json
+2025-12-21 20:39:45,081 - INFO - ✅ Loaded configuration from config.json
+2025-12-21 20:39:45,081 - __main__ - INFO - ✅ Loaded configuration from config.json
+2025-12-21 20:39:45,081 - INFO - 📂 MOLO S3 Bucket: resilient-molo-backups
+2025-12-21 20:39:45,081 - __main__ - INFO - 📂 MOLO S3 Bucket: resilient-molo-backups
+2025-12-21 20:39:45,082 - INFO - 📂 Stellar S3 Bucket: resilient-ims-backups
+2025-12-21 20:39:45,082 - __main__ - INFO - 📂 Stellar S3 Bucket: resilient-ims-backups
+2025-12-21 20:39:45,082 - INFO - 🗄️  Database: API_USER@oax4504110443_low
+2025-12-21 20:39:45,082 - __main__ - INFO - 🗄️  Database: API_USER@oax4504110443_low
+2025-12-21 20:39:45,082 - INFO - ✅ Configuration loaded successfully
+2025-12-21 20:39:45,082 - __main__ - INFO - ✅ Configuration loaded successfully
+2025-12-21 20:39:45,083 - INFO - 
+2025-12-21 20:39:45,083 - __main__ - INFO - 
+2025-12-21 20:39:45,083 - INFO - ================================================================================
+2025-12-21 20:39:45,083 - __main__ - INFO - ================================================================================
+2025-12-21 20:39:45,083 - INFO - MARINA DATA PROCESSING PIPELINE - MOLO & STELLAR
+2025-12-21 20:39:45,083 - __main__ - INFO - MARINA DATA PROCESSING PIPELINE - MOLO & STELLAR
+2025-12-21 20:39:45,083 - INFO - ================================================================================
+2025-12-21 20:39:45,083 - __main__ - INFO - ================================================================================
+2025-12-21 20:39:45,084 - INFO - MOLO Processing: ENABLED
+2025-12-21 20:39:45,084 - __main__ - INFO - MOLO Processing: ENABLED
+2025-12-21 20:39:45,084 - INFO - Stellar Processing: ENABLED
+2025-12-21 20:39:45,084 - __main__ - INFO - Stellar Processing: ENABLED
+2025-12-21 20:39:45,084 - INFO - 
+2025-12-21 20:39:45,084 - __main__ - INFO - 
+2025-12-21 20:39:45,084 - INFO - Validation Options:
+2025-12-21 20:39:45,084 - __main__ - INFO - Validation Options:
+2025-12-21 20:39:45,084 - INFO -   Field-level validation: DISABLED
+2025-12-21 20:39:45,084 - __main__ - INFO -   Field-level validation: DISABLED
+2025-12-21 20:39:45,085 - INFO -   Merge change validation: DISABLED
+2025-12-21 20:39:45,085 - __main__ - INFO -   Merge change validation: DISABLED
+2025-12-21 20:39:45,085 - INFO - ================================================================================
+2025-12-21 20:39:45,085 - __main__ - INFO - ================================================================================
+2025-12-21 20:39:45,085 - INFO - 
+================================================================================
+2025-12-21 20:39:45,085 - __main__ - INFO - 
+================================================================================
+2025-12-21 20:39:45,085 - INFO - STEP 1: Processing MOLO Data
+2025-12-21 20:39:45,085 - __main__ - INFO - STEP 1: Processing MOLO Data
+2025-12-21 20:39:45,086 - INFO - ================================================================================
+2025-12-21 20:39:45,086 - __main__ - INFO - ================================================================================
+2025-12-21 20:39:45,086 - INFO - ⏱️  MOLO processing timeout set to 30 minutes
+2025-12-21 20:39:45,086 - __main__ - INFO - ⏱️  MOLO processing timeout set to 30 minutes
+2025-12-21 20:39:45,086 - INFO - Using AWS credentials provided from OCI Vault.
+2025-12-21 20:39:45,086 - __main__ - INFO - Using AWS credentials provided from OCI Vault.
+2025-12-21 20:39:45,190 - INFO - Searching for latest .zip file in entire bucket s3://resilient-molo-backups...
+2025-12-21 20:39:45,190 - __main__ - INFO - Searching for latest .zip file in entire bucket s3://resilient-molo-backups...
+2025-12-21 20:39:45,463 - INFO - Checked 87 total files, found 87 .zip files
+2025-12-21 20:39:45,463 - __main__ - INFO - Checked 87 total files, found 87 .zip files
+2025-12-21 20:39:45,463 - INFO - Found latest file: 20251221050003.zip (Last Modified: 2025-12-21 05:03:10+00:00)
+2025-12-21 20:39:45,463 - __main__ - INFO - Found latest file: 20251221050003.zip (Last Modified: 2025-12-21 05:03:10+00:00)
+2025-12-21 20:39:45,464 - INFO - Connecting to S3 in region: us-east-1...
+2025-12-21 20:39:45,464 - __main__ - INFO - Connecting to S3 in region: us-east-1...
+2025-12-21 20:39:45,464 - INFO - Attempting to download '20251221050003.zip' from bucket 'resilient-molo-backups'...
+2025-12-21 20:39:45,464 - __main__ - INFO - Attempting to download '20251221050003.zip' from bucket 'resilient-molo-backups'...
+2025-12-21 20:39:46,347 - INFO - Successfully downloaded '20251221050003.zip' from S3 bucket 'resilient-molo-backups'.
+2025-12-21 20:39:46,347 - __main__ - INFO - Successfully downloaded '20251221050003.zip' from S3 bucket 'resilient-molo-backups'.
+2025-12-21 20:39:46,350 - INFO - Archive contents: ['Accounts.csv', 'AccountStatus.csv', 'ActivitySet.csv', 'ActivityStatusSet.csv', 'ActivityTypeSet.csv', 'AddonReservation.csv', 'AddressSet.csv', 'AddressTypeSet.csv', 'AdminStatusSet.csv', 'AllowedPaymentMethodsSet.csv', 'ANetResponseSet.csv', 'AspNetRoles.csv', 'AspNetUserCompanyMarinaAccessSet.csv', 'AspNetUserRoles.csv', 'AspNetUsers.csv', 'AuthorizeMerchantSet.csv', 'AuthorizeNetResponseSet.csv', 'AuthorizePaymentMethodSet.csv', 'AutoChargeAuditSet.csv', 'BatchJobLogSet.csv', 'BoatContacts.csv', 'Boats.csv', 'BoatsLinkSet.csv', 'BoatTypes.csv', 'BulkRenewal.csv', 'BulkRenewalAuditSet.csv', 'BusinessHoursSet.csv', 'CashDrawerActionsSet.csv', 'CashDrawerAuditsSet.csv', 'CIMDataSet.csv', 'Cities.csv', 'Companies.csv', 'ContactAuthCredential.csv', 'ContactAutoChargeSet.csv', 'Contacts.csv', 'ContactsLinkSet.csv', 'ContactTypes.csv', 'Contract.csv', 'ContractTypeSet.csv', 'Countries.csv', 'CurrenciesSet.csv', 'CustomFieldAnswerCustomFieldOptions.csv', 'CustomFieldAnswerSet.csv', 'CustomFieldLinkSet.csv', 'CustomFieldOptionLinkSet.csv', 'CustomFieldOptionsSet.csv', 'CustomFieldSet.csv', 'CustomFieldTypeSet.csv', 'CustomTransactionMethodsSet.csv', 'DeferredRevenueRecognitionStorageSet.csv', 'DueDateSettingsSet.csv', 'EmailPlaceholdersSet.csv', 'EmailStatementAuditSet.csv', 'EmailStoreSet.csv', 'EmailTokenSet.csv', 'EquipmentBoatSet.csv', 'EquipmentFuelTypeSet.csv', 'EquipmentSet.csv', 'EquipmentTypeSet.csv', 'EventResources.csv', 'EventSet.csv', 'EventStatusSet.csv', 'EventSV_Employee.csv', 'EventTypeSet.csv', 'ExchangeRateSet.csv', 'ExternalMarinaLocation.csv', 'FavoriteRecordSet.csv', 'FilestackSet.csv', 'FinanceChargeAuditSet.csv', 'FuelCloudProductSet.csv', 'FuelCloudTankSet.csv', 'FuelCloudTransactionsSet.csv', 'GLCodeSet.csv', 'GLCodeTypeSet.csv', 'GLTrackingCodeSet.csv', 'InstalmentsPaymentMethodSet.csv', 'InsuranceSet.csv', 'InsuranceStatusSet.csv', 'InventoryAdjustmentTypeSet.csv', 'InventoryAuditTrailSet.csv', 'InventoryPriceHistorySet.csv', 'InventorySettingTemplateSet.csv', 'InvoiceItemSet.csv', 'InvoiceItemTypeSet.csv', 'InvoiceSet.csv', 'InvoiceStatusSet.csv', 'InvoiceTypeSet.csv', 'ItemChargeMethods.csv', 'ItemMasters.csv', 'LockDateAuditSet.csv', 'LoginAttemptsSet.csv', 'LoginProvidersSet.csv', 'MarinaLocationAmenitiesSet.csv', 'MarinaLocationMoloAPI_Partner1.csv', 'MarinaLocations.csv', 'MarinaTasks.csv', 'MenuMarinaDefault.csv', 'MenuUserPreferences.csv', 'MessageTemplateSet.csv', 'MeterAuditSet.csv', 'MoloAPI_PartnerSet.csv', 'MoloProvidersSet.csv', 'MoloTermsSet.csv', 'NewXeroTokenSet.csv', 'OfferAddOnsSet.csv', 'OfferBlackoutDateSet.csv', 'OfferLengthOverrideSet.csv', 'OfferPaymentMethodSet.csv', 'OfferPostLogSet.csv', 'OfferRateMappingSet.csv', 'OffersMoloAPI_Partner.csv', 'OffersSet.csv', 'OffersSlip.csv', 'OfferTypeSet.csv', 'OnlinePaymentFeeSet.csv', 'PaymentMethods.csv', 'Payments.csv', 'PaymentsProviderSet.csv', 'PaymentTermsAcceptanceSet.csv', 'PedestalReservation.csv', 'Pedestals.csv', 'Phones.csv', 'PhoneTypes.csv', 'Piers.csv', 'PowerNeeds.csv', 'PreArrivalEmailSet.csv', 'PurchaseOrder.csv', 'PurchaseOrderItem.csv', 'PurchaseOrderStatus.csv', 'PurchaseOrderWorkJobMap.csv', 'QB_AccountSet.csv', 'QB_CustomerSet.csv', 'QB_ItemSet.csv', 'QB_TaxAgencySet.csv', 'QB_TaxCodeSet.csv', 'QB_TaxRateQB_TaxCode.csv', 'QB_TaxRateSet.csv', 'QuickbookSettingsSet.csv', 'QuickFilterSet.csv', 'ReceiptPrinterSet.csv', 'RecentRecordSet.csv', 'RecordStatusSet.csv', 'RecurringAddOnSet.csv', 'RecurringInvoiceAuditSet.csv', 'RecurringInvoiceOptionsSet.csv', 'Reservations.csv', 'ReservationStatus.csv', 'ReservationTypes.csv', 'ResourceAssignmentBlockSet.csv', 'ResourceAssignmentSet.csv', 'ResourceBlockSet.csv', 'ResourceBookingSet.csv', 'ResourceEquipmentTypeSet.csv', 'ResourceOfferTypeSet.csv', 'ResourcePostLogSet.csv', 'ResourcesOffers.csv', 'ResourcesSet.csv', 'ResourceStatusMoveableSet.csv', 'ResourceStatusSettingsSet.csv', 'ResourceStatusStationarySet.csv', 'ResourceTypeSet.csv', 'ReverseRebillSettingsSet.csv', 'ScheduledReportSet.csv', 'SeasonalChargeMethods.csv', 'SeasonalInventoryItems.csv', 'SeasonalInvoicingMethodSet.csv', 'SeasonalPrices.csv', 'ServiceStatusDetailsSet.csv', 'SlipBlockSetSet.csv', 'SlipMaintenances.csv', 'SlipPedestal.csv', 'SlipPlacementSet.csv', 'SlipPlacementStatusSet.csv', 'Slips.csv', 'SlipTypes.csv', 'StatementsPreferenceSet.csv', 'StripeAccountSet.csv', 'StripeAuthorizationsSet.csv', 'StripeBankAccountSet.csv', 'StripeBatchSet.csv', 'StripeCardSet.csv', 'StripeChargeSet.csv', 'StripeCustomerSet.csv', 'StripeFeeBatchSet.csv', 'StripeFeeSet.csv', 'StripeLocationSet.csv', 'StripeMarinaFeesSet.csv', 'StripePayoutAdjustmentSet.csv', 'StripePayoutAdjustmentTypeSet.csv', 'StripePayoutMethodSet.csv', 'StripePersonSet.csv', 'StripeTerminalSet.csv', 'StripeTransactionDataSet.csv', 'SurchargeSettings.csv', 'SV_BillLineItemSet.csv', 'SV_BillLineWOLinkSet.csv', 'SV_BillSet.csv', 'SV_ChargeInstanceSet.csv', 'SV_ChargeSet.csv', 'SV_EmployeeHourSet.csv', 'SV_EmployeeJobSet.csv', 'SV_EmployeeSet.csv', 'SV_EmployeeStatusSet.csv', 'SV_EquipmentSet.csv', 'SV_EquipmentSV_Estimate.csv', 'SV_EquipmentSV_WorkOrder.csv', 'SV_EstimateApprovalMethodSet.csv', 'SV_EstimateEquipment.csv', 'SV_EstimateJobStatusSet.csv', 'SV_EstimateSet.csv', 'SV_EstimateStatusDetailsSet.csv', 'SV_EstimateStatusSet.csv', 'SV_InventoryCategorySet.csv', 'SV_InventoryLocationSet.csv', 'SV_InventoryRoomSet.csv', 'SV_InventorySet.csv', 'SV_InventorySubCategorySet.csv', 'SV_JobSet.csv', 'SV_JobTemplateSet.csv', 'SV_JobTemplateStatusSet.csv', 'SV_LaborInstanceSet.csv', 'SV_LaborSet.csv', 'SV_ManufacturerSet.csv', 'SV_PartInstanceSet.csv', 'SV_PartsCatalogSet.csv', 'SV_PartSet.csv', 'SV_ServiceResourceEvent.csv', 'SV_ServiceResourceSet.csv', 'SV_ServiceResourceTypeSet.csv', 'SV_TermsAndConditionsHTMLSet.csv', 'SV_TimerSet.csv', 'SV_WorkOrderCategorySet.csv', 'SV_WorkOrderEquipment.csv', 'SV_WorkOrderJobStatusSet.csv', 'SV_WorkOrderLocationSet.csv', 'SV_WorkOrderSet.csv', 'SV_WorkOrderStatusDetailsSet.csv', 'SV_WorkOrderStatusSet.csv', 'TagLinkSet.csv', 'TagSet.csv', 'TaskTypes.csv', 'TechnicianCalendarSettingsSet.csv', 'Template.csv', 'TemplateType.csv', 'TermsAcceptedLocationSet.csv', 'TransactionMethodSet.csv', 'TransactionObjectSet.csv', 'Transactions.csv', 'TransactionTypeSet.csv', 'TransientChargeMethods.csv', 'TransientInventoryItems.csv', 'TransientInvoicingMethodSet.csv', 'TransientPrices.csv', 'TransientRateOverridesSet.csv', 'UserRoleSet.csv', 'UserTermsAcceptanceAuditSet.csv', 'VendorBill.csv', 'VendorBillItem.csv', 'VendorBillItemPurchaseOrderItem.csv', 'VendorBillStatus.csv', 'VendorBillWorkJobMap.csv', 'VesselEngineClassSet.csv', 'WarrantyProviderSet.csv', 'XeroAccountSet.csv', 'XeroAccountStatusSet.csv', 'XeroAccountTypeSet.csv', 'XeroAddressSet.csv', 'XeroAddressTypeSet.csv', 'XeroBankAccountTypeSet.csv', 'XeroContactSet.csv', 'XeroContactStatusSet.csv', 'XeroCreditNoteSet.csv', 'XeroInvoiceSet.csv', 'XeroInvoiceTypeSet.csv', 'XeroItemSet.csv', 'XeroLineItemSet.csv', 'XeroOverpaymentSet.csv', 'XeroPaymentSet.csv', 'XeroPaymentStatusSet.csv', 'XeroPaymentTypeSet.csv', 'XeroPhoneSet.csv', 'XeroPhoneTypeSet.csv', 'XeroPurchaseDetailsSet.csv', 'XeroReportTaxTypesSet.csv', 'XeroTaxComponentSet.csv', 'XeroTaxRateSet.csv', 'XeroTaxTypeSet.csv', 'XeroTrackingCategoryOptionSet.csv', 'XeroTrackingCategorySet.csv']
+2025-12-21 20:39:46,350 - __main__ - INFO - Archive contents: ['Accounts.csv', 'AccountStatus.csv', 'ActivitySet.csv', 'ActivityStatusSet.csv', 'ActivityTypeSet.csv', 'AddonReservation.csv', 'AddressSet.csv', 'AddressTypeSet.csv', 'AdminStatusSet.csv', 'AllowedPaymentMethodsSet.csv', 'ANetResponseSet.csv', 'AspNetRoles.csv', 'AspNetUserCompanyMarinaAccessSet.csv', 'AspNetUserRoles.csv', 'AspNetUsers.csv', 'AuthorizeMerchantSet.csv', 'AuthorizeNetResponseSet.csv', 'AuthorizePaymentMethodSet.csv', 'AutoChargeAuditSet.csv', 'BatchJobLogSet.csv', 'BoatContacts.csv', 'Boats.csv', 'BoatsLinkSet.csv', 'BoatTypes.csv', 'BulkRenewal.csv', 'BulkRenewalAuditSet.csv', 'BusinessHoursSet.csv', 'CashDrawerActionsSet.csv', 'CashDrawerAuditsSet.csv', 'CIMDataSet.csv', 'Cities.csv', 'Companies.csv', 'ContactAuthCredential.csv', 'ContactAutoChargeSet.csv', 'Contacts.csv', 'ContactsLinkSet.csv', 'ContactTypes.csv', 'Contract.csv', 'ContractTypeSet.csv', 'Countries.csv', 'CurrenciesSet.csv', 'CustomFieldAnswerCustomFieldOptions.csv', 'CustomFieldAnswerSet.csv', 'CustomFieldLinkSet.csv', 'CustomFieldOptionLinkSet.csv', 'CustomFieldOptionsSet.csv', 'CustomFieldSet.csv', 'CustomFieldTypeSet.csv', 'CustomTransactionMethodsSet.csv', 'DeferredRevenueRecognitionStorageSet.csv', 'DueDateSettingsSet.csv', 'EmailPlaceholdersSet.csv', 'EmailStatementAuditSet.csv', 'EmailStoreSet.csv', 'EmailTokenSet.csv', 'EquipmentBoatSet.csv', 'EquipmentFuelTypeSet.csv', 'EquipmentSet.csv', 'EquipmentTypeSet.csv', 'EventResources.csv', 'EventSet.csv', 'EventStatusSet.csv', 'EventSV_Employee.csv', 'EventTypeSet.csv', 'ExchangeRateSet.csv', 'ExternalMarinaLocation.csv', 'FavoriteRecordSet.csv', 'FilestackSet.csv', 'FinanceChargeAuditSet.csv', 'FuelCloudProductSet.csv', 'FuelCloudTankSet.csv', 'FuelCloudTransactionsSet.csv', 'GLCodeSet.csv', 'GLCodeTypeSet.csv', 'GLTrackingCodeSet.csv', 'InstalmentsPaymentMethodSet.csv', 'InsuranceSet.csv', 'InsuranceStatusSet.csv', 'InventoryAdjustmentTypeSet.csv', 'InventoryAuditTrailSet.csv', 'InventoryPriceHistorySet.csv', 'InventorySettingTemplateSet.csv', 'InvoiceItemSet.csv', 'InvoiceItemTypeSet.csv', 'InvoiceSet.csv', 'InvoiceStatusSet.csv', 'InvoiceTypeSet.csv', 'ItemChargeMethods.csv', 'ItemMasters.csv', 'LockDateAuditSet.csv', 'LoginAttemptsSet.csv', 'LoginProvidersSet.csv', 'MarinaLocationAmenitiesSet.csv', 'MarinaLocationMoloAPI_Partner1.csv', 'MarinaLocations.csv', 'MarinaTasks.csv', 'MenuMarinaDefault.csv', 'MenuUserPreferences.csv', 'MessageTemplateSet.csv', 'MeterAuditSet.csv', 'MoloAPI_PartnerSet.csv', 'MoloProvidersSet.csv', 'MoloTermsSet.csv', 'NewXeroTokenSet.csv', 'OfferAddOnsSet.csv', 'OfferBlackoutDateSet.csv', 'OfferLengthOverrideSet.csv', 'OfferPaymentMethodSet.csv', 'OfferPostLogSet.csv', 'OfferRateMappingSet.csv', 'OffersMoloAPI_Partner.csv', 'OffersSet.csv', 'OffersSlip.csv', 'OfferTypeSet.csv', 'OnlinePaymentFeeSet.csv', 'PaymentMethods.csv', 'Payments.csv', 'PaymentsProviderSet.csv', 'PaymentTermsAcceptanceSet.csv', 'PedestalReservation.csv', 'Pedestals.csv', 'Phones.csv', 'PhoneTypes.csv', 'Piers.csv', 'PowerNeeds.csv', 'PreArrivalEmailSet.csv', 'PurchaseOrder.csv', 'PurchaseOrderItem.csv', 'PurchaseOrderStatus.csv', 'PurchaseOrderWorkJobMap.csv', 'QB_AccountSet.csv', 'QB_CustomerSet.csv', 'QB_ItemSet.csv', 'QB_TaxAgencySet.csv', 'QB_TaxCodeSet.csv', 'QB_TaxRateQB_TaxCode.csv', 'QB_TaxRateSet.csv', 'QuickbookSettingsSet.csv', 'QuickFilterSet.csv', 'ReceiptPrinterSet.csv', 'RecentRecordSet.csv', 'RecordStatusSet.csv', 'RecurringAddOnSet.csv', 'RecurringInvoiceAuditSet.csv', 'RecurringInvoiceOptionsSet.csv', 'Reservations.csv', 'ReservationStatus.csv', 'ReservationTypes.csv', 'ResourceAssignmentBlockSet.csv', 'ResourceAssignmentSet.csv', 'ResourceBlockSet.csv', 'ResourceBookingSet.csv', 'ResourceEquipmentTypeSet.csv', 'ResourceOfferTypeSet.csv', 'ResourcePostLogSet.csv', 'ResourcesOffers.csv', 'ResourcesSet.csv', 'ResourceStatusMoveableSet.csv', 'ResourceStatusSettingsSet.csv', 'ResourceStatusStationarySet.csv', 'ResourceTypeSet.csv', 'ReverseRebillSettingsSet.csv', 'ScheduledReportSet.csv', 'SeasonalChargeMethods.csv', 'SeasonalInventoryItems.csv', 'SeasonalInvoicingMethodSet.csv', 'SeasonalPrices.csv', 'ServiceStatusDetailsSet.csv', 'SlipBlockSetSet.csv', 'SlipMaintenances.csv', 'SlipPedestal.csv', 'SlipPlacementSet.csv', 'SlipPlacementStatusSet.csv', 'Slips.csv', 'SlipTypes.csv', 'StatementsPreferenceSet.csv', 'StripeAccountSet.csv', 'StripeAuthorizationsSet.csv', 'StripeBankAccountSet.csv', 'StripeBatchSet.csv', 'StripeCardSet.csv', 'StripeChargeSet.csv', 'StripeCustomerSet.csv', 'StripeFeeBatchSet.csv', 'StripeFeeSet.csv', 'StripeLocationSet.csv', 'StripeMarinaFeesSet.csv', 'StripePayoutAdjustmentSet.csv', 'StripePayoutAdjustmentTypeSet.csv', 'StripePayoutMethodSet.csv', 'StripePersonSet.csv', 'StripeTerminalSet.csv', 'StripeTransactionDataSet.csv', 'SurchargeSettings.csv', 'SV_BillLineItemSet.csv', 'SV_BillLineWOLinkSet.csv', 'SV_BillSet.csv', 'SV_ChargeInstanceSet.csv', 'SV_ChargeSet.csv', 'SV_EmployeeHourSet.csv', 'SV_EmployeeJobSet.csv', 'SV_EmployeeSet.csv', 'SV_EmployeeStatusSet.csv', 'SV_EquipmentSet.csv', 'SV_EquipmentSV_Estimate.csv', 'SV_EquipmentSV_WorkOrder.csv', 'SV_EstimateApprovalMethodSet.csv', 'SV_EstimateEquipment.csv', 'SV_EstimateJobStatusSet.csv', 'SV_EstimateSet.csv', 'SV_EstimateStatusDetailsSet.csv', 'SV_EstimateStatusSet.csv', 'SV_InventoryCategorySet.csv', 'SV_InventoryLocationSet.csv', 'SV_InventoryRoomSet.csv', 'SV_InventorySet.csv', 'SV_InventorySubCategorySet.csv', 'SV_JobSet.csv', 'SV_JobTemplateSet.csv', 'SV_JobTemplateStatusSet.csv', 'SV_LaborInstanceSet.csv', 'SV_LaborSet.csv', 'SV_ManufacturerSet.csv', 'SV_PartInstanceSet.csv', 'SV_PartsCatalogSet.csv', 'SV_PartSet.csv', 'SV_ServiceResourceEvent.csv', 'SV_ServiceResourceSet.csv', 'SV_ServiceResourceTypeSet.csv', 'SV_TermsAndConditionsHTMLSet.csv', 'SV_TimerSet.csv', 'SV_WorkOrderCategorySet.csv', 'SV_WorkOrderEquipment.csv', 'SV_WorkOrderJobStatusSet.csv', 'SV_WorkOrderLocationSet.csv', 'SV_WorkOrderSet.csv', 'SV_WorkOrderStatusDetailsSet.csv', 'SV_WorkOrderStatusSet.csv', 'TagLinkSet.csv', 'TagSet.csv', 'TaskTypes.csv', 'TechnicianCalendarSettingsSet.csv', 'Template.csv', 'TemplateType.csv', 'TermsAcceptedLocationSet.csv', 'TransactionMethodSet.csv', 'TransactionObjectSet.csv', 'Transactions.csv', 'TransactionTypeSet.csv', 'TransientChargeMethods.csv', 'TransientInventoryItems.csv', 'TransientInvoicingMethodSet.csv', 'TransientPrices.csv', 'TransientRateOverridesSet.csv', 'UserRoleSet.csv', 'UserTermsAcceptanceAuditSet.csv', 'VendorBill.csv', 'VendorBillItem.csv', 'VendorBillItemPurchaseOrderItem.csv', 'VendorBillStatus.csv', 'VendorBillWorkJobMap.csv', 'VesselEngineClassSet.csv', 'WarrantyProviderSet.csv', 'XeroAccountSet.csv', 'XeroAccountStatusSet.csv', 'XeroAccountTypeSet.csv', 'XeroAddressSet.csv', 'XeroAddressTypeSet.csv', 'XeroBankAccountTypeSet.csv', 'XeroContactSet.csv', 'XeroContactStatusSet.csv', 'XeroCreditNoteSet.csv', 'XeroInvoiceSet.csv', 'XeroInvoiceTypeSet.csv', 'XeroItemSet.csv', 'XeroLineItemSet.csv', 'XeroOverpaymentSet.csv', 'XeroPaymentSet.csv', 'XeroPaymentStatusSet.csv', 'XeroPaymentTypeSet.csv', 'XeroPhoneSet.csv', 'XeroPhoneTypeSet.csv', 'XeroPurchaseDetailsSet.csv', 'XeroReportTaxTypesSet.csv', 'XeroTaxComponentSet.csv', 'XeroTaxRateSet.csv', 'XeroTaxTypeSet.csv', 'XeroTrackingCategoryOptionSet.csv', 'XeroTrackingCategorySet.csv']
+2025-12-21 20:39:46,350 - INFO - Found target CSV file 'Accounts.csv' in the zip archive.
+2025-12-21 20:39:46,350 - __main__ - INFO - Found target CSV file 'Accounts.csv' in the zip archive.
+2025-12-21 20:39:46,351 - INFO - Found target CSV file 'AccountStatus.csv' in the zip archive.
+2025-12-21 20:39:46,351 - __main__ - INFO - Found target CSV file 'AccountStatus.csv' in the zip archive.
+2025-12-21 20:39:46,352 - INFO - Skipping CSV file 'ActivitySet.csv' (not in target list).
+2025-12-21 20:39:46,352 - __main__ - INFO - Skipping CSV file 'ActivitySet.csv' (not in target list).
+2025-12-21 20:39:46,352 - INFO - Skipping CSV file 'ActivityStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,352 - __main__ - INFO - Skipping CSV file 'ActivityStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,352 - INFO - Skipping CSV file 'ActivityTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,352 - __main__ - INFO - Skipping CSV file 'ActivityTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,353 - INFO - Skipping CSV file 'AddonReservation.csv' (not in target list).
+2025-12-21 20:39:46,353 - __main__ - INFO - Skipping CSV file 'AddonReservation.csv' (not in target list).
+2025-12-21 20:39:46,353 - INFO - Skipping CSV file 'AddressSet.csv' (not in target list).
+2025-12-21 20:39:46,353 - __main__ - INFO - Skipping CSV file 'AddressSet.csv' (not in target list).
+2025-12-21 20:39:46,354 - INFO - Found target CSV file 'AddressTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,354 - __main__ - INFO - Found target CSV file 'AddressTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,354 - INFO - Skipping CSV file 'AdminStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,354 - __main__ - INFO - Skipping CSV file 'AdminStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,354 - INFO - Skipping CSV file 'AllowedPaymentMethodsSet.csv' (not in target list).
+2025-12-21 20:39:46,354 - __main__ - INFO - Skipping CSV file 'AllowedPaymentMethodsSet.csv' (not in target list).
+2025-12-21 20:39:46,355 - INFO - Skipping CSV file 'ANetResponseSet.csv' (not in target list).
+2025-12-21 20:39:46,355 - __main__ - INFO - Skipping CSV file 'ANetResponseSet.csv' (not in target list).
+2025-12-21 20:39:46,355 - INFO - Skipping CSV file 'AspNetRoles.csv' (not in target list).
+2025-12-21 20:39:46,355 - __main__ - INFO - Skipping CSV file 'AspNetRoles.csv' (not in target list).
+2025-12-21 20:39:46,355 - INFO - Skipping CSV file 'AspNetUserCompanyMarinaAccessSet.csv' (not in target list).
+2025-12-21 20:39:46,355 - __main__ - INFO - Skipping CSV file 'AspNetUserCompanyMarinaAccessSet.csv' (not in target list).
+2025-12-21 20:39:46,356 - INFO - Skipping CSV file 'AspNetUserRoles.csv' (not in target list).
+2025-12-21 20:39:46,356 - __main__ - INFO - Skipping CSV file 'AspNetUserRoles.csv' (not in target list).
+2025-12-21 20:39:46,356 - INFO - Skipping CSV file 'AspNetUsers.csv' (not in target list).
+2025-12-21 20:39:46,356 - __main__ - INFO - Skipping CSV file 'AspNetUsers.csv' (not in target list).
+2025-12-21 20:39:46,356 - INFO - Skipping CSV file 'AuthorizeMerchantSet.csv' (not in target list).
+2025-12-21 20:39:46,356 - __main__ - INFO - Skipping CSV file 'AuthorizeMerchantSet.csv' (not in target list).
+2025-12-21 20:39:46,357 - INFO - Skipping CSV file 'AuthorizeNetResponseSet.csv' (not in target list).
+2025-12-21 20:39:46,357 - __main__ - INFO - Skipping CSV file 'AuthorizeNetResponseSet.csv' (not in target list).
+2025-12-21 20:39:46,357 - INFO - Skipping CSV file 'AuthorizePaymentMethodSet.csv' (not in target list).
+2025-12-21 20:39:46,357 - __main__ - INFO - Skipping CSV file 'AuthorizePaymentMethodSet.csv' (not in target list).
+2025-12-21 20:39:46,357 - INFO - Skipping CSV file 'AutoChargeAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,357 - __main__ - INFO - Skipping CSV file 'AutoChargeAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,358 - INFO - Skipping CSV file 'BatchJobLogSet.csv' (not in target list).
+2025-12-21 20:39:46,358 - __main__ - INFO - Skipping CSV file 'BatchJobLogSet.csv' (not in target list).
+2025-12-21 20:39:46,358 - INFO - Skipping CSV file 'BoatContacts.csv' (not in target list).
+2025-12-21 20:39:46,358 - __main__ - INFO - Skipping CSV file 'BoatContacts.csv' (not in target list).
+2025-12-21 20:39:46,358 - INFO - Found target CSV file 'Boats.csv' in the zip archive.
+2025-12-21 20:39:46,358 - __main__ - INFO - Found target CSV file 'Boats.csv' in the zip archive.
+2025-12-21 20:39:46,359 - INFO - Skipping CSV file 'BoatsLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,359 - __main__ - INFO - Skipping CSV file 'BoatsLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,360 - INFO - Found target CSV file 'BoatTypes.csv' in the zip archive.
+2025-12-21 20:39:46,360 - __main__ - INFO - Found target CSV file 'BoatTypes.csv' in the zip archive.
+2025-12-21 20:39:46,360 - INFO - Skipping CSV file 'BulkRenewal.csv' (not in target list).
+2025-12-21 20:39:46,360 - __main__ - INFO - Skipping CSV file 'BulkRenewal.csv' (not in target list).
+2025-12-21 20:39:46,360 - INFO - Skipping CSV file 'BulkRenewalAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,360 - __main__ - INFO - Skipping CSV file 'BulkRenewalAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,361 - INFO - Skipping CSV file 'BusinessHoursSet.csv' (not in target list).
+2025-12-21 20:39:46,361 - __main__ - INFO - Skipping CSV file 'BusinessHoursSet.csv' (not in target list).
+2025-12-21 20:39:46,361 - INFO - Skipping CSV file 'CashDrawerActionsSet.csv' (not in target list).
+2025-12-21 20:39:46,361 - __main__ - INFO - Skipping CSV file 'CashDrawerActionsSet.csv' (not in target list).
+2025-12-21 20:39:46,361 - INFO - Skipping CSV file 'CashDrawerAuditsSet.csv' (not in target list).
+2025-12-21 20:39:46,361 - __main__ - INFO - Skipping CSV file 'CashDrawerAuditsSet.csv' (not in target list).
+2025-12-21 20:39:46,362 - INFO - Skipping CSV file 'CIMDataSet.csv' (not in target list).
+2025-12-21 20:39:46,362 - __main__ - INFO - Skipping CSV file 'CIMDataSet.csv' (not in target list).
+2025-12-21 20:39:46,362 - INFO - Found target CSV file 'Cities.csv' in the zip archive.
+2025-12-21 20:39:46,362 - __main__ - INFO - Found target CSV file 'Cities.csv' in the zip archive.
+2025-12-21 20:39:46,363 - INFO - Found target CSV file 'Companies.csv' in the zip archive.
+2025-12-21 20:39:46,363 - __main__ - INFO - Found target CSV file 'Companies.csv' in the zip archive.
+2025-12-21 20:39:46,363 - INFO - Skipping CSV file 'ContactAuthCredential.csv' (not in target list).
+2025-12-21 20:39:46,363 - __main__ - INFO - Skipping CSV file 'ContactAuthCredential.csv' (not in target list).
+2025-12-21 20:39:46,364 - INFO - Found target CSV file 'ContactAutoChargeSet.csv' in the zip archive.
+2025-12-21 20:39:46,364 - __main__ - INFO - Found target CSV file 'ContactAutoChargeSet.csv' in the zip archive.
+2025-12-21 20:39:46,364 - INFO - Found target CSV file 'Contacts.csv' in the zip archive.
+2025-12-21 20:39:46,364 - __main__ - INFO - Found target CSV file 'Contacts.csv' in the zip archive.
+2025-12-21 20:39:46,365 - INFO - Skipping CSV file 'ContactsLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,365 - __main__ - INFO - Skipping CSV file 'ContactsLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,365 - INFO - Found target CSV file 'ContactTypes.csv' in the zip archive.
+2025-12-21 20:39:46,365 - __main__ - INFO - Found target CSV file 'ContactTypes.csv' in the zip archive.
+2025-12-21 20:39:46,366 - INFO - Skipping CSV file 'Contract.csv' (not in target list).
+2025-12-21 20:39:46,366 - __main__ - INFO - Skipping CSV file 'Contract.csv' (not in target list).
+2025-12-21 20:39:46,366 - INFO - Skipping CSV file 'ContractTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,366 - __main__ - INFO - Skipping CSV file 'ContractTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,366 - INFO - Found target CSV file 'Countries.csv' in the zip archive.
+2025-12-21 20:39:46,366 - __main__ - INFO - Found target CSV file 'Countries.csv' in the zip archive.
+2025-12-21 20:39:46,367 - INFO - Found target CSV file 'CurrenciesSet.csv' in the zip archive.
+2025-12-21 20:39:46,367 - __main__ - INFO - Found target CSV file 'CurrenciesSet.csv' in the zip archive.
+2025-12-21 20:39:46,367 - INFO - Skipping CSV file 'CustomFieldAnswerCustomFieldOptions.csv' (not in target list).
+2025-12-21 20:39:46,367 - __main__ - INFO - Skipping CSV file 'CustomFieldAnswerCustomFieldOptions.csv' (not in target list).
+2025-12-21 20:39:46,367 - INFO - Skipping CSV file 'CustomFieldAnswerSet.csv' (not in target list).
+2025-12-21 20:39:46,367 - __main__ - INFO - Skipping CSV file 'CustomFieldAnswerSet.csv' (not in target list).
+2025-12-21 20:39:46,368 - INFO - Skipping CSV file 'CustomFieldLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,368 - __main__ - INFO - Skipping CSV file 'CustomFieldLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,368 - INFO - Skipping CSV file 'CustomFieldOptionLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,368 - __main__ - INFO - Skipping CSV file 'CustomFieldOptionLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,368 - INFO - Skipping CSV file 'CustomFieldOptionsSet.csv' (not in target list).
+2025-12-21 20:39:46,368 - __main__ - INFO - Skipping CSV file 'CustomFieldOptionsSet.csv' (not in target list).
+2025-12-21 20:39:46,369 - INFO - Skipping CSV file 'CustomFieldSet.csv' (not in target list).
+2025-12-21 20:39:46,369 - __main__ - INFO - Skipping CSV file 'CustomFieldSet.csv' (not in target list).
+2025-12-21 20:39:46,369 - INFO - Skipping CSV file 'CustomFieldTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,369 - __main__ - INFO - Skipping CSV file 'CustomFieldTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,369 - INFO - Skipping CSV file 'CustomTransactionMethodsSet.csv' (not in target list).
+2025-12-21 20:39:46,369 - __main__ - INFO - Skipping CSV file 'CustomTransactionMethodsSet.csv' (not in target list).
+2025-12-21 20:39:46,369 - INFO - Skipping CSV file 'DeferredRevenueRecognitionStorageSet.csv' (not in target list).
+2025-12-21 20:39:46,369 - __main__ - INFO - Skipping CSV file 'DeferredRevenueRecognitionStorageSet.csv' (not in target list).
+2025-12-21 20:39:46,370 - INFO - Found target CSV file 'DueDateSettingsSet.csv' in the zip archive.
+2025-12-21 20:39:46,370 - __main__ - INFO - Found target CSV file 'DueDateSettingsSet.csv' in the zip archive.
+2025-12-21 20:39:46,370 - INFO - Skipping CSV file 'EmailPlaceholdersSet.csv' (not in target list).
+2025-12-21 20:39:46,370 - __main__ - INFO - Skipping CSV file 'EmailPlaceholdersSet.csv' (not in target list).
+2025-12-21 20:39:46,371 - INFO - Skipping CSV file 'EmailStatementAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,371 - __main__ - INFO - Skipping CSV file 'EmailStatementAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,371 - INFO - Skipping CSV file 'EmailStoreSet.csv' (not in target list).
+2025-12-21 20:39:46,371 - __main__ - INFO - Skipping CSV file 'EmailStoreSet.csv' (not in target list).
+2025-12-21 20:39:46,372 - INFO - Skipping CSV file 'EmailTokenSet.csv' (not in target list).
+2025-12-21 20:39:46,372 - __main__ - INFO - Skipping CSV file 'EmailTokenSet.csv' (not in target list).
+2025-12-21 20:39:46,372 - INFO - Skipping CSV file 'EquipmentBoatSet.csv' (not in target list).
+2025-12-21 20:39:46,372 - __main__ - INFO - Skipping CSV file 'EquipmentBoatSet.csv' (not in target list).
+2025-12-21 20:39:46,372 - INFO - Found target CSV file 'EquipmentFuelTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,372 - __main__ - INFO - Found target CSV file 'EquipmentFuelTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,372 - INFO - Found target CSV file 'EquipmentSet.csv' in the zip archive.
+2025-12-21 20:39:46,372 - __main__ - INFO - Found target CSV file 'EquipmentSet.csv' in the zip archive.
+2025-12-21 20:39:46,373 - INFO - Found target CSV file 'EquipmentTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,373 - __main__ - INFO - Found target CSV file 'EquipmentTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,373 - INFO - Skipping CSV file 'EventResources.csv' (not in target list).
+2025-12-21 20:39:46,373 - __main__ - INFO - Skipping CSV file 'EventResources.csv' (not in target list).
+2025-12-21 20:39:46,373 - INFO - Skipping CSV file 'EventSet.csv' (not in target list).
+2025-12-21 20:39:46,373 - __main__ - INFO - Skipping CSV file 'EventSet.csv' (not in target list).
+2025-12-21 20:39:46,374 - INFO - Skipping CSV file 'EventStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,374 - __main__ - INFO - Skipping CSV file 'EventStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,374 - INFO - Skipping CSV file 'EventSV_Employee.csv' (not in target list).
+2025-12-21 20:39:46,374 - __main__ - INFO - Skipping CSV file 'EventSV_Employee.csv' (not in target list).
+2025-12-21 20:39:46,375 - INFO - Skipping CSV file 'EventTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,375 - __main__ - INFO - Skipping CSV file 'EventTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,375 - INFO - Skipping CSV file 'ExchangeRateSet.csv' (not in target list).
+2025-12-21 20:39:46,375 - __main__ - INFO - Skipping CSV file 'ExchangeRateSet.csv' (not in target list).
+2025-12-21 20:39:46,375 - INFO - Skipping CSV file 'ExternalMarinaLocation.csv' (not in target list).
+2025-12-21 20:39:46,375 - __main__ - INFO - Skipping CSV file 'ExternalMarinaLocation.csv' (not in target list).
+2025-12-21 20:39:46,375 - INFO - Skipping CSV file 'FavoriteRecordSet.csv' (not in target list).
+2025-12-21 20:39:46,375 - __main__ - INFO - Skipping CSV file 'FavoriteRecordSet.csv' (not in target list).
+2025-12-21 20:39:46,376 - INFO - Skipping CSV file 'FilestackSet.csv' (not in target list).
+2025-12-21 20:39:46,376 - __main__ - INFO - Skipping CSV file 'FilestackSet.csv' (not in target list).
+2025-12-21 20:39:46,378 - INFO - Skipping CSV file 'FinanceChargeAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,378 - __main__ - INFO - Skipping CSV file 'FinanceChargeAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,378 - INFO - Skipping CSV file 'FuelCloudProductSet.csv' (not in target list).
+2025-12-21 20:39:46,378 - __main__ - INFO - Skipping CSV file 'FuelCloudProductSet.csv' (not in target list).
+2025-12-21 20:39:46,378 - INFO - Skipping CSV file 'FuelCloudTankSet.csv' (not in target list).
+2025-12-21 20:39:46,378 - __main__ - INFO - Skipping CSV file 'FuelCloudTankSet.csv' (not in target list).
+2025-12-21 20:39:46,379 - INFO - Skipping CSV file 'FuelCloudTransactionsSet.csv' (not in target list).
+2025-12-21 20:39:46,379 - __main__ - INFO - Skipping CSV file 'FuelCloudTransactionsSet.csv' (not in target list).
+2025-12-21 20:39:46,379 - INFO - Skipping CSV file 'GLCodeSet.csv' (not in target list).
+2025-12-21 20:39:46,379 - __main__ - INFO - Skipping CSV file 'GLCodeSet.csv' (not in target list).
+2025-12-21 20:39:46,379 - INFO - Skipping CSV file 'GLCodeTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,379 - __main__ - INFO - Skipping CSV file 'GLCodeTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,379 - INFO - Skipping CSV file 'GLTrackingCodeSet.csv' (not in target list).
+2025-12-21 20:39:46,379 - __main__ - INFO - Skipping CSV file 'GLTrackingCodeSet.csv' (not in target list).
+2025-12-21 20:39:46,380 - INFO - Found target CSV file 'InstalmentsPaymentMethodSet.csv' in the zip archive.
+2025-12-21 20:39:46,380 - __main__ - INFO - Found target CSV file 'InstalmentsPaymentMethodSet.csv' in the zip archive.
+2025-12-21 20:39:46,380 - INFO - Found target CSV file 'InsuranceSet.csv' in the zip archive.
+2025-12-21 20:39:46,380 - __main__ - INFO - Found target CSV file 'InsuranceSet.csv' in the zip archive.
+2025-12-21 20:39:46,381 - INFO - Found target CSV file 'InsuranceStatusSet.csv' in the zip archive.
+2025-12-21 20:39:46,381 - __main__ - INFO - Found target CSV file 'InsuranceStatusSet.csv' in the zip archive.
+2025-12-21 20:39:46,381 - INFO - Skipping CSV file 'InventoryAdjustmentTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,381 - __main__ - INFO - Skipping CSV file 'InventoryAdjustmentTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,381 - INFO - Skipping CSV file 'InventoryAuditTrailSet.csv' (not in target list).
+2025-12-21 20:39:46,381 - __main__ - INFO - Skipping CSV file 'InventoryAuditTrailSet.csv' (not in target list).
+2025-12-21 20:39:46,382 - INFO - Skipping CSV file 'InventoryPriceHistorySet.csv' (not in target list).
+2025-12-21 20:39:46,382 - __main__ - INFO - Skipping CSV file 'InventoryPriceHistorySet.csv' (not in target list).
+2025-12-21 20:39:46,382 - INFO - Skipping CSV file 'InventorySettingTemplateSet.csv' (not in target list).
+2025-12-21 20:39:46,382 - __main__ - INFO - Skipping CSV file 'InventorySettingTemplateSet.csv' (not in target list).
+2025-12-21 20:39:46,382 - INFO - Found target CSV file 'InvoiceItemSet.csv' in the zip archive.
+2025-12-21 20:39:46,382 - __main__ - INFO - Found target CSV file 'InvoiceItemSet.csv' in the zip archive.
+2025-12-21 20:39:46,427 - INFO - Found target CSV file 'InvoiceItemTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,427 - __main__ - INFO - Found target CSV file 'InvoiceItemTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,428 - INFO - Found target CSV file 'InvoiceSet.csv' in the zip archive.
+2025-12-21 20:39:46,428 - __main__ - INFO - Found target CSV file 'InvoiceSet.csv' in the zip archive.
+2025-12-21 20:39:46,450 - INFO - Found target CSV file 'InvoiceStatusSet.csv' in the zip archive.
+2025-12-21 20:39:46,450 - __main__ - INFO - Found target CSV file 'InvoiceStatusSet.csv' in the zip archive.
+2025-12-21 20:39:46,450 - INFO - Found target CSV file 'InvoiceTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,450 - __main__ - INFO - Found target CSV file 'InvoiceTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,452 - INFO - Found target CSV file 'ItemChargeMethods.csv' in the zip archive.
+2025-12-21 20:39:46,452 - __main__ - INFO - Found target CSV file 'ItemChargeMethods.csv' in the zip archive.
+2025-12-21 20:39:46,453 - INFO - Found target CSV file 'ItemMasters.csv' in the zip archive.
+2025-12-21 20:39:46,453 - __main__ - INFO - Found target CSV file 'ItemMasters.csv' in the zip archive.
+2025-12-21 20:39:46,454 - INFO - Skipping CSV file 'LockDateAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,454 - __main__ - INFO - Skipping CSV file 'LockDateAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,454 - INFO - Skipping CSV file 'LoginAttemptsSet.csv' (not in target list).
+2025-12-21 20:39:46,454 - __main__ - INFO - Skipping CSV file 'LoginAttemptsSet.csv' (not in target list).
+2025-12-21 20:39:46,455 - INFO - Skipping CSV file 'LoginProvidersSet.csv' (not in target list).
+2025-12-21 20:39:46,455 - __main__ - INFO - Skipping CSV file 'LoginProvidersSet.csv' (not in target list).
+2025-12-21 20:39:46,455 - INFO - Skipping CSV file 'MarinaLocationAmenitiesSet.csv' (not in target list).
+2025-12-21 20:39:46,455 - __main__ - INFO - Skipping CSV file 'MarinaLocationAmenitiesSet.csv' (not in target list).
+2025-12-21 20:39:46,455 - INFO - Skipping CSV file 'MarinaLocationMoloAPI_Partner1.csv' (not in target list).
+2025-12-21 20:39:46,455 - __main__ - INFO - Skipping CSV file 'MarinaLocationMoloAPI_Partner1.csv' (not in target list).
+2025-12-21 20:39:46,456 - INFO - Found target CSV file 'MarinaLocations.csv' in the zip archive.
+2025-12-21 20:39:46,456 - __main__ - INFO - Found target CSV file 'MarinaLocations.csv' in the zip archive.
+2025-12-21 20:39:46,456 - INFO - Skipping CSV file 'MarinaTasks.csv' (not in target list).
+2025-12-21 20:39:46,456 - __main__ - INFO - Skipping CSV file 'MarinaTasks.csv' (not in target list).
+2025-12-21 20:39:46,456 - INFO - Skipping CSV file 'MenuMarinaDefault.csv' (not in target list).
+2025-12-21 20:39:46,456 - __main__ - INFO - Skipping CSV file 'MenuMarinaDefault.csv' (not in target list).
+2025-12-21 20:39:46,457 - INFO - Skipping CSV file 'MenuUserPreferences.csv' (not in target list).
+2025-12-21 20:39:46,457 - __main__ - INFO - Skipping CSV file 'MenuUserPreferences.csv' (not in target list).
+2025-12-21 20:39:46,457 - INFO - Skipping CSV file 'MessageTemplateSet.csv' (not in target list).
+2025-12-21 20:39:46,457 - __main__ - INFO - Skipping CSV file 'MessageTemplateSet.csv' (not in target list).
+2025-12-21 20:39:46,457 - INFO - Skipping CSV file 'MeterAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,457 - __main__ - INFO - Skipping CSV file 'MeterAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,457 - INFO - Skipping CSV file 'MoloAPI_PartnerSet.csv' (not in target list).
+2025-12-21 20:39:46,457 - __main__ - INFO - Skipping CSV file 'MoloAPI_PartnerSet.csv' (not in target list).
+2025-12-21 20:39:46,457 - INFO - Skipping CSV file 'MoloProvidersSet.csv' (not in target list).
+2025-12-21 20:39:46,457 - __main__ - INFO - Skipping CSV file 'MoloProvidersSet.csv' (not in target list).
+2025-12-21 20:39:46,458 - INFO - Skipping CSV file 'MoloTermsSet.csv' (not in target list).
+2025-12-21 20:39:46,458 - __main__ - INFO - Skipping CSV file 'MoloTermsSet.csv' (not in target list).
+2025-12-21 20:39:46,458 - INFO - Skipping CSV file 'NewXeroTokenSet.csv' (not in target list).
+2025-12-21 20:39:46,458 - __main__ - INFO - Skipping CSV file 'NewXeroTokenSet.csv' (not in target list).
+2025-12-21 20:39:46,458 - INFO - Skipping CSV file 'OfferAddOnsSet.csv' (not in target list).
+2025-12-21 20:39:46,458 - __main__ - INFO - Skipping CSV file 'OfferAddOnsSet.csv' (not in target list).
+2025-12-21 20:39:46,458 - INFO - Skipping CSV file 'OfferBlackoutDateSet.csv' (not in target list).
+2025-12-21 20:39:46,458 - __main__ - INFO - Skipping CSV file 'OfferBlackoutDateSet.csv' (not in target list).
+2025-12-21 20:39:46,459 - INFO - Skipping CSV file 'OfferLengthOverrideSet.csv' (not in target list).
+2025-12-21 20:39:46,459 - __main__ - INFO - Skipping CSV file 'OfferLengthOverrideSet.csv' (not in target list).
+2025-12-21 20:39:46,459 - INFO - Skipping CSV file 'OfferPaymentMethodSet.csv' (not in target list).
+2025-12-21 20:39:46,459 - __main__ - INFO - Skipping CSV file 'OfferPaymentMethodSet.csv' (not in target list).
+2025-12-21 20:39:46,459 - INFO - Skipping CSV file 'OfferPostLogSet.csv' (not in target list).
+2025-12-21 20:39:46,459 - __main__ - INFO - Skipping CSV file 'OfferPostLogSet.csv' (not in target list).
+2025-12-21 20:39:46,459 - INFO - Skipping CSV file 'OfferRateMappingSet.csv' (not in target list).
+2025-12-21 20:39:46,459 - __main__ - INFO - Skipping CSV file 'OfferRateMappingSet.csv' (not in target list).
+2025-12-21 20:39:46,460 - INFO - Skipping CSV file 'OffersMoloAPI_Partner.csv' (not in target list).
+2025-12-21 20:39:46,460 - __main__ - INFO - Skipping CSV file 'OffersMoloAPI_Partner.csv' (not in target list).
+2025-12-21 20:39:46,460 - INFO - Skipping CSV file 'OffersSet.csv' (not in target list).
+2025-12-21 20:39:46,460 - __main__ - INFO - Skipping CSV file 'OffersSet.csv' (not in target list).
+2025-12-21 20:39:46,460 - INFO - Skipping CSV file 'OffersSlip.csv' (not in target list).
+2025-12-21 20:39:46,460 - __main__ - INFO - Skipping CSV file 'OffersSlip.csv' (not in target list).
+2025-12-21 20:39:46,460 - INFO - Skipping CSV file 'OfferTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,460 - __main__ - INFO - Skipping CSV file 'OfferTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,461 - INFO - Skipping CSV file 'OnlinePaymentFeeSet.csv' (not in target list).
+2025-12-21 20:39:46,461 - __main__ - INFO - Skipping CSV file 'OnlinePaymentFeeSet.csv' (not in target list).
+2025-12-21 20:39:46,461 - INFO - Found target CSV file 'PaymentMethods.csv' in the zip archive.
+2025-12-21 20:39:46,461 - __main__ - INFO - Found target CSV file 'PaymentMethods.csv' in the zip archive.
+2025-12-21 20:39:46,461 - INFO - Skipping CSV file 'Payments.csv' (not in target list).
+2025-12-21 20:39:46,461 - __main__ - INFO - Skipping CSV file 'Payments.csv' (not in target list).
+2025-12-21 20:39:46,461 - INFO - Found target CSV file 'PaymentsProviderSet.csv' in the zip archive.
+2025-12-21 20:39:46,461 - __main__ - INFO - Found target CSV file 'PaymentsProviderSet.csv' in the zip archive.
+2025-12-21 20:39:46,462 - INFO - Skipping CSV file 'PaymentTermsAcceptanceSet.csv' (not in target list).
+2025-12-21 20:39:46,462 - __main__ - INFO - Skipping CSV file 'PaymentTermsAcceptanceSet.csv' (not in target list).
+2025-12-21 20:39:46,462 - INFO - Skipping CSV file 'PedestalReservation.csv' (not in target list).
+2025-12-21 20:39:46,462 - __main__ - INFO - Skipping CSV file 'PedestalReservation.csv' (not in target list).
+2025-12-21 20:39:46,462 - INFO - Skipping CSV file 'Pedestals.csv' (not in target list).
+2025-12-21 20:39:46,462 - __main__ - INFO - Skipping CSV file 'Pedestals.csv' (not in target list).
+2025-12-21 20:39:46,463 - INFO - Skipping CSV file 'Phones.csv' (not in target list).
+2025-12-21 20:39:46,463 - __main__ - INFO - Skipping CSV file 'Phones.csv' (not in target list).
+2025-12-21 20:39:46,463 - INFO - Found target CSV file 'PhoneTypes.csv' in the zip archive.
+2025-12-21 20:39:46,463 - __main__ - INFO - Found target CSV file 'PhoneTypes.csv' in the zip archive.
+2025-12-21 20:39:46,464 - INFO - Found target CSV file 'Piers.csv' in the zip archive.
+2025-12-21 20:39:46,464 - __main__ - INFO - Found target CSV file 'Piers.csv' in the zip archive.
+2025-12-21 20:39:46,464 - INFO - Found target CSV file 'PowerNeeds.csv' in the zip archive.
+2025-12-21 20:39:46,464 - __main__ - INFO - Found target CSV file 'PowerNeeds.csv' in the zip archive.
+2025-12-21 20:39:46,465 - INFO - Skipping CSV file 'PreArrivalEmailSet.csv' (not in target list).
+2025-12-21 20:39:46,465 - __main__ - INFO - Skipping CSV file 'PreArrivalEmailSet.csv' (not in target list).
+2025-12-21 20:39:46,465 - INFO - Skipping CSV file 'PurchaseOrder.csv' (not in target list).
+2025-12-21 20:39:46,465 - __main__ - INFO - Skipping CSV file 'PurchaseOrder.csv' (not in target list).
+2025-12-21 20:39:46,465 - INFO - Skipping CSV file 'PurchaseOrderItem.csv' (not in target list).
+2025-12-21 20:39:46,465 - __main__ - INFO - Skipping CSV file 'PurchaseOrderItem.csv' (not in target list).
+2025-12-21 20:39:46,465 - INFO - Skipping CSV file 'PurchaseOrderStatus.csv' (not in target list).
+2025-12-21 20:39:46,465 - __main__ - INFO - Skipping CSV file 'PurchaseOrderStatus.csv' (not in target list).
+2025-12-21 20:39:46,465 - INFO - Skipping CSV file 'PurchaseOrderWorkJobMap.csv' (not in target list).
+2025-12-21 20:39:46,465 - __main__ - INFO - Skipping CSV file 'PurchaseOrderWorkJobMap.csv' (not in target list).
+2025-12-21 20:39:46,466 - INFO - Skipping CSV file 'QB_AccountSet.csv' (not in target list).
+2025-12-21 20:39:46,466 - __main__ - INFO - Skipping CSV file 'QB_AccountSet.csv' (not in target list).
+2025-12-21 20:39:46,466 - INFO - Skipping CSV file 'QB_CustomerSet.csv' (not in target list).
+2025-12-21 20:39:46,466 - __main__ - INFO - Skipping CSV file 'QB_CustomerSet.csv' (not in target list).
+2025-12-21 20:39:46,466 - INFO - Skipping CSV file 'QB_ItemSet.csv' (not in target list).
+2025-12-21 20:39:46,466 - __main__ - INFO - Skipping CSV file 'QB_ItemSet.csv' (not in target list).
+2025-12-21 20:39:46,466 - INFO - Skipping CSV file 'QB_TaxAgencySet.csv' (not in target list).
+2025-12-21 20:39:46,466 - __main__ - INFO - Skipping CSV file 'QB_TaxAgencySet.csv' (not in target list).
+2025-12-21 20:39:46,467 - INFO - Skipping CSV file 'QB_TaxCodeSet.csv' (not in target list).
+2025-12-21 20:39:46,467 - __main__ - INFO - Skipping CSV file 'QB_TaxCodeSet.csv' (not in target list).
+2025-12-21 20:39:46,467 - INFO - Skipping CSV file 'QB_TaxRateQB_TaxCode.csv' (not in target list).
+2025-12-21 20:39:46,467 - __main__ - INFO - Skipping CSV file 'QB_TaxRateQB_TaxCode.csv' (not in target list).
+2025-12-21 20:39:46,467 - INFO - Skipping CSV file 'QB_TaxRateSet.csv' (not in target list).
+2025-12-21 20:39:46,467 - __main__ - INFO - Skipping CSV file 'QB_TaxRateSet.csv' (not in target list).
+2025-12-21 20:39:46,467 - INFO - Skipping CSV file 'QuickbookSettingsSet.csv' (not in target list).
+2025-12-21 20:39:46,467 - __main__ - INFO - Skipping CSV file 'QuickbookSettingsSet.csv' (not in target list).
+2025-12-21 20:39:46,467 - INFO - Skipping CSV file 'QuickFilterSet.csv' (not in target list).
+2025-12-21 20:39:46,467 - __main__ - INFO - Skipping CSV file 'QuickFilterSet.csv' (not in target list).
+2025-12-21 20:39:46,468 - INFO - Skipping CSV file 'ReceiptPrinterSet.csv' (not in target list).
+2025-12-21 20:39:46,468 - __main__ - INFO - Skipping CSV file 'ReceiptPrinterSet.csv' (not in target list).
+2025-12-21 20:39:46,468 - INFO - Skipping CSV file 'RecentRecordSet.csv' (not in target list).
+2025-12-21 20:39:46,468 - __main__ - INFO - Skipping CSV file 'RecentRecordSet.csv' (not in target list).
+2025-12-21 20:39:46,468 - INFO - Found target CSV file 'RecordStatusSet.csv' in the zip archive.
+2025-12-21 20:39:46,468 - __main__ - INFO - Found target CSV file 'RecordStatusSet.csv' in the zip archive.
+2025-12-21 20:39:46,468 - INFO - Skipping CSV file 'RecurringAddOnSet.csv' (not in target list).
+2025-12-21 20:39:46,468 - __main__ - INFO - Skipping CSV file 'RecurringAddOnSet.csv' (not in target list).
+2025-12-21 20:39:46,469 - INFO - Skipping CSV file 'RecurringInvoiceAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,469 - __main__ - INFO - Skipping CSV file 'RecurringInvoiceAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,469 - INFO - Found target CSV file 'RecurringInvoiceOptionsSet.csv' in the zip archive.
+2025-12-21 20:39:46,469 - __main__ - INFO - Found target CSV file 'RecurringInvoiceOptionsSet.csv' in the zip archive.
+2025-12-21 20:39:46,469 - INFO - Found target CSV file 'Reservations.csv' in the zip archive.
+2025-12-21 20:39:46,469 - __main__ - INFO - Found target CSV file 'Reservations.csv' in the zip archive.
+2025-12-21 20:39:46,470 - INFO - Found target CSV file 'ReservationStatus.csv' in the zip archive.
+2025-12-21 20:39:46,470 - __main__ - INFO - Found target CSV file 'ReservationStatus.csv' in the zip archive.
+2025-12-21 20:39:46,470 - INFO - Found target CSV file 'ReservationTypes.csv' in the zip archive.
+2025-12-21 20:39:46,470 - __main__ - INFO - Found target CSV file 'ReservationTypes.csv' in the zip archive.
+2025-12-21 20:39:46,471 - INFO - Skipping CSV file 'ResourceAssignmentBlockSet.csv' (not in target list).
+2025-12-21 20:39:46,471 - __main__ - INFO - Skipping CSV file 'ResourceAssignmentBlockSet.csv' (not in target list).
+2025-12-21 20:39:46,471 - INFO - Skipping CSV file 'ResourceAssignmentSet.csv' (not in target list).
+2025-12-21 20:39:46,471 - __main__ - INFO - Skipping CSV file 'ResourceAssignmentSet.csv' (not in target list).
+2025-12-21 20:39:46,471 - INFO - Skipping CSV file 'ResourceBlockSet.csv' (not in target list).
+2025-12-21 20:39:46,471 - __main__ - INFO - Skipping CSV file 'ResourceBlockSet.csv' (not in target list).
+2025-12-21 20:39:46,471 - INFO - Skipping CSV file 'ResourceBookingSet.csv' (not in target list).
+2025-12-21 20:39:46,471 - __main__ - INFO - Skipping CSV file 'ResourceBookingSet.csv' (not in target list).
+2025-12-21 20:39:46,471 - INFO - Skipping CSV file 'ResourceEquipmentTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,471 - __main__ - INFO - Skipping CSV file 'ResourceEquipmentTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,472 - INFO - Skipping CSV file 'ResourceOfferTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,472 - __main__ - INFO - Skipping CSV file 'ResourceOfferTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,472 - INFO - Skipping CSV file 'ResourcePostLogSet.csv' (not in target list).
+2025-12-21 20:39:46,472 - __main__ - INFO - Skipping CSV file 'ResourcePostLogSet.csv' (not in target list).
+2025-12-21 20:39:46,472 - INFO - Skipping CSV file 'ResourcesOffers.csv' (not in target list).
+2025-12-21 20:39:46,472 - __main__ - INFO - Skipping CSV file 'ResourcesOffers.csv' (not in target list).
+2025-12-21 20:39:46,472 - INFO - Skipping CSV file 'ResourcesSet.csv' (not in target list).
+2025-12-21 20:39:46,472 - __main__ - INFO - Skipping CSV file 'ResourcesSet.csv' (not in target list).
+2025-12-21 20:39:46,472 - INFO - Skipping CSV file 'ResourceStatusMoveableSet.csv' (not in target list).
+2025-12-21 20:39:46,472 - __main__ - INFO - Skipping CSV file 'ResourceStatusMoveableSet.csv' (not in target list).
+2025-12-21 20:39:46,473 - INFO - Skipping CSV file 'ResourceStatusSettingsSet.csv' (not in target list).
+2025-12-21 20:39:46,473 - __main__ - INFO - Skipping CSV file 'ResourceStatusSettingsSet.csv' (not in target list).
+2025-12-21 20:39:46,473 - INFO - Skipping CSV file 'ResourceStatusStationarySet.csv' (not in target list).
+2025-12-21 20:39:46,473 - __main__ - INFO - Skipping CSV file 'ResourceStatusStationarySet.csv' (not in target list).
+2025-12-21 20:39:46,473 - INFO - Skipping CSV file 'ResourceTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,473 - __main__ - INFO - Skipping CSV file 'ResourceTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,473 - INFO - Skipping CSV file 'ReverseRebillSettingsSet.csv' (not in target list).
+2025-12-21 20:39:46,473 - __main__ - INFO - Skipping CSV file 'ReverseRebillSettingsSet.csv' (not in target list).
+2025-12-21 20:39:46,474 - INFO - Skipping CSV file 'ScheduledReportSet.csv' (not in target list).
+2025-12-21 20:39:46,474 - __main__ - INFO - Skipping CSV file 'ScheduledReportSet.csv' (not in target list).
+2025-12-21 20:39:46,474 - INFO - Found target CSV file 'SeasonalChargeMethods.csv' in the zip archive.
+2025-12-21 20:39:46,474 - __main__ - INFO - Found target CSV file 'SeasonalChargeMethods.csv' in the zip archive.
+2025-12-21 20:39:46,474 - INFO - Skipping CSV file 'SeasonalInventoryItems.csv' (not in target list).
+2025-12-21 20:39:46,474 - __main__ - INFO - Skipping CSV file 'SeasonalInventoryItems.csv' (not in target list).
+2025-12-21 20:39:46,474 - INFO - Found target CSV file 'SeasonalInvoicingMethodSet.csv' in the zip archive.
+2025-12-21 20:39:46,474 - __main__ - INFO - Found target CSV file 'SeasonalInvoicingMethodSet.csv' in the zip archive.
+2025-12-21 20:39:46,475 - INFO - Found target CSV file 'SeasonalPrices.csv' in the zip archive.
+2025-12-21 20:39:46,475 - __main__ - INFO - Found target CSV file 'SeasonalPrices.csv' in the zip archive.
+2025-12-21 20:39:46,475 - INFO - Skipping CSV file 'ServiceStatusDetailsSet.csv' (not in target list).
+2025-12-21 20:39:46,475 - __main__ - INFO - Skipping CSV file 'ServiceStatusDetailsSet.csv' (not in target list).
+2025-12-21 20:39:46,475 - INFO - Skipping CSV file 'SlipBlockSetSet.csv' (not in target list).
+2025-12-21 20:39:46,475 - __main__ - INFO - Skipping CSV file 'SlipBlockSetSet.csv' (not in target list).
+2025-12-21 20:39:46,475 - INFO - Skipping CSV file 'SlipMaintenances.csv' (not in target list).
+2025-12-21 20:39:46,475 - __main__ - INFO - Skipping CSV file 'SlipMaintenances.csv' (not in target list).
+2025-12-21 20:39:46,476 - INFO - Skipping CSV file 'SlipPedestal.csv' (not in target list).
+2025-12-21 20:39:46,476 - __main__ - INFO - Skipping CSV file 'SlipPedestal.csv' (not in target list).
+2025-12-21 20:39:46,476 - INFO - Skipping CSV file 'SlipPlacementSet.csv' (not in target list).
+2025-12-21 20:39:46,476 - __main__ - INFO - Skipping CSV file 'SlipPlacementSet.csv' (not in target list).
+2025-12-21 20:39:46,476 - INFO - Skipping CSV file 'SlipPlacementStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,476 - __main__ - INFO - Skipping CSV file 'SlipPlacementStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,477 - INFO - Found target CSV file 'Slips.csv' in the zip archive.
+2025-12-21 20:39:46,477 - __main__ - INFO - Found target CSV file 'Slips.csv' in the zip archive.
+2025-12-21 20:39:46,477 - INFO - Found target CSV file 'SlipTypes.csv' in the zip archive.
+2025-12-21 20:39:46,477 - __main__ - INFO - Found target CSV file 'SlipTypes.csv' in the zip archive.
+2025-12-21 20:39:46,478 - INFO - Found target CSV file 'StatementsPreferenceSet.csv' in the zip archive.
+2025-12-21 20:39:46,478 - __main__ - INFO - Found target CSV file 'StatementsPreferenceSet.csv' in the zip archive.
+2025-12-21 20:39:46,478 - INFO - Skipping CSV file 'StripeAccountSet.csv' (not in target list).
+2025-12-21 20:39:46,478 - __main__ - INFO - Skipping CSV file 'StripeAccountSet.csv' (not in target list).
+2025-12-21 20:39:46,479 - INFO - Skipping CSV file 'StripeAuthorizationsSet.csv' (not in target list).
+2025-12-21 20:39:46,479 - __main__ - INFO - Skipping CSV file 'StripeAuthorizationsSet.csv' (not in target list).
+2025-12-21 20:39:46,479 - INFO - Skipping CSV file 'StripeBankAccountSet.csv' (not in target list).
+2025-12-21 20:39:46,479 - __main__ - INFO - Skipping CSV file 'StripeBankAccountSet.csv' (not in target list).
+2025-12-21 20:39:46,480 - INFO - Skipping CSV file 'StripeBatchSet.csv' (not in target list).
+2025-12-21 20:39:46,480 - __main__ - INFO - Skipping CSV file 'StripeBatchSet.csv' (not in target list).
+2025-12-21 20:39:46,480 - INFO - Skipping CSV file 'StripeCardSet.csv' (not in target list).
+2025-12-21 20:39:46,480 - __main__ - INFO - Skipping CSV file 'StripeCardSet.csv' (not in target list).
+2025-12-21 20:39:46,480 - INFO - Skipping CSV file 'StripeChargeSet.csv' (not in target list).
+2025-12-21 20:39:46,480 - __main__ - INFO - Skipping CSV file 'StripeChargeSet.csv' (not in target list).
+2025-12-21 20:39:46,481 - INFO - Skipping CSV file 'StripeCustomerSet.csv' (not in target list).
+2025-12-21 20:39:46,481 - __main__ - INFO - Skipping CSV file 'StripeCustomerSet.csv' (not in target list).
+2025-12-21 20:39:46,481 - INFO - Skipping CSV file 'StripeFeeBatchSet.csv' (not in target list).
+2025-12-21 20:39:46,481 - __main__ - INFO - Skipping CSV file 'StripeFeeBatchSet.csv' (not in target list).
+2025-12-21 20:39:46,481 - INFO - Skipping CSV file 'StripeFeeSet.csv' (not in target list).
+2025-12-21 20:39:46,481 - __main__ - INFO - Skipping CSV file 'StripeFeeSet.csv' (not in target list).
+2025-12-21 20:39:46,482 - INFO - Skipping CSV file 'StripeLocationSet.csv' (not in target list).
+2025-12-21 20:39:46,482 - __main__ - INFO - Skipping CSV file 'StripeLocationSet.csv' (not in target list).
+2025-12-21 20:39:46,483 - INFO - Skipping CSV file 'StripeMarinaFeesSet.csv' (not in target list).
+2025-12-21 20:39:46,483 - __main__ - INFO - Skipping CSV file 'StripeMarinaFeesSet.csv' (not in target list).
+2025-12-21 20:39:46,483 - INFO - Skipping CSV file 'StripePayoutAdjustmentSet.csv' (not in target list).
+2025-12-21 20:39:46,483 - __main__ - INFO - Skipping CSV file 'StripePayoutAdjustmentSet.csv' (not in target list).
+2025-12-21 20:39:46,484 - INFO - Skipping CSV file 'StripePayoutAdjustmentTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,484 - __main__ - INFO - Skipping CSV file 'StripePayoutAdjustmentTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,484 - INFO - Skipping CSV file 'StripePayoutMethodSet.csv' (not in target list).
+2025-12-21 20:39:46,484 - __main__ - INFO - Skipping CSV file 'StripePayoutMethodSet.csv' (not in target list).
+2025-12-21 20:39:46,485 - INFO - Skipping CSV file 'StripePersonSet.csv' (not in target list).
+2025-12-21 20:39:46,485 - __main__ - INFO - Skipping CSV file 'StripePersonSet.csv' (not in target list).
+2025-12-21 20:39:46,485 - INFO - Skipping CSV file 'StripeTerminalSet.csv' (not in target list).
+2025-12-21 20:39:46,485 - __main__ - INFO - Skipping CSV file 'StripeTerminalSet.csv' (not in target list).
+2025-12-21 20:39:46,485 - INFO - Skipping CSV file 'StripeTransactionDataSet.csv' (not in target list).
+2025-12-21 20:39:46,485 - __main__ - INFO - Skipping CSV file 'StripeTransactionDataSet.csv' (not in target list).
+2025-12-21 20:39:46,486 - INFO - Skipping CSV file 'SurchargeSettings.csv' (not in target list).
+2025-12-21 20:39:46,486 - __main__ - INFO - Skipping CSV file 'SurchargeSettings.csv' (not in target list).
+2025-12-21 20:39:46,486 - INFO - Skipping CSV file 'SV_BillLineItemSet.csv' (not in target list).
+2025-12-21 20:39:46,486 - __main__ - INFO - Skipping CSV file 'SV_BillLineItemSet.csv' (not in target list).
+2025-12-21 20:39:46,486 - INFO - Skipping CSV file 'SV_BillLineWOLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,486 - __main__ - INFO - Skipping CSV file 'SV_BillLineWOLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,486 - INFO - Skipping CSV file 'SV_BillSet.csv' (not in target list).
+2025-12-21 20:39:46,486 - __main__ - INFO - Skipping CSV file 'SV_BillSet.csv' (not in target list).
+2025-12-21 20:39:46,487 - INFO - Skipping CSV file 'SV_ChargeInstanceSet.csv' (not in target list).
+2025-12-21 20:39:46,487 - __main__ - INFO - Skipping CSV file 'SV_ChargeInstanceSet.csv' (not in target list).
+2025-12-21 20:39:46,487 - INFO - Skipping CSV file 'SV_ChargeSet.csv' (not in target list).
+2025-12-21 20:39:46,487 - __main__ - INFO - Skipping CSV file 'SV_ChargeSet.csv' (not in target list).
+2025-12-21 20:39:46,487 - INFO - Skipping CSV file 'SV_EmployeeHourSet.csv' (not in target list).
+2025-12-21 20:39:46,487 - __main__ - INFO - Skipping CSV file 'SV_EmployeeHourSet.csv' (not in target list).
+2025-12-21 20:39:46,487 - INFO - Skipping CSV file 'SV_EmployeeJobSet.csv' (not in target list).
+2025-12-21 20:39:46,487 - __main__ - INFO - Skipping CSV file 'SV_EmployeeJobSet.csv' (not in target list).
+2025-12-21 20:39:46,488 - INFO - Skipping CSV file 'SV_EmployeeSet.csv' (not in target list).
+2025-12-21 20:39:46,488 - __main__ - INFO - Skipping CSV file 'SV_EmployeeSet.csv' (not in target list).
+2025-12-21 20:39:46,488 - INFO - Skipping CSV file 'SV_EmployeeStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,488 - __main__ - INFO - Skipping CSV file 'SV_EmployeeStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,488 - INFO - Skipping CSV file 'SV_EquipmentSet.csv' (not in target list).
+2025-12-21 20:39:46,488 - __main__ - INFO - Skipping CSV file 'SV_EquipmentSet.csv' (not in target list).
+2025-12-21 20:39:46,488 - INFO - Skipping CSV file 'SV_EquipmentSV_Estimate.csv' (not in target list).
+2025-12-21 20:39:46,488 - __main__ - INFO - Skipping CSV file 'SV_EquipmentSV_Estimate.csv' (not in target list).
+2025-12-21 20:39:46,489 - INFO - Skipping CSV file 'SV_EquipmentSV_WorkOrder.csv' (not in target list).
+2025-12-21 20:39:46,489 - __main__ - INFO - Skipping CSV file 'SV_EquipmentSV_WorkOrder.csv' (not in target list).
+2025-12-21 20:39:46,489 - INFO - Skipping CSV file 'SV_EstimateApprovalMethodSet.csv' (not in target list).
+2025-12-21 20:39:46,489 - __main__ - INFO - Skipping CSV file 'SV_EstimateApprovalMethodSet.csv' (not in target list).
+2025-12-21 20:39:46,489 - INFO - Skipping CSV file 'SV_EstimateEquipment.csv' (not in target list).
+2025-12-21 20:39:46,489 - __main__ - INFO - Skipping CSV file 'SV_EstimateEquipment.csv' (not in target list).
+2025-12-21 20:39:46,489 - INFO - Skipping CSV file 'SV_EstimateJobStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,489 - __main__ - INFO - Skipping CSV file 'SV_EstimateJobStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,490 - INFO - Skipping CSV file 'SV_EstimateSet.csv' (not in target list).
+2025-12-21 20:39:46,490 - __main__ - INFO - Skipping CSV file 'SV_EstimateSet.csv' (not in target list).
+2025-12-21 20:39:46,490 - INFO - Skipping CSV file 'SV_EstimateStatusDetailsSet.csv' (not in target list).
+2025-12-21 20:39:46,490 - __main__ - INFO - Skipping CSV file 'SV_EstimateStatusDetailsSet.csv' (not in target list).
+2025-12-21 20:39:46,490 - INFO - Skipping CSV file 'SV_EstimateStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,490 - __main__ - INFO - Skipping CSV file 'SV_EstimateStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,490 - INFO - Skipping CSV file 'SV_InventoryCategorySet.csv' (not in target list).
+2025-12-21 20:39:46,490 - __main__ - INFO - Skipping CSV file 'SV_InventoryCategorySet.csv' (not in target list).
+2025-12-21 20:39:46,491 - INFO - Skipping CSV file 'SV_InventoryLocationSet.csv' (not in target list).
+2025-12-21 20:39:46,491 - __main__ - INFO - Skipping CSV file 'SV_InventoryLocationSet.csv' (not in target list).
+2025-12-21 20:39:46,491 - INFO - Skipping CSV file 'SV_InventoryRoomSet.csv' (not in target list).
+2025-12-21 20:39:46,491 - __main__ - INFO - Skipping CSV file 'SV_InventoryRoomSet.csv' (not in target list).
+2025-12-21 20:39:46,491 - INFO - Skipping CSV file 'SV_InventorySet.csv' (not in target list).
+2025-12-21 20:39:46,491 - __main__ - INFO - Skipping CSV file 'SV_InventorySet.csv' (not in target list).
+2025-12-21 20:39:46,492 - INFO - Skipping CSV file 'SV_InventorySubCategorySet.csv' (not in target list).
+2025-12-21 20:39:46,492 - __main__ - INFO - Skipping CSV file 'SV_InventorySubCategorySet.csv' (not in target list).
+2025-12-21 20:39:46,492 - INFO - Skipping CSV file 'SV_JobSet.csv' (not in target list).
+2025-12-21 20:39:46,492 - __main__ - INFO - Skipping CSV file 'SV_JobSet.csv' (not in target list).
+2025-12-21 20:39:46,493 - INFO - Skipping CSV file 'SV_JobTemplateSet.csv' (not in target list).
+2025-12-21 20:39:46,493 - __main__ - INFO - Skipping CSV file 'SV_JobTemplateSet.csv' (not in target list).
+2025-12-21 20:39:46,493 - INFO - Skipping CSV file 'SV_JobTemplateStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,493 - __main__ - INFO - Skipping CSV file 'SV_JobTemplateStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,494 - INFO - Skipping CSV file 'SV_LaborInstanceSet.csv' (not in target list).
+2025-12-21 20:39:46,494 - __main__ - INFO - Skipping CSV file 'SV_LaborInstanceSet.csv' (not in target list).
+2025-12-21 20:39:46,494 - INFO - Skipping CSV file 'SV_LaborSet.csv' (not in target list).
+2025-12-21 20:39:46,494 - __main__ - INFO - Skipping CSV file 'SV_LaborSet.csv' (not in target list).
+2025-12-21 20:39:46,494 - INFO - Skipping CSV file 'SV_ManufacturerSet.csv' (not in target list).
+2025-12-21 20:39:46,494 - __main__ - INFO - Skipping CSV file 'SV_ManufacturerSet.csv' (not in target list).
+2025-12-21 20:39:46,495 - INFO - Skipping CSV file 'SV_PartInstanceSet.csv' (not in target list).
+2025-12-21 20:39:46,495 - __main__ - INFO - Skipping CSV file 'SV_PartInstanceSet.csv' (not in target list).
+2025-12-21 20:39:46,495 - INFO - Skipping CSV file 'SV_PartsCatalogSet.csv' (not in target list).
+2025-12-21 20:39:46,495 - __main__ - INFO - Skipping CSV file 'SV_PartsCatalogSet.csv' (not in target list).
+2025-12-21 20:39:46,496 - INFO - Skipping CSV file 'SV_PartSet.csv' (not in target list).
+2025-12-21 20:39:46,496 - __main__ - INFO - Skipping CSV file 'SV_PartSet.csv' (not in target list).
+2025-12-21 20:39:46,496 - INFO - Skipping CSV file 'SV_ServiceResourceEvent.csv' (not in target list).
+2025-12-21 20:39:46,496 - __main__ - INFO - Skipping CSV file 'SV_ServiceResourceEvent.csv' (not in target list).
+2025-12-21 20:39:46,496 - INFO - Skipping CSV file 'SV_ServiceResourceSet.csv' (not in target list).
+2025-12-21 20:39:46,496 - __main__ - INFO - Skipping CSV file 'SV_ServiceResourceSet.csv' (not in target list).
+2025-12-21 20:39:46,497 - INFO - Skipping CSV file 'SV_ServiceResourceTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,497 - __main__ - INFO - Skipping CSV file 'SV_ServiceResourceTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,497 - INFO - Skipping CSV file 'SV_TermsAndConditionsHTMLSet.csv' (not in target list).
+2025-12-21 20:39:46,497 - __main__ - INFO - Skipping CSV file 'SV_TermsAndConditionsHTMLSet.csv' (not in target list).
+2025-12-21 20:39:46,497 - INFO - Skipping CSV file 'SV_TimerSet.csv' (not in target list).
+2025-12-21 20:39:46,497 - __main__ - INFO - Skipping CSV file 'SV_TimerSet.csv' (not in target list).
+2025-12-21 20:39:46,498 - INFO - Skipping CSV file 'SV_WorkOrderCategorySet.csv' (not in target list).
+2025-12-21 20:39:46,498 - __main__ - INFO - Skipping CSV file 'SV_WorkOrderCategorySet.csv' (not in target list).
+2025-12-21 20:39:46,498 - INFO - Skipping CSV file 'SV_WorkOrderEquipment.csv' (not in target list).
+2025-12-21 20:39:46,498 - __main__ - INFO - Skipping CSV file 'SV_WorkOrderEquipment.csv' (not in target list).
+2025-12-21 20:39:46,498 - INFO - Skipping CSV file 'SV_WorkOrderJobStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,498 - __main__ - INFO - Skipping CSV file 'SV_WorkOrderJobStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,499 - INFO - Skipping CSV file 'SV_WorkOrderLocationSet.csv' (not in target list).
+2025-12-21 20:39:46,499 - __main__ - INFO - Skipping CSV file 'SV_WorkOrderLocationSet.csv' (not in target list).
+2025-12-21 20:39:46,499 - INFO - Skipping CSV file 'SV_WorkOrderSet.csv' (not in target list).
+2025-12-21 20:39:46,499 - __main__ - INFO - Skipping CSV file 'SV_WorkOrderSet.csv' (not in target list).
+2025-12-21 20:39:46,499 - INFO - Skipping CSV file 'SV_WorkOrderStatusDetailsSet.csv' (not in target list).
+2025-12-21 20:39:46,499 - __main__ - INFO - Skipping CSV file 'SV_WorkOrderStatusDetailsSet.csv' (not in target list).
+2025-12-21 20:39:46,500 - INFO - Skipping CSV file 'SV_WorkOrderStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,500 - __main__ - INFO - Skipping CSV file 'SV_WorkOrderStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,500 - INFO - Skipping CSV file 'TagLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,500 - __main__ - INFO - Skipping CSV file 'TagLinkSet.csv' (not in target list).
+2025-12-21 20:39:46,500 - INFO - Skipping CSV file 'TagSet.csv' (not in target list).
+2025-12-21 20:39:46,500 - __main__ - INFO - Skipping CSV file 'TagSet.csv' (not in target list).
+2025-12-21 20:39:46,501 - INFO - Skipping CSV file 'TaskTypes.csv' (not in target list).
+2025-12-21 20:39:46,501 - __main__ - INFO - Skipping CSV file 'TaskTypes.csv' (not in target list).
+2025-12-21 20:39:46,501 - INFO - Skipping CSV file 'TechnicianCalendarSettingsSet.csv' (not in target list).
+2025-12-21 20:39:46,501 - __main__ - INFO - Skipping CSV file 'TechnicianCalendarSettingsSet.csv' (not in target list).
+2025-12-21 20:39:46,501 - INFO - Skipping CSV file 'Template.csv' (not in target list).
+2025-12-21 20:39:46,501 - __main__ - INFO - Skipping CSV file 'Template.csv' (not in target list).
+2025-12-21 20:39:46,502 - INFO - Skipping CSV file 'TemplateType.csv' (not in target list).
+2025-12-21 20:39:46,502 - __main__ - INFO - Skipping CSV file 'TemplateType.csv' (not in target list).
+2025-12-21 20:39:46,502 - INFO - Skipping CSV file 'TermsAcceptedLocationSet.csv' (not in target list).
+2025-12-21 20:39:46,502 - __main__ - INFO - Skipping CSV file 'TermsAcceptedLocationSet.csv' (not in target list).
+2025-12-21 20:39:46,502 - INFO - Found target CSV file 'TransactionMethodSet.csv' in the zip archive.
+2025-12-21 20:39:46,502 - __main__ - INFO - Found target CSV file 'TransactionMethodSet.csv' in the zip archive.
+2025-12-21 20:39:46,502 - INFO - Skipping CSV file 'TransactionObjectSet.csv' (not in target list).
+2025-12-21 20:39:46,502 - __main__ - INFO - Skipping CSV file 'TransactionObjectSet.csv' (not in target list).
+2025-12-21 20:39:46,503 - INFO - Found target CSV file 'Transactions.csv' in the zip archive.
+2025-12-21 20:39:46,503 - __main__ - INFO - Found target CSV file 'Transactions.csv' in the zip archive.
+2025-12-21 20:39:46,514 - INFO - Found target CSV file 'TransactionTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,514 - __main__ - INFO - Found target CSV file 'TransactionTypeSet.csv' in the zip archive.
+2025-12-21 20:39:46,515 - INFO - Found target CSV file 'TransientChargeMethods.csv' in the zip archive.
+2025-12-21 20:39:46,515 - __main__ - INFO - Found target CSV file 'TransientChargeMethods.csv' in the zip archive.
+2025-12-21 20:39:46,515 - INFO - Skipping CSV file 'TransientInventoryItems.csv' (not in target list).
+2025-12-21 20:39:46,515 - __main__ - INFO - Skipping CSV file 'TransientInventoryItems.csv' (not in target list).
+2025-12-21 20:39:46,515 - INFO - Found target CSV file 'TransientInvoicingMethodSet.csv' in the zip archive.
+2025-12-21 20:39:46,515 - __main__ - INFO - Found target CSV file 'TransientInvoicingMethodSet.csv' in the zip archive.
+2025-12-21 20:39:46,516 - INFO - Found target CSV file 'TransientPrices.csv' in the zip archive.
+2025-12-21 20:39:46,516 - __main__ - INFO - Found target CSV file 'TransientPrices.csv' in the zip archive.
+2025-12-21 20:39:46,516 - INFO - Skipping CSV file 'TransientRateOverridesSet.csv' (not in target list).
+2025-12-21 20:39:46,516 - __main__ - INFO - Skipping CSV file 'TransientRateOverridesSet.csv' (not in target list).
+2025-12-21 20:39:46,516 - INFO - Skipping CSV file 'UserRoleSet.csv' (not in target list).
+2025-12-21 20:39:46,516 - __main__ - INFO - Skipping CSV file 'UserRoleSet.csv' (not in target list).
+2025-12-21 20:39:46,517 - INFO - Skipping CSV file 'UserTermsAcceptanceAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,517 - __main__ - INFO - Skipping CSV file 'UserTermsAcceptanceAuditSet.csv' (not in target list).
+2025-12-21 20:39:46,517 - INFO - Skipping CSV file 'VendorBill.csv' (not in target list).
+2025-12-21 20:39:46,517 - __main__ - INFO - Skipping CSV file 'VendorBill.csv' (not in target list).
+2025-12-21 20:39:46,517 - INFO - Skipping CSV file 'VendorBillItem.csv' (not in target list).
+2025-12-21 20:39:46,517 - __main__ - INFO - Skipping CSV file 'VendorBillItem.csv' (not in target list).
+2025-12-21 20:39:46,518 - INFO - Skipping CSV file 'VendorBillItemPurchaseOrderItem.csv' (not in target list).
+2025-12-21 20:39:46,518 - __main__ - INFO - Skipping CSV file 'VendorBillItemPurchaseOrderItem.csv' (not in target list).
+2025-12-21 20:39:46,518 - INFO - Skipping CSV file 'VendorBillStatus.csv' (not in target list).
+2025-12-21 20:39:46,518 - __main__ - INFO - Skipping CSV file 'VendorBillStatus.csv' (not in target list).
+2025-12-21 20:39:46,518 - INFO - Skipping CSV file 'VendorBillWorkJobMap.csv' (not in target list).
+2025-12-21 20:39:46,518 - __main__ - INFO - Skipping CSV file 'VendorBillWorkJobMap.csv' (not in target list).
+2025-12-21 20:39:46,518 - INFO - Found target CSV file 'VesselEngineClassSet.csv' in the zip archive.
+2025-12-21 20:39:46,518 - __main__ - INFO - Found target CSV file 'VesselEngineClassSet.csv' in the zip archive.
+2025-12-21 20:39:46,519 - INFO - Skipping CSV file 'WarrantyProviderSet.csv' (not in target list).
+2025-12-21 20:39:46,519 - __main__ - INFO - Skipping CSV file 'WarrantyProviderSet.csv' (not in target list).
+2025-12-21 20:39:46,519 - INFO - Skipping CSV file 'XeroAccountSet.csv' (not in target list).
+2025-12-21 20:39:46,519 - __main__ - INFO - Skipping CSV file 'XeroAccountSet.csv' (not in target list).
+2025-12-21 20:39:46,519 - INFO - Skipping CSV file 'XeroAccountStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,519 - __main__ - INFO - Skipping CSV file 'XeroAccountStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,519 - INFO - Skipping CSV file 'XeroAccountTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,519 - __main__ - INFO - Skipping CSV file 'XeroAccountTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,519 - INFO - Skipping CSV file 'XeroAddressSet.csv' (not in target list).
+2025-12-21 20:39:46,519 - __main__ - INFO - Skipping CSV file 'XeroAddressSet.csv' (not in target list).
+2025-12-21 20:39:46,520 - INFO - Skipping CSV file 'XeroAddressTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,520 - __main__ - INFO - Skipping CSV file 'XeroAddressTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,520 - INFO - Skipping CSV file 'XeroBankAccountTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,520 - __main__ - INFO - Skipping CSV file 'XeroBankAccountTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,520 - INFO - Skipping CSV file 'XeroContactSet.csv' (not in target list).
+2025-12-21 20:39:46,520 - __main__ - INFO - Skipping CSV file 'XeroContactSet.csv' (not in target list).
+2025-12-21 20:39:46,520 - INFO - Skipping CSV file 'XeroContactStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,520 - __main__ - INFO - Skipping CSV file 'XeroContactStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,521 - INFO - Skipping CSV file 'XeroCreditNoteSet.csv' (not in target list).
+2025-12-21 20:39:46,521 - __main__ - INFO - Skipping CSV file 'XeroCreditNoteSet.csv' (not in target list).
+2025-12-21 20:39:46,521 - INFO - Skipping CSV file 'XeroInvoiceSet.csv' (not in target list).
+2025-12-21 20:39:46,521 - __main__ - INFO - Skipping CSV file 'XeroInvoiceSet.csv' (not in target list).
+2025-12-21 20:39:46,521 - INFO - Skipping CSV file 'XeroInvoiceTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,521 - __main__ - INFO - Skipping CSV file 'XeroInvoiceTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,522 - INFO - Skipping CSV file 'XeroItemSet.csv' (not in target list).
+2025-12-21 20:39:46,522 - __main__ - INFO - Skipping CSV file 'XeroItemSet.csv' (not in target list).
+2025-12-21 20:39:46,522 - INFO - Skipping CSV file 'XeroLineItemSet.csv' (not in target list).
+2025-12-21 20:39:46,522 - __main__ - INFO - Skipping CSV file 'XeroLineItemSet.csv' (not in target list).
+2025-12-21 20:39:46,522 - INFO - Skipping CSV file 'XeroOverpaymentSet.csv' (not in target list).
+2025-12-21 20:39:46,522 - __main__ - INFO - Skipping CSV file 'XeroOverpaymentSet.csv' (not in target list).
+2025-12-21 20:39:46,523 - INFO - Skipping CSV file 'XeroPaymentSet.csv' (not in target list).
+2025-12-21 20:39:46,523 - __main__ - INFO - Skipping CSV file 'XeroPaymentSet.csv' (not in target list).
+2025-12-21 20:39:46,523 - INFO - Skipping CSV file 'XeroPaymentStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,523 - __main__ - INFO - Skipping CSV file 'XeroPaymentStatusSet.csv' (not in target list).
+2025-12-21 20:39:46,523 - INFO - Skipping CSV file 'XeroPaymentTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,523 - __main__ - INFO - Skipping CSV file 'XeroPaymentTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,523 - INFO - Skipping CSV file 'XeroPhoneSet.csv' (not in target list).
+2025-12-21 20:39:46,523 - __main__ - INFO - Skipping CSV file 'XeroPhoneSet.csv' (not in target list).
+2025-12-21 20:39:46,524 - INFO - Skipping CSV file 'XeroPhoneTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,524 - __main__ - INFO - Skipping CSV file 'XeroPhoneTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,524 - INFO - Skipping CSV file 'XeroPurchaseDetailsSet.csv' (not in target list).
+2025-12-21 20:39:46,524 - __main__ - INFO - Skipping CSV file 'XeroPurchaseDetailsSet.csv' (not in target list).
+2025-12-21 20:39:46,524 - INFO - Skipping CSV file 'XeroReportTaxTypesSet.csv' (not in target list).
+2025-12-21 20:39:46,524 - __main__ - INFO - Skipping CSV file 'XeroReportTaxTypesSet.csv' (not in target list).
+2025-12-21 20:39:46,524 - INFO - Skipping CSV file 'XeroTaxComponentSet.csv' (not in target list).
+2025-12-21 20:39:46,524 - __main__ - INFO - Skipping CSV file 'XeroTaxComponentSet.csv' (not in target list).
+2025-12-21 20:39:46,525 - INFO - Skipping CSV file 'XeroTaxRateSet.csv' (not in target list).
+2025-12-21 20:39:46,525 - __main__ - INFO - Skipping CSV file 'XeroTaxRateSet.csv' (not in target list).
+2025-12-21 20:39:46,525 - INFO - Skipping CSV file 'XeroTaxTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,525 - __main__ - INFO - Skipping CSV file 'XeroTaxTypeSet.csv' (not in target list).
+2025-12-21 20:39:46,525 - INFO - Skipping CSV file 'XeroTrackingCategoryOptionSet.csv' (not in target list).
+2025-12-21 20:39:46,525 - __main__ - INFO - Skipping CSV file 'XeroTrackingCategoryOptionSet.csv' (not in target list).
+2025-12-21 20:39:46,526 - INFO - Skipping CSV file 'XeroTrackingCategorySet.csv' (not in target list).
+2025-12-21 20:39:46,526 - __main__ - INFO - Skipping CSV file 'XeroTrackingCategorySet.csv' (not in target list).
+2025-12-21 20:39:46,526 - INFO - Successfully extracted 50 target CSV files: ['Accounts', 'AccountStatus', 'AddressTypeSet', 'Boats', 'BoatTypes', 'Cities', 'Companies', 'ContactAutoChargeSet', 'Contacts', 'ContactTypes', 'Countries', 'CurrenciesSet', 'DueDateSettingsSet', 'EquipmentFuelTypeSet', 'EquipmentSet', 'EquipmentTypeSet', 'InstalmentsPaymentMethodSet', 'InsuranceSet', 'InsuranceStatusSet', 'InvoiceItemSet', 'InvoiceItemTypeSet', 'InvoiceSet', 'InvoiceStatusSet', 'InvoiceTypeSet', 'ItemChargeMethods', 'ItemMasters', 'MarinaLocations', 'PaymentMethods', 'PaymentsProviderSet', 'PhoneTypes', 'Piers', 'PowerNeeds', 'RecordStatusSet', 'RecurringInvoiceOptionsSet', 'Reservations', 'ReservationStatus', 'ReservationTypes', 'SeasonalChargeMethods', 'SeasonalInvoicingMethodSet', 'SeasonalPrices', 'Slips', 'SlipTypes', 'StatementsPreferenceSet', 'TransactionMethodSet', 'Transactions', 'TransactionTypeSet', 'TransientChargeMethods', 'TransientInvoicingMethodSet', 'TransientPrices', 'VesselEngineClassSet']
+2025-12-21 20:39:46,526 - __main__ - INFO - Successfully extracted 50 target CSV files: ['Accounts', 'AccountStatus', 'AddressTypeSet', 'Boats', 'BoatTypes', 'Cities', 'Companies', 'ContactAutoChargeSet', 'Contacts', 'ContactTypes', 'Countries', 'CurrenciesSet', 'DueDateSettingsSet', 'EquipmentFuelTypeSet', 'EquipmentSet', 'EquipmentTypeSet', 'InstalmentsPaymentMethodSet', 'InsuranceSet', 'InsuranceStatusSet', 'InvoiceItemSet', 'InvoiceItemTypeSet', 'InvoiceSet', 'InvoiceStatusSet', 'InvoiceTypeSet', 'ItemChargeMethods', 'ItemMasters', 'MarinaLocations', 'PaymentMethods', 'PaymentsProviderSet', 'PhoneTypes', 'Piers', 'PowerNeeds', 'RecordStatusSet', 'RecurringInvoiceOptionsSet', 'Reservations', 'ReservationStatus', 'ReservationTypes', 'SeasonalChargeMethods', 'SeasonalInvoicingMethodSet', 'SeasonalPrices', 'Slips', 'SlipTypes', 'StatementsPreferenceSet', 'TransactionMethodSet', 'Transactions', 'TransactionTypeSet', 'TransientChargeMethods', 'TransientInvoicingMethodSet', 'TransientPrices', 'VesselEngineClassSet']
+2025-12-21 20:39:46,526 - molo_db_functions - INFO - 🔍 TNS_ADMIN before setup: NOT SET
+2025-12-21 20:39:46,527 - molo_db_functions - INFO - ✅ TNS_ADMIN set to: /mnt/c/Users/StefanHolodnick/Documents/aws-retrieve-csv/wallet_demo
+2025-12-21 20:39:46,529 - molo_db_functions - INFO - 📁 Files in wallet directory: ['cwallet.sso', 'ewallet.p12', 'ewallet.pem', 'keystore.jks', 'ojdbc.properties', 'README', 'rm_wallet_nsaw.zip', 'sqlnet.ora', 'sqlnet.ora.container', 'tnsnames.ora', 'truststore.jks']
+2025-12-21 20:39:46,532 - molo_db_functions - INFO - ✅ All required wallet files found
+2025-12-21 20:39:46,534 - molo_db_functions - INFO - 📄 tnsnames.ora first 200 chars: oax4504110443_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-chicago-1.oraclecloud.com))(connect_data=(service_name=g22673cc0c08b7a_oax4504110443_h
+2025-12-21 20:39:46,557 - molo_db_functions - INFO - Oracle Instant Client initialized from: /opt/oracle/instantclient
+2025-12-21 20:39:46,557 - molo_db_functions - INFO - Attempting to connect to Oracle database...
+2025-12-21 20:39:46,557 - molo_db_functions - INFO -    User: API_USER
+2025-12-21 20:39:46,558 - molo_db_functions - INFO -    DSN: oax4504110443_low
+2025-12-21 20:39:46,899 - molo_db_functions - INFO - ✅ Oracle database connection successful!
+2025-12-21 20:39:46,900 - INFO - 
+======================================================================
+2025-12-21 20:39:46,900 - __main__ - INFO - 
+======================================================================
+2025-12-21 20:39:46,901 - INFO - STEP 1: TRUNCATING STAGING TABLES
+2025-12-21 20:39:46,901 - __main__ - INFO - STEP 1: TRUNCATING STAGING TABLES
+2025-12-21 20:39:46,901 - INFO - ======================================================================
+2025-12-21 20:39:46,901 - __main__ - INFO - ======================================================================
+2025-12-21 20:39:46,901 - molo_db_functions - INFO - Truncating MOLO staging tables...
+2025-12-21 20:39:48,775 - molo_db_functions - INFO - ✅ Successfully truncated 50 MOLO staging tables
+2025-12-21 20:39:48,776 - INFO - ✅ All staging tables truncated successfully
+
+2025-12-21 20:39:48,776 - __main__ - INFO - ✅ All staging tables truncated successfully
+
+2025-12-21 20:39:48,776 - INFO - ======================================================================
+2025-12-21 20:39:48,776 - __main__ - INFO - ======================================================================
+2025-12-21 20:39:48,777 - INFO - STEP 2: LOADING DATA INTO STAGING TABLES
+2025-12-21 20:39:48,777 - __main__ - INFO - STEP 2: LOADING DATA INTO STAGING TABLES
+2025-12-21 20:39:48,777 - INFO - ======================================================================
+2025-12-21 20:39:48,777 - __main__ - INFO - ======================================================================
+2025-12-21 20:39:48,778 - INFO - 
+📋 Files to process:
+2025-12-21 20:39:48,778 - __main__ - INFO - 
+📋 Files to process:
+2025-12-21 20:39:48,778 - INFO -    Accounts                           0.03 MB
+2025-12-21 20:39:48,778 - __main__ - INFO -    Accounts                           0.03 MB
+2025-12-21 20:39:48,778 - INFO -    AccountStatus                      0.00 MB
+2025-12-21 20:39:48,778 - __main__ - INFO -    AccountStatus                      0.00 MB
+2025-12-21 20:39:48,779 - INFO -    AddressTypeSet                     0.00 MB
+2025-12-21 20:39:48,779 - __main__ - INFO -    AddressTypeSet                     0.00 MB
+2025-12-21 20:39:48,779 - INFO -    Boats                              0.14 MB
+2025-12-21 20:39:48,779 - __main__ - INFO -    Boats                              0.14 MB
+2025-12-21 20:39:48,779 - INFO -    BoatTypes                          0.00 MB
+2025-12-21 20:39:48,779 - __main__ - INFO -    BoatTypes                          0.00 MB
+2025-12-21 20:39:48,780 - INFO -    Cities                             0.01 MB
+2025-12-21 20:39:48,780 - __main__ - INFO -    Cities                             0.01 MB
+2025-12-21 20:39:48,780 - INFO -    Companies                          0.00 MB
+2025-12-21 20:39:48,780 - __main__ - INFO -    Companies                          0.00 MB
+2025-12-21 20:39:48,780 - INFO -    ContactAutoChargeSet               0.00 MB
+2025-12-21 20:39:48,780 - __main__ - INFO -    ContactAutoChargeSet               0.00 MB
+2025-12-21 20:39:48,780 - INFO -    Contacts                           0.27 MB
+2025-12-21 20:39:48,780 - __main__ - INFO -    Contacts                           0.27 MB
+2025-12-21 20:39:48,781 - INFO -    ContactTypes                       0.00 MB
+2025-12-21 20:39:48,781 - __main__ - INFO -    ContactTypes                       0.00 MB
+2025-12-21 20:39:48,781 - INFO -    Countries                          0.01 MB
+2025-12-21 20:39:48,781 - __main__ - INFO -    Countries                          0.01 MB
+2025-12-21 20:39:48,781 - INFO -    CurrenciesSet                      0.00 MB
+2025-12-21 20:39:48,781 - __main__ - INFO -    CurrenciesSet                      0.00 MB
+2025-12-21 20:39:48,781 - INFO -    DueDateSettingsSet                 0.00 MB
+2025-12-21 20:39:48,781 - __main__ - INFO -    DueDateSettingsSet                 0.00 MB
+2025-12-21 20:39:48,782 - INFO -    EquipmentFuelTypeSet               0.00 MB
+2025-12-21 20:39:48,782 - __main__ - INFO -    EquipmentFuelTypeSet               0.00 MB
+2025-12-21 20:39:48,782 - INFO -    EquipmentSet                       0.00 MB
+2025-12-21 20:39:48,782 - __main__ - INFO -    EquipmentSet                       0.00 MB
+2025-12-21 20:39:48,782 - INFO -    EquipmentTypeSet                   0.00 MB
+2025-12-21 20:39:48,782 - __main__ - INFO -    EquipmentTypeSet                   0.00 MB
+2025-12-21 20:39:48,782 - INFO -    InstalmentsPaymentMethodSet        0.00 MB
+2025-12-21 20:39:48,782 - __main__ - INFO -    InstalmentsPaymentMethodSet        0.00 MB
+2025-12-21 20:39:48,782 - INFO -    InsuranceSet                       0.01 MB
+2025-12-21 20:39:48,782 - __main__ - INFO -    InsuranceSet                       0.01 MB
+2025-12-21 20:39:48,782 - INFO -    InsuranceStatusSet                 0.00 MB
+2025-12-21 20:39:48,782 - __main__ - INFO -    InsuranceStatusSet                 0.00 MB
+2025-12-21 20:39:48,783 - INFO -    InvoiceItemSet                    13.56 MB
+2025-12-21 20:39:48,783 - __main__ - INFO -    InvoiceItemSet                    13.56 MB
+2025-12-21 20:39:48,783 - INFO -    InvoiceItemTypeSet                 0.00 MB
+2025-12-21 20:39:48,783 - __main__ - INFO -    InvoiceItemTypeSet                 0.00 MB
+2025-12-21 20:39:48,783 - INFO -    InvoiceSet                         6.01 MB
+2025-12-21 20:39:48,783 - __main__ - INFO -    InvoiceSet                         6.01 MB
+2025-12-21 20:39:48,783 - INFO -    InvoiceStatusSet                   0.00 MB
+2025-12-21 20:39:48,783 - __main__ - INFO -    InvoiceStatusSet                   0.00 MB
+2025-12-21 20:39:48,784 - INFO -    InvoiceTypeSet                     0.72 MB
+2025-12-21 20:39:48,784 - __main__ - INFO -    InvoiceTypeSet                     0.72 MB
+2025-12-21 20:39:48,784 - INFO -    ItemChargeMethods                  0.00 MB
+2025-12-21 20:39:48,784 - __main__ - INFO -    ItemChargeMethods                  0.00 MB
+2025-12-21 20:39:48,784 - INFO -    ItemMasters                        0.15 MB
+2025-12-21 20:39:48,784 - __main__ - INFO -    ItemMasters                        0.15 MB
+2025-12-21 20:39:48,784 - INFO -    MarinaLocations                    0.01 MB
+2025-12-21 20:39:48,784 - __main__ - INFO -    MarinaLocations                    0.01 MB
+2025-12-21 20:39:48,785 - INFO -    PaymentMethods                     0.00 MB
+2025-12-21 20:39:48,785 - __main__ - INFO -    PaymentMethods                     0.00 MB
+2025-12-21 20:39:48,785 - INFO -    PaymentsProviderSet                0.00 MB
+2025-12-21 20:39:48,785 - __main__ - INFO -    PaymentsProviderSet                0.00 MB
+2025-12-21 20:39:48,785 - INFO -    PhoneTypes                         0.00 MB
+2025-12-21 20:39:48,785 - __main__ - INFO -    PhoneTypes                         0.00 MB
+2025-12-21 20:39:48,785 - INFO -    Piers                              0.00 MB
+2025-12-21 20:39:48,785 - __main__ - INFO -    Piers                              0.00 MB
+2025-12-21 20:39:48,785 - INFO -    PowerNeeds                         0.00 MB
+2025-12-21 20:39:48,785 - __main__ - INFO -    PowerNeeds                         0.00 MB
+2025-12-21 20:39:48,786 - INFO -    RecordStatusSet                    0.00 MB
+2025-12-21 20:39:48,786 - __main__ - INFO -    RecordStatusSet                    0.00 MB
+2025-12-21 20:39:48,786 - INFO -    RecurringInvoiceOptionsSet         0.00 MB
+2025-12-21 20:39:48,786 - __main__ - INFO -    RecurringInvoiceOptionsSet         0.00 MB
+2025-12-21 20:39:48,786 - INFO -    Reservations                       0.28 MB
+2025-12-21 20:39:48,786 - __main__ - INFO -    Reservations                       0.28 MB
+2025-12-21 20:39:48,786 - INFO -    ReservationStatus                  0.00 MB
+2025-12-21 20:39:48,786 - __main__ - INFO -    ReservationStatus                  0.00 MB
+2025-12-21 20:39:48,787 - INFO -    ReservationTypes                   0.00 MB
+2025-12-21 20:39:48,787 - __main__ - INFO -    ReservationTypes                   0.00 MB
+2025-12-21 20:39:48,787 - INFO -    SeasonalChargeMethods              0.00 MB
+2025-12-21 20:39:48,787 - __main__ - INFO -    SeasonalChargeMethods              0.00 MB
+2025-12-21 20:39:48,787 - INFO -    SeasonalInvoicingMethodSet         0.00 MB
+2025-12-21 20:39:48,787 - __main__ - INFO -    SeasonalInvoicingMethodSet         0.00 MB
+2025-12-21 20:39:48,787 - INFO -    SeasonalPrices                     0.00 MB
+2025-12-21 20:39:48,787 - __main__ - INFO -    SeasonalPrices                     0.00 MB
+2025-12-21 20:39:48,788 - INFO -    Slips                              0.20 MB
+2025-12-21 20:39:48,788 - __main__ - INFO -    Slips                              0.20 MB
+2025-12-21 20:39:48,788 - INFO -    SlipTypes                          0.00 MB
+2025-12-21 20:39:48,788 - __main__ - INFO -    SlipTypes                          0.00 MB
+2025-12-21 20:39:48,788 - INFO -    StatementsPreferenceSet            0.00 MB
+2025-12-21 20:39:48,788 - __main__ - INFO -    StatementsPreferenceSet            0.00 MB
+2025-12-21 20:39:48,788 - INFO -    TransactionMethodSet               0.00 MB
+2025-12-21 20:39:48,788 - __main__ - INFO -    TransactionMethodSet               0.00 MB
+2025-12-21 20:39:48,788 - INFO -    Transactions                       2.78 MB
+2025-12-21 20:39:48,788 - __main__ - INFO -    Transactions                       2.78 MB
+2025-12-21 20:39:48,788 - INFO -    TransactionTypeSet                 0.00 MB
+2025-12-21 20:39:48,788 - __main__ - INFO -    TransactionTypeSet                 0.00 MB
+2025-12-21 20:39:48,789 - INFO -    TransientChargeMethods             0.00 MB
+2025-12-21 20:39:48,789 - __main__ - INFO -    TransientChargeMethods             0.00 MB
+2025-12-21 20:39:48,789 - INFO -    TransientInvoicingMethodSet        0.00 MB
+2025-12-21 20:39:48,789 - __main__ - INFO -    TransientInvoicingMethodSet        0.00 MB
+2025-12-21 20:39:48,789 - INFO -    TransientPrices                    0.01 MB
+2025-12-21 20:39:48,789 - __main__ - INFO -    TransientPrices                    0.01 MB
+2025-12-21 20:39:48,789 - INFO -    VesselEngineClassSet               0.00 MB
+2025-12-21 20:39:48,789 - __main__ - INFO -    VesselEngineClassSet               0.00 MB
+2025-12-21 20:39:48,789 - INFO - 
+2025-12-21 20:39:48,789 - __main__ - INFO - 
+2025-12-21 20:39:48,790 - INFO - 
+--- Processing Accounts.csv ---
+2025-12-21 20:39:48,790 - __main__ - INFO - 
+--- Processing Accounts.csv ---
+2025-12-21 20:39:48,858 - molo_db_functions - INFO - ✅ Successfully merged 1463 account records
+2025-12-21 20:39:48,858 - INFO - ✅ Processed 1463 account records
+2025-12-21 20:39:48,858 - __main__ - INFO - ✅ Processed 1463 account records
+2025-12-21 20:39:48,859 - INFO - 
+--- Processing AccountStatus.csv ---
+2025-12-21 20:39:48,859 - __main__ - INFO - 
+--- Processing AccountStatus.csv ---
+2025-12-21 20:39:48,910 - molo_db_functions - INFO - ✅ Successfully merged 3 account status records
+2025-12-21 20:39:48,910 - INFO - ✅ Processed 3 account status records
+2025-12-21 20:39:48,910 - __main__ - INFO - ✅ Processed 3 account status records
+2025-12-21 20:39:48,911 - INFO - 
+--- Processing AddressTypeSet.csv ---
+2025-12-21 20:39:48,911 - __main__ - INFO - 
+--- Processing AddressTypeSet.csv ---
+2025-12-21 20:39:48,949 - molo_db_functions - INFO - ✅ Successfully merged 4 address type records
+2025-12-21 20:39:48,950 - INFO - ✅ Processed 4 address type records
+2025-12-21 20:39:48,950 - __main__ - INFO - ✅ Processed 4 address type records
+2025-12-21 20:39:48,950 - INFO - 
+--- Processing Boats.csv ---
+2025-12-21 20:39:48,950 - __main__ - INFO - 
+--- Processing Boats.csv ---
+2025-12-21 20:39:48,958 - WARNING - Could not parse date: 02/28/2025 06:00:00
+2025-12-21 20:39:48,958 - __main__ - WARNING - Could not parse date: 02/28/2025 06:00:00
+2025-12-21 20:39:48,959 - WARNING - Could not parse date: 10/31/2026 05:00:00
+2025-12-21 20:39:48,959 - __main__ - WARNING - Could not parse date: 10/31/2026 05:00:00
+2025-12-21 20:39:48,959 - WARNING - Could not parse date: 12/31/2026 06:00:00
+2025-12-21 20:39:48,959 - __main__ - WARNING - Could not parse date: 12/31/2026 06:00:00
+2025-12-21 20:39:48,960 - WARNING - Could not parse date: 07/31/2027 05:00:00
+2025-12-21 20:39:48,960 - __main__ - WARNING - Could not parse date: 07/31/2027 05:00:00
+2025-12-21 20:39:48,963 - WARNING - Could not parse date: 05/04/2025 05:00:00
+2025-12-21 20:39:48,963 - __main__ - WARNING - Could not parse date: 05/04/2025 05:00:00
+2025-12-21 20:39:49,067 - molo_db_functions - INFO - ✅ Successfully inserted 795 boat records to staging
+2025-12-21 20:39:49,182 - molo_db_functions - INFO -   📋 DW_MOLO_BOATS: 0 inserted, 0 updated
+2025-12-21 20:39:49,222 - molo_db_functions - INFO - ✅ SP_MERGE_MOLO_BOATS: Merge completed
+2025-12-21 20:39:49,222 - INFO - ✅ Processed 795 boat records
+2025-12-21 20:39:49,222 - __main__ - INFO - ✅ Processed 795 boat records
+2025-12-21 20:39:49,223 - INFO - 
+--- Processing BoatTypes.csv ---
+2025-12-21 20:39:49,223 - __main__ - INFO - 
+--- Processing BoatTypes.csv ---
+2025-12-21 20:39:49,262 - molo_db_functions - INFO - ✅ Successfully merged 94 boat type records
+2025-12-21 20:39:49,263 - INFO - ✅ Processed 94 boat type records
+2025-12-21 20:39:49,263 - __main__ - INFO - ✅ Processed 94 boat type records
+2025-12-21 20:39:49,264 - INFO - 
+--- Processing Cities.csv ---
+2025-12-21 20:39:49,264 - __main__ - INFO - 
+--- Processing Cities.csv ---
+2025-12-21 20:39:49,314 - molo_db_functions - INFO - ✅ Successfully merged 391 city records
+2025-12-21 20:39:49,315 - INFO - ✅ Processed 391 city records
+2025-12-21 20:39:49,315 - __main__ - INFO - ✅ Processed 391 city records
+2025-12-21 20:39:49,315 - INFO - 
+--- Processing Companies.csv ---
+2025-12-21 20:39:49,315 - __main__ - INFO - 
+--- Processing Companies.csv ---
+2025-12-21 20:39:49,356 - molo_db_functions - INFO - ✅ Successfully merged 1 company records
+2025-12-21 20:39:49,357 - INFO - ✅ Processed 1 company records
+2025-12-21 20:39:49,357 - __main__ - INFO - ✅ Processed 1 company records
+2025-12-21 20:39:49,357 - INFO - 
+--- Processing ContactAutoChargeSet.csv ---
+2025-12-21 20:39:49,357 - __main__ - INFO - 
+--- Processing ContactAutoChargeSet.csv ---
+2025-12-21 20:39:49,397 - molo_db_functions - INFO - ✅ Successfully merged 4 contact auto charge records
+2025-12-21 20:39:49,397 - INFO - ✅ Processed 4 contact auto charge records
+2025-12-21 20:39:49,397 - __main__ - INFO - ✅ Processed 4 contact auto charge records
+2025-12-21 20:39:49,398 - INFO - 
+--- Processing Contacts.csv ---
+2025-12-21 20:39:49,398 - __main__ - INFO - 
+--- Processing Contacts.csv ---
+2025-12-21 20:39:49,543 - molo_db_functions - INFO - ✅ Successfully inserted 1463 contact records to staging
+2025-12-21 20:39:49,658 - molo_db_functions - INFO -   📋 DW_MOLO_CONTACTS: 0 inserted, 0 updated
+2025-12-21 20:39:49,695 - molo_db_functions - INFO - ✅ SP_MERGE_MOLO_CONTACTS: Merge completed
+2025-12-21 20:39:49,696 - INFO - ✅ Processed 1463 contact records
+2025-12-21 20:39:49,696 - __main__ - INFO - ✅ Processed 1463 contact records
+2025-12-21 20:39:49,696 - INFO - 
+--- Processing ContactTypes.csv ---
+2025-12-21 20:39:49,696 - __main__ - INFO - 
+--- Processing ContactTypes.csv ---
+2025-12-21 20:39:49,737 - molo_db_functions - INFO - ✅ Successfully merged 17 contact type records
+2025-12-21 20:39:49,738 - INFO - ✅ Processed 17 contact type records
+2025-12-21 20:39:49,738 - __main__ - INFO - ✅ Processed 17 contact type records
+2025-12-21 20:39:49,738 - INFO - 
+--- Processing Countries.csv ---
+2025-12-21 20:39:49,738 - __main__ - INFO - 
+--- Processing Countries.csv ---
+2025-12-21 20:39:49,780 - molo_db_functions - INFO - ✅ Successfully merged 239 country records
+2025-12-21 20:39:49,781 - INFO - ✅ Processed 239 country records
+2025-12-21 20:39:49,781 - __main__ - INFO - ✅ Processed 239 country records
+2025-12-21 20:39:49,781 - INFO - 
+--- Processing CurrenciesSet.csv ---
+2025-12-21 20:39:49,781 - __main__ - INFO - 
+--- Processing CurrenciesSet.csv ---
+2025-12-21 20:39:49,822 - molo_db_functions - INFO - ✅ Successfully merged 137 currency records
+2025-12-21 20:39:49,823 - INFO - ✅ Processed 137 currency records
+2025-12-21 20:39:49,823 - __main__ - INFO - ✅ Processed 137 currency records
+2025-12-21 20:39:49,824 - INFO - 
+--- Processing DueDateSettingsSet.csv ---
+2025-12-21 20:39:49,824 - __main__ - INFO - 
+--- Processing DueDateSettingsSet.csv ---
+2025-12-21 20:39:49,868 - molo_db_functions - INFO - ✅ Successfully merged 4 due date setting records
+2025-12-21 20:39:49,868 - INFO - ✅ Processed 4 due date setting records
+2025-12-21 20:39:49,868 - __main__ - INFO - ✅ Processed 4 due date setting records
+2025-12-21 20:39:49,869 - INFO - 
+--- Processing EquipmentFuelTypeSet.csv ---
+2025-12-21 20:39:49,869 - __main__ - INFO - 
+--- Processing EquipmentFuelTypeSet.csv ---
+2025-12-21 20:39:49,909 - molo_db_functions - INFO - ✅ Successfully merged 8 equipment fuel type records
+2025-12-21 20:39:49,910 - INFO - ✅ Processed 8 equipment fuel type records
+2025-12-21 20:39:49,910 - __main__ - INFO - ✅ Processed 8 equipment fuel type records
+2025-12-21 20:39:49,911 - INFO - 
+--- Processing EquipmentSet.csv ---
+2025-12-21 20:39:49,911 - __main__ - INFO - 
+--- Processing EquipmentSet.csv ---
+2025-12-21 20:39:49,911 - INFO - ✅ Processed 0 equipment records
+2025-12-21 20:39:49,911 - __main__ - INFO - ✅ Processed 0 equipment records
+2025-12-21 20:39:49,912 - INFO - 
+--- Processing EquipmentTypeSet.csv ---
+2025-12-21 20:39:49,912 - __main__ - INFO - 
+--- Processing EquipmentTypeSet.csv ---
+2025-12-21 20:39:49,955 - molo_db_functions - INFO - ✅ Successfully merged 20 equipment type records
+2025-12-21 20:39:49,956 - INFO - ✅ Processed 20 equipment type records
+2025-12-21 20:39:49,956 - __main__ - INFO - ✅ Processed 20 equipment type records
+2025-12-21 20:39:49,956 - INFO - 
+--- Processing InstalmentsPaymentMethodSet.csv ---
+2025-12-21 20:39:49,956 - __main__ - INFO - 
+--- Processing InstalmentsPaymentMethodSet.csv ---
+2025-12-21 20:39:49,996 - molo_db_functions - INFO - ✅ Successfully merged 4 installments payment method records
+2025-12-21 20:39:49,997 - INFO - ✅ Processed 4 installments payment method records
+2025-12-21 20:39:49,997 - __main__ - INFO - ✅ Processed 4 installments payment method records
+2025-12-21 20:39:49,997 - INFO - 
+--- Processing InsuranceSet.csv ---
+2025-12-21 20:39:49,997 - __main__ - INFO - 
+--- Processing InsuranceSet.csv ---
+2025-12-21 20:39:50,042 - molo_db_functions - INFO - ✅ Successfully inserted 43 insurance records
+2025-12-21 20:39:50,043 - INFO - ✅ Processed 43 insurance records
+2025-12-21 20:39:50,043 - __main__ - INFO - ✅ Processed 43 insurance records
+2025-12-21 20:39:50,043 - INFO - 
+--- Processing InsuranceStatusSet.csv ---
+2025-12-21 20:39:50,043 - __main__ - INFO - 
+--- Processing InsuranceStatusSet.csv ---
+2025-12-21 20:39:50,082 - molo_db_functions - INFO - ✅ Successfully merged 2 insurance status records
+2025-12-21 20:39:50,083 - INFO - ✅ Processed 2 insurance status records
+2025-12-21 20:39:50,083 - __main__ - INFO - ✅ Processed 2 insurance status records
+2025-12-21 20:39:50,083 - INFO - 
+--- Processing InvoiceItemSet.csv ---
+2025-12-21 20:39:50,083 - __main__ - INFO - 
+--- Processing InvoiceItemSet.csv ---
+2025-12-21 20:39:50,084 - INFO -    File size: 14,222,526 bytes
+2025-12-21 20:39:50,084 - __main__ - INFO -    File size: 14,222,526 bytes
+2025-12-21 20:39:50,084 - INFO -    Starting InvoiceItemSet parse at 20:39:50...
+2025-12-21 20:39:50,084 - __main__ - INFO -    Starting InvoiceItemSet parse at 20:39:50...
+2025-12-21 20:39:50,148 - INFO -   📊 Processing invoice item 1,000...
+2025-12-21 20:39:50,148 - __main__ - INFO -   📊 Processing invoice item 1,000...
+2025-12-21 20:39:50,185 - INFO -   📊 Processing invoice item 2,000...
+2025-12-21 20:39:50,185 - __main__ - INFO -   📊 Processing invoice item 2,000...
+2025-12-21 20:39:50,225 - INFO -   📊 Processing invoice item 3,000...
+2025-12-21 20:39:50,225 - __main__ - INFO -   📊 Processing invoice item 3,000...
+2025-12-21 20:39:50,265 - INFO -   📊 Processing invoice item 4,000...
+2025-12-21 20:39:50,265 - __main__ - INFO -   📊 Processing invoice item 4,000...
+2025-12-21 20:39:50,305 - INFO -   📊 Processing invoice item 5,000...
+2025-12-21 20:39:50,305 - __main__ - INFO -   📊 Processing invoice item 5,000...
+2025-12-21 20:39:50,345 - INFO -   📊 Processing invoice item 6,000...
+2025-12-21 20:39:50,345 - __main__ - INFO -   📊 Processing invoice item 6,000...
+2025-12-21 20:39:50,384 - INFO -   📊 Processing invoice item 7,000...
+2025-12-21 20:39:50,384 - __main__ - INFO -   📊 Processing invoice item 7,000...
+2025-12-21 20:39:50,422 - INFO -   📊 Processing invoice item 8,000...
+2025-12-21 20:39:50,422 - __main__ - INFO -   📊 Processing invoice item 8,000...
+2025-12-21 20:39:50,460 - INFO -   📊 Processing invoice item 9,000...
+2025-12-21 20:39:50,460 - __main__ - INFO -   📊 Processing invoice item 9,000...
+2025-12-21 20:39:50,524 - INFO -   📊 Processing invoice item 10,000...
+2025-12-21 20:39:50,524 - __main__ - INFO -   📊 Processing invoice item 10,000...
+2025-12-21 20:39:50,561 - INFO -   📊 Processing invoice item 11,000...
+2025-12-21 20:39:50,561 - __main__ - INFO -   📊 Processing invoice item 11,000...
+2025-12-21 20:39:50,599 - INFO -   📊 Processing invoice item 12,000...
+2025-12-21 20:39:50,599 - __main__ - INFO -   📊 Processing invoice item 12,000...
+2025-12-21 20:39:50,633 - INFO -   📊 Processing invoice item 13,000...
+2025-12-21 20:39:50,633 - __main__ - INFO -   📊 Processing invoice item 13,000...
+2025-12-21 20:39:50,667 - INFO -   📊 Processing invoice item 14,000...
+2025-12-21 20:39:50,667 - __main__ - INFO -   📊 Processing invoice item 14,000...
+2025-12-21 20:39:50,710 - INFO -   📊 Processing invoice item 15,000...
+2025-12-21 20:39:50,710 - __main__ - INFO -   📊 Processing invoice item 15,000...
+2025-12-21 20:39:50,756 - INFO -   📊 Processing invoice item 16,000...
+2025-12-21 20:39:50,756 - __main__ - INFO -   📊 Processing invoice item 16,000...
+2025-12-21 20:39:50,793 - INFO -   📊 Processing invoice item 17,000...
+2025-12-21 20:39:50,793 - __main__ - INFO -   📊 Processing invoice item 17,000...
+2025-12-21 20:39:50,829 - INFO -   📊 Processing invoice item 18,000...
+2025-12-21 20:39:50,829 - __main__ - INFO -   📊 Processing invoice item 18,000...
+2025-12-21 20:39:50,864 - INFO -   📊 Processing invoice item 19,000...
+2025-12-21 20:39:50,864 - __main__ - INFO -   📊 Processing invoice item 19,000...
+2025-12-21 20:39:50,900 - INFO -   📊 Processing invoice item 20,000...
+2025-12-21 20:39:50,900 - __main__ - INFO -   📊 Processing invoice item 20,000...
+2025-12-21 20:39:50,940 - INFO -   📊 Processing invoice item 21,000...
+2025-12-21 20:39:50,940 - __main__ - INFO -   📊 Processing invoice item 21,000...
+2025-12-21 20:39:50,972 - INFO -   📊 Processing invoice item 22,000...
+2025-12-21 20:39:50,972 - __main__ - INFO -   📊 Processing invoice item 22,000...
+2025-12-21 20:39:51,004 - INFO -   📊 Processing invoice item 23,000...
+2025-12-21 20:39:51,004 - __main__ - INFO -   📊 Processing invoice item 23,000...
+2025-12-21 20:39:51,039 - INFO -   📊 Processing invoice item 24,000...
+2025-12-21 20:39:51,039 - __main__ - INFO -   📊 Processing invoice item 24,000...
+2025-12-21 20:39:51,074 - INFO -   📊 Processing invoice item 25,000...
+2025-12-21 20:39:51,074 - __main__ - INFO -   📊 Processing invoice item 25,000...
+2025-12-21 20:39:51,114 - INFO -   📊 Processing invoice item 26,000...
+2025-12-21 20:39:51,114 - __main__ - INFO -   📊 Processing invoice item 26,000...
+2025-12-21 20:39:51,158 - INFO -   📊 Processing invoice item 27,000...
+2025-12-21 20:39:51,158 - __main__ - INFO -   📊 Processing invoice item 27,000...
+2025-12-21 20:39:51,194 - INFO -   📊 Processing invoice item 28,000...
+2025-12-21 20:39:51,194 - __main__ - INFO -   📊 Processing invoice item 28,000...
+2025-12-21 20:39:51,232 - INFO -   📊 Processing invoice item 29,000...
+2025-12-21 20:39:51,232 - __main__ - INFO -   📊 Processing invoice item 29,000...
+2025-12-21 20:39:51,271 - INFO -   📊 Processing invoice item 30,000...
+2025-12-21 20:39:51,271 - __main__ - INFO -   📊 Processing invoice item 30,000...
+2025-12-21 20:39:51,309 - INFO -   📊 Processing invoice item 31,000...
+2025-12-21 20:39:51,309 - __main__ - INFO -   📊 Processing invoice item 31,000...
+2025-12-21 20:39:51,357 - INFO -   📊 Processing invoice item 32,000...
+2025-12-21 20:39:51,357 - __main__ - INFO -   📊 Processing invoice item 32,000...
+2025-12-21 20:39:51,396 - INFO -   📊 Processing invoice item 33,000...
+2025-12-21 20:39:51,396 - __main__ - INFO -   📊 Processing invoice item 33,000...
+2025-12-21 20:39:51,431 - INFO -   📊 Processing invoice item 34,000...
+2025-12-21 20:39:51,431 - __main__ - INFO -   📊 Processing invoice item 34,000...
+2025-12-21 20:39:51,478 - INFO -   📊 Processing invoice item 35,000...
+2025-12-21 20:39:51,478 - __main__ - INFO -   📊 Processing invoice item 35,000...
+2025-12-21 20:39:51,518 - INFO -   📊 Processing invoice item 36,000...
+2025-12-21 20:39:51,518 - __main__ - INFO -   📊 Processing invoice item 36,000...
+2025-12-21 20:39:51,559 - INFO -   📊 Processing invoice item 37,000...
+2025-12-21 20:39:51,559 - __main__ - INFO -   📊 Processing invoice item 37,000...
+2025-12-21 20:39:51,600 - INFO -   📊 Processing invoice item 38,000...
+2025-12-21 20:39:51,600 - __main__ - INFO -   📊 Processing invoice item 38,000...
+2025-12-21 20:39:51,645 - INFO -   📊 Processing invoice item 39,000...
+2025-12-21 20:39:51,645 - __main__ - INFO -   📊 Processing invoice item 39,000...
+2025-12-21 20:39:51,693 - INFO -   📊 Processing invoice item 40,000...
+2025-12-21 20:39:51,693 - __main__ - INFO -   📊 Processing invoice item 40,000...
+2025-12-21 20:39:51,746 - INFO -   📊 Processing invoice item 41,000...
+2025-12-21 20:39:51,746 - __main__ - INFO -   📊 Processing invoice item 41,000...
+2025-12-21 20:39:51,793 - INFO -   📊 Processing invoice item 42,000...
+2025-12-21 20:39:51,793 - __main__ - INFO -   📊 Processing invoice item 42,000...
+2025-12-21 20:39:51,837 - INFO -   📊 Processing invoice item 43,000...
+2025-12-21 20:39:51,837 - __main__ - INFO -   📊 Processing invoice item 43,000...
+2025-12-21 20:39:51,876 - INFO - ✅ Parsed 43,796 invoice items total
+2025-12-21 20:39:51,876 - __main__ - INFO - ✅ Parsed 43,796 invoice items total
+2025-12-21 20:39:51,878 - INFO -    Parse completed. Starting database insert at 20:39:51...
+2025-12-21 20:39:51,878 - __main__ - INFO -    Parse completed. Starting database insert at 20:39:51...
+2025-12-21 20:39:51,879 - molo_db_functions - INFO -   Inserting 43,796 invoice items in batches of 5,000...
+2025-12-21 20:39:51,879 - molo_db_functions - INFO -   Inserting batch 1/9 (5,000 records)...
+2025-12-21 20:39:52,321 - molo_db_functions - INFO -   ✅ Batch 1/9 committed
+2025-12-21 20:39:52,322 - molo_db_functions - INFO -   Inserting batch 2/9 (5,000 records)...
+2025-12-21 20:39:52,664 - molo_db_functions - INFO -   ✅ Batch 2/9 committed
+2025-12-21 20:39:52,665 - molo_db_functions - INFO -   Inserting batch 3/9 (5,000 records)...
+2025-12-21 20:39:52,701 - molo_db_functions - ERROR - Batch 3 failed. Checking for datetime values...
+2025-12-21 20:39:52,702 - molo_db_functions - ERROR -   ❌ Position 23: datetime = 2025-07-11 20:17:43
+2025-12-21 20:39:52,702 - molo_db_functions - ERROR -   ❌ Position 96: datetime = 2025-07-11 20:17:43
+2025-12-21 20:39:52,703 - molo_db_functions - ERROR - Error merging invoice items: DPY-3013: unsupported Python type datetime for database type DB_TYPE_VARCHAR
+Traceback (most recent call last):
+  File "/mnt/c/Users/StefanHolodnick/Documents/aws-retrieve-csv/molo_db_functions.py", line 745, in insert_invoice_items
+    self.cursor.executemany(insert_sql, batch)
+  File "/home/sholodnick/main-python/lib/python3.12/site-packages/oracledb/cursor.py", line 443, in executemany
+    self._impl.bind_many(self, parameters)
+  File "src/oracledb/impl/base/cursor.pyx", line 374, in oracledb.base_impl.BaseCursorImpl.bind_many
+  File "src/oracledb/impl/base/cursor.pyx", line 64, in oracledb.base_impl.BaseCursorImpl._bind_values
+  File "src/oracledb/impl/base/cursor.pyx", line 125, in oracledb.base_impl.BaseCursorImpl._bind_values_by_position
+  File "src/oracledb/impl/base/bind_var.pyx", line 129, in oracledb.base_impl.BindVar._set_by_value
+  File "src/oracledb/impl/base/var.pyx", line 86, in oracledb.base_impl.BaseVarImpl._check_and_set_value
+  File "src/oracledb/impl/base/var.pyx", line 59, in oracledb.base_impl.BaseVarImpl._check_and_set_scalar_value
+  File "src/oracledb/impl/base/connection.pyx", line 147, in oracledb.base_impl.BaseConnImpl._check_value
+  File "/home/sholodnick/main-python/lib/python3.12/site-packages/oracledb/errors.py", line 127, in _raise_err
+    raise exc_type(_Error(message)) from cause
+oracledb.exceptions.NotSupportedError: DPY-3013: unsupported Python type datetime for database type DB_TYPE_VARCHAR
+2025-12-21 20:39:52,734 - INFO - ✅ Processed 43796 invoice item records
+2025-12-21 20:39:52,734 - __main__ - INFO - ✅ Processed 43796 invoice item records
+2025-12-21 20:39:52,735 - INFO - 
+--- Processing InvoiceItemTypeSet.csv ---
+2025-12-21 20:39:52,735 - __main__ - INFO - 
+--- Processing InvoiceItemTypeSet.csv ---
+2025-12-21 20:39:52,802 - molo_db_functions - INFO - ✅ Successfully merged 5 invoice item type records
+2025-12-21 20:39:52,803 - INFO - ✅ Processed 5 invoice item type records
+2025-12-21 20:39:52,803 - __main__ - INFO - ✅ Processed 5 invoice item type records
+2025-12-21 20:39:52,803 - INFO - 
+--- Processing InvoiceSet.csv ---
+2025-12-21 20:39:52,803 - __main__ - INFO - 
+--- Processing InvoiceSet.csv ---
+2025-12-21 20:39:57,418 - molo_db_functions - INFO - ✅ Successfully merged 17374 invoice records
+2025-12-21 20:39:57,419 - molo_db_functions - INFO - Executing merge for INVOICES...
+2025-12-21 20:39:57,663 - molo_db_functions - INFO -   📋 DW_MOLO_INVOICES: 0 inserted, 0 updated
+2025-12-21 20:39:57,704 - molo_db_functions - INFO - ✅ SP_MERGE_MOLO_INVOICES: Merge completed
+2025-12-21 20:39:57,705 - INFO - ✅ Processed 17374 invoice records
+2025-12-21 20:39:57,705 - __main__ - INFO - ✅ Processed 17374 invoice records
+2025-12-21 20:39:57,705 - INFO - 
+--- Processing InvoiceStatusSet.csv ---
+2025-12-21 20:39:57,705 - __main__ - INFO - 
+--- Processing InvoiceStatusSet.csv ---
+2025-12-21 20:39:57,753 - molo_db_functions - INFO - ✅ Successfully merged 5 invoice status records
+2025-12-21 20:39:57,753 - INFO - ✅ Processed 5 invoice status records
+2025-12-21 20:39:57,753 - __main__ - INFO - ✅ Processed 5 invoice status records
+2025-12-21 20:39:57,754 - INFO - 
+--- Processing InvoiceTypeSet.csv ---
+2025-12-21 20:39:57,754 - __main__ - INFO - 
+--- Processing InvoiceTypeSet.csv ---
+2025-12-21 20:39:58,000 - molo_db_functions - INFO - ✅ Successfully merged 54689 invoice type records
+2025-12-21 20:39:58,001 - INFO - ✅ Processed 54689 invoice type records
+2025-12-21 20:39:58,001 - __main__ - INFO - ✅ Processed 54689 invoice type records
+2025-12-21 20:39:58,001 - INFO - 
+--- Processing ItemChargeMethods.csv ---
+2025-12-21 20:39:58,001 - __main__ - INFO - 
+--- Processing ItemChargeMethods.csv ---
+2025-12-21 20:39:58,042 - molo_db_functions - INFO - ✅ Successfully merged 18 item charge method records
+2025-12-21 20:39:58,043 - INFO - ✅ Processed 18 item charge method records
+2025-12-21 20:39:58,043 - __main__ - INFO - ✅ Processed 18 item charge method records
+2025-12-21 20:39:58,043 - INFO - 
+--- Processing ItemMasters.csv ---
+2025-12-21 20:39:58,043 - __main__ - INFO - 
+--- Processing ItemMasters.csv ---
+2025-12-21 20:39:58,044 - INFO - DEBUG ItemMaster ID=1343159: CreationDateTime raw='' parsed=None
+2025-12-21 20:39:58,044 - __main__ - INFO - DEBUG ItemMaster ID=1343159: CreationDateTime raw='' parsed=None
+2025-12-21 20:39:58,044 - INFO - DEBUG ItemMaster ID=1360799: CreationDateTime raw='04/08/2025 15:03:11' parsed=2025-04-08 15:03:11
+2025-12-21 20:39:58,044 - __main__ - INFO - DEBUG ItemMaster ID=1360799: CreationDateTime raw='04/08/2025 15:03:11' parsed=2025-04-08 15:03:11
+2025-12-21 20:39:58,044 - INFO - DEBUG ItemMaster ID=1374075: CreationDateTime raw='04/22/2025 17:50:47' parsed=2025-04-22 17:50:47
+2025-12-21 20:39:58,044 - __main__ - INFO - DEBUG ItemMaster ID=1374075: CreationDateTime raw='04/22/2025 17:50:47' parsed=2025-04-22 17:50:47
+2025-12-21 20:39:58,133 - molo_db_functions - INFO - ✅ Successfully merged 710 item master records
+2025-12-21 20:39:58,134 - INFO - ✅ Processed 710 item master records
+2025-12-21 20:39:58,134 - __main__ - INFO - ✅ Processed 710 item master records
+2025-12-21 20:39:58,134 - INFO - 
+--- Processing MarinaLocations.csv ---
+2025-12-21 20:39:58,134 - __main__ - INFO - 
+--- Processing MarinaLocations.csv ---
+2025-12-21 20:39:58,176 - molo_db_functions - INFO - ✅ Inserted 4 marina location records to staging
+2025-12-21 20:39:58,177 - INFO - ✅ Processed 4 marina location records
+2025-12-21 20:39:58,177 - __main__ - INFO - ✅ Processed 4 marina location records
+2025-12-21 20:39:58,177 - INFO - 
+--- Processing PaymentMethods.csv ---
+2025-12-21 20:39:58,177 - __main__ - INFO - 
+--- Processing PaymentMethods.csv ---
+2025-12-21 20:39:58,218 - molo_db_functions - INFO - ✅ Successfully merged 6 payment method records
+2025-12-21 20:39:58,218 - INFO - ✅ Processed 6 payment method records
+2025-12-21 20:39:58,218 - __main__ - INFO - ✅ Processed 6 payment method records
+2025-12-21 20:39:58,219 - INFO - 
+--- Processing PaymentsProviderSet.csv ---
+2025-12-21 20:39:58,219 - __main__ - INFO - 
+--- Processing PaymentsProviderSet.csv ---
+2025-12-21 20:39:58,261 - molo_db_functions - INFO - ✅ Successfully merged 2 payments provider records
+2025-12-21 20:39:58,261 - INFO - ✅ Processed 2 payments provider records
+2025-12-21 20:39:58,261 - __main__ - INFO - ✅ Processed 2 payments provider records
+2025-12-21 20:39:58,262 - INFO - 
+--- Processing PhoneTypes.csv ---
+2025-12-21 20:39:58,262 - __main__ - INFO - 
+--- Processing PhoneTypes.csv ---
+2025-12-21 20:39:58,301 - molo_db_functions - INFO - ✅ Successfully merged 9 phone type records
+2025-12-21 20:39:58,302 - INFO - ✅ Processed 9 phone type records
+2025-12-21 20:39:58,302 - __main__ - INFO - ✅ Processed 9 phone type records
+2025-12-21 20:39:58,302 - INFO - 
+--- Processing Piers.csv ---
+2025-12-21 20:39:58,302 - __main__ - INFO - 
+--- Processing Piers.csv ---
+2025-12-21 20:39:58,344 - molo_db_functions - INFO - ✅ Inserted 12 pier records to staging
+2025-12-21 20:39:58,345 - molo_db_functions - INFO - Executing merge for PIERS...
+2025-12-21 20:39:58,453 - molo_db_functions - INFO -   📋 DW_MOLO_PIERS: 0 inserted, 0 updated
+2025-12-21 20:39:58,492 - molo_db_functions - INFO - ✅ SP_MERGE_MOLO_PIERS: Merge completed
+2025-12-21 20:39:58,493 - INFO - ✅ Processed 12 pier records
+2025-12-21 20:39:58,493 - __main__ - INFO - ✅ Processed 12 pier records
+2025-12-21 20:39:58,493 - INFO - 
+--- Processing PowerNeeds.csv ---
+2025-12-21 20:39:58,493 - __main__ - INFO - 
+--- Processing PowerNeeds.csv ---
+2025-12-21 20:39:58,538 - molo_db_functions - INFO - ✅ Successfully merged 21 power need records
+2025-12-21 20:39:58,539 - INFO - ✅ Processed 21 power need records
+2025-12-21 20:39:58,539 - __main__ - INFO - ✅ Processed 21 power need records
+2025-12-21 20:39:58,540 - INFO - 
+--- Processing RecordStatusSet.csv ---
+2025-12-21 20:39:58,540 - __main__ - INFO - 
+--- Processing RecordStatusSet.csv ---
+2025-12-21 20:39:58,586 - molo_db_functions - INFO - ✅ Successfully merged 4 record status records
+2025-12-21 20:39:58,586 - INFO - ✅ Processed 4 record status records
+2025-12-21 20:39:58,586 - __main__ - INFO - ✅ Processed 4 record status records
+2025-12-21 20:39:58,587 - INFO - 
+--- Processing RecurringInvoiceOptionsSet.csv ---
+2025-12-21 20:39:58,587 - __main__ - INFO - 
+--- Processing RecurringInvoiceOptionsSet.csv ---
+2025-12-21 20:39:58,634 - molo_db_functions - INFO - ✅ Successfully merged 3 recurring invoice option records
+2025-12-21 20:39:58,635 - INFO - ✅ Processed 3 recurring invoice option records
+2025-12-21 20:39:58,635 - __main__ - INFO - ✅ Processed 3 recurring invoice option records
+2025-12-21 20:39:58,635 - INFO - 
+--- Processing Reservations.csv ---
+2025-12-21 20:39:58,635 - __main__ - INFO - 
+--- Processing Reservations.csv ---
+2025-12-21 20:39:58,725 - molo_db_functions - INFO - ✅ Successfully merged 830 reservation records
+2025-12-21 20:39:58,726 - molo_db_functions - INFO - Executing merge for RESERVATIONS...
+2025-12-21 20:39:58,851 - molo_db_functions - INFO -   📋 DW_MOLO_RESERVATIONS: 0 inserted, 0 updated
+2025-12-21 20:39:58,892 - molo_db_functions - INFO - ✅ SP_MERGE_MOLO_RESERVATIONS: Merge completed
+2025-12-21 20:39:58,893 - INFO - ✅ Processed 830 reservation records
+2025-12-21 20:39:58,893 - __main__ - INFO - ✅ Processed 830 reservation records
+2025-12-21 20:39:58,893 - INFO - 
+--- Processing ReservationStatus.csv ---
+2025-12-21 20:39:58,893 - __main__ - INFO - 
+--- Processing ReservationStatus.csv ---
+2025-12-21 20:39:58,936 - molo_db_functions - INFO - ✅ Successfully merged 7 reservation status records
+2025-12-21 20:39:58,937 - INFO - ✅ Processed 7 reservation status records
+2025-12-21 20:39:58,937 - __main__ - INFO - ✅ Processed 7 reservation status records
+2025-12-21 20:39:58,938 - INFO - 
+--- Processing ReservationTypes.csv ---
+2025-12-21 20:39:58,938 - __main__ - INFO - 
+--- Processing ReservationTypes.csv ---
+2025-12-21 20:39:58,981 - molo_db_functions - INFO - ✅ Successfully merged 2 reservation type records
+2025-12-21 20:39:58,982 - INFO - ✅ Processed 2 reservation type records
+2025-12-21 20:39:58,982 - __main__ - INFO - ✅ Processed 2 reservation type records
+2025-12-21 20:39:58,982 - INFO - 
+--- Processing SeasonalChargeMethods.csv ---
+2025-12-21 20:39:58,982 - __main__ - INFO - 
+--- Processing SeasonalChargeMethods.csv ---
+2025-12-21 20:39:59,024 - molo_db_functions - INFO - ✅ Successfully merged 5 seasonal charge method records
+2025-12-21 20:39:59,025 - INFO - ✅ Processed 5 seasonal charge method records
+2025-12-21 20:39:59,025 - __main__ - INFO - ✅ Processed 5 seasonal charge method records
+2025-12-21 20:39:59,026 - INFO - 
+--- Processing SeasonalInvoicingMethodSet.csv ---
+2025-12-21 20:39:59,026 - __main__ - INFO - 
+--- Processing SeasonalInvoicingMethodSet.csv ---
+2025-12-21 20:39:59,066 - molo_db_functions - INFO - ✅ Successfully merged 2 seasonal invoicing method records
+2025-12-21 20:39:59,067 - INFO - ✅ Processed 2 seasonal invoicing method records
+2025-12-21 20:39:59,067 - __main__ - INFO - ✅ Processed 2 seasonal invoicing method records
+2025-12-21 20:39:59,067 - INFO - 
+--- Processing SeasonalPrices.csv ---
+2025-12-21 20:39:59,067 - __main__ - INFO - 
+--- Processing SeasonalPrices.csv ---
+2025-12-21 20:39:59,114 - molo_db_functions - INFO - ✅ Successfully merged 4 seasonal price records
+2025-12-21 20:39:59,115 - INFO - ✅ Processed 4 seasonal price records
+2025-12-21 20:39:59,115 - __main__ - INFO - ✅ Processed 4 seasonal price records
+2025-12-21 20:39:59,115 - INFO - 
+--- Processing Slips.csv ---
+2025-12-21 20:39:59,115 - __main__ - INFO - 
+--- Processing Slips.csv ---
+2025-12-21 20:39:59,202 - molo_db_functions - INFO - ✅ Successfully inserted 736 slip records
+2025-12-21 20:39:59,202 - molo_db_functions - INFO - Executing merge for SLIPS...
+2025-12-21 20:39:59,309 - molo_db_functions - INFO -   📋 DW_MOLO_SLIPS: 0 inserted, 0 updated
+2025-12-21 20:39:59,349 - molo_db_functions - INFO - ✅ SP_MERGE_MOLO_SLIPS: Merge completed
+2025-12-21 20:39:59,349 - INFO - ✅ Processed 736 slip records
+2025-12-21 20:39:59,349 - __main__ - INFO - ✅ Processed 736 slip records
+2025-12-21 20:39:59,350 - INFO - 
+--- Processing SlipTypes.csv ---
+2025-12-21 20:39:59,350 - __main__ - INFO - 
+--- Processing SlipTypes.csv ---
+2025-12-21 20:39:59,390 - molo_db_functions - INFO - ✅ Inserted 7 slip type records to staging
+2025-12-21 20:39:59,391 - INFO - ✅ Processed 7 slip type records
+2025-12-21 20:39:59,391 - __main__ - INFO - ✅ Processed 7 slip type records
+2025-12-21 20:39:59,391 - INFO - 
+--- Processing StatementsPreferenceSet.csv ---
+2025-12-21 20:39:59,391 - __main__ - INFO - 
+--- Processing StatementsPreferenceSet.csv ---
+2025-12-21 20:39:59,438 - molo_db_functions - INFO - ✅ Successfully merged 3 statements preference records
+2025-12-21 20:39:59,439 - INFO - ✅ Processed 3 statements preference records
+2025-12-21 20:39:59,439 - __main__ - INFO - ✅ Processed 3 statements preference records
+2025-12-21 20:39:59,439 - INFO - 
+--- Processing TransactionMethodSet.csv ---
+2025-12-21 20:39:59,439 - __main__ - INFO - 
+--- Processing TransactionMethodSet.csv ---
+2025-12-21 20:39:59,480 - molo_db_functions - INFO - ✅ Successfully merged 8 transaction method records
+2025-12-21 20:39:59,481 - INFO - ✅ Processed 8 transaction method records
+2025-12-21 20:39:59,481 - __main__ - INFO - ✅ Processed 8 transaction method records
+2025-12-21 20:39:59,481 - INFO - 
+--- Processing Transactions.csv ---
+2025-12-21 20:39:59,481 - __main__ - INFO - 
+--- Processing Transactions.csv ---
+2025-12-21 20:39:59,810 - INFO - Successfully parsed 13634 transaction records
+2025-12-21 20:39:59,810 - __main__ - INFO - Successfully parsed 13634 transaction records
+2025-12-21 20:40:00,440 - molo_db_functions - INFO - ✅ Successfully merged 13634 transaction records
+2025-12-21 20:40:00,441 - molo_db_functions - INFO - Executing merge for TRANSACTIONS...
+2025-12-21 20:40:00,637 - molo_db_functions - INFO -   📋 DW_MOLO_TRANSACTIONS: 0 inserted, 0 updated
+2025-12-21 20:40:00,674 - molo_db_functions - INFO - ✅ SP_MERGE_MOLO_TRANSACTIONS: Merge completed
+2025-12-21 20:40:00,675 - INFO - ✅ Processed 13634 transaction records
+2025-12-21 20:40:00,675 - __main__ - INFO - ✅ Processed 13634 transaction records
+2025-12-21 20:40:00,675 - INFO - 
+--- Processing TransactionTypeSet.csv ---
+2025-12-21 20:40:00,675 - __main__ - INFO - 
+--- Processing TransactionTypeSet.csv ---
+2025-12-21 20:40:00,741 - molo_db_functions - INFO - ✅ Successfully merged 4 transaction type records
+2025-12-21 20:40:00,742 - INFO - ✅ Processed 4 transaction type records
+2025-12-21 20:40:00,742 - __main__ - INFO - ✅ Processed 4 transaction type records
+2025-12-21 20:40:00,742 - INFO - 
+--- Processing TransientChargeMethods.csv ---
+2025-12-21 20:40:00,742 - __main__ - INFO - 
+--- Processing TransientChargeMethods.csv ---
+2025-12-21 20:40:00,797 - molo_db_functions - INFO - ✅ Successfully merged 20 transient charge method records
+2025-12-21 20:40:00,797 - INFO - ✅ Processed 20 transient charge method records
+2025-12-21 20:40:00,797 - __main__ - INFO - ✅ Processed 20 transient charge method records
+2025-12-21 20:40:00,798 - INFO - 
+--- Processing TransientInvoicingMethodSet.csv ---
+2025-12-21 20:40:00,798 - __main__ - INFO - 
+--- Processing TransientInvoicingMethodSet.csv ---
+2025-12-21 20:40:00,848 - molo_db_functions - INFO - ✅ Successfully merged 7 transient invoicing method records
+2025-12-21 20:40:00,849 - INFO - ✅ Processed 7 transient invoicing method records
+2025-12-21 20:40:00,849 - __main__ - INFO - ✅ Processed 7 transient invoicing method records
+2025-12-21 20:40:00,849 - INFO - 
+--- Processing TransientPrices.csv ---
+2025-12-21 20:40:00,849 - __main__ - INFO - 
+--- Processing TransientPrices.csv ---
+2025-12-21 20:40:00,898 - molo_db_functions - INFO - ✅ Successfully merged 20 transient price records
+2025-12-21 20:40:00,899 - INFO - ✅ Processed 20 transient price records
+2025-12-21 20:40:00,899 - __main__ - INFO - ✅ Processed 20 transient price records
+2025-12-21 20:40:00,899 - INFO - 
+--- Processing VesselEngineClassSet.csv ---
+2025-12-21 20:40:00,899 - __main__ - INFO - 
+--- Processing VesselEngineClassSet.csv ---
+2025-12-21 20:40:00,947 - molo_db_functions - INFO - ✅ Successfully merged 6 vessel engine class records
+2025-12-21 20:40:00,947 - INFO - ✅ Processed 6 vessel engine class records
+2025-12-21 20:40:00,947 - __main__ - INFO - ✅ Processed 6 vessel engine class records
+2025-12-21 20:40:00,948 - INFO - 
+======================================================================
+2025-12-21 20:40:00,948 - __main__ - INFO - 
+======================================================================
+2025-12-21 20:40:00,948 - INFO - STEP 3: MERGING STAGING DATA TO DATA WAREHOUSE
+2025-12-21 20:40:00,948 - __main__ - INFO - STEP 3: MERGING STAGING DATA TO DATA WAREHOUSE
+2025-12-21 20:40:00,948 - INFO - ======================================================================
+2025-12-21 20:40:00,948 - __main__ - INFO - ======================================================================
+2025-12-21 20:40:00,948 - INFO - Calling stored procedures to merge STG_MOLO_* → DW_MOLO_*...
+2025-12-21 20:40:00,948 - __main__ - INFO - Calling stored procedures to merge STG_MOLO_* → DW_MOLO_*...
+2025-12-21 20:40:00,949 - molo_db_functions - INFO - Executing stored procedure to merge all MOLO staging data to data warehouse...
+2025-12-21 20:40:01,007 - molo_db_functions - WARNING - ⚠️  Stored procedure SP_RUN_ALL_MOLO_STELLAR_MERGES not found or failed: ORA-06550: line 1, column 7:
+PLS-00306: wrong number or types of arguments in call to 'SP_RUN_ALL_MOLO_STELLAR_MERGES'
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+Help: https://docs.oracle.com/error-help/db/ora-06550/
+2025-12-21 20:40:01,007 - molo_db_functions - WARNING -    Data has been loaded into STG_MOLO_* staging tables successfully.
+2025-12-21 20:40:01,008 - molo_db_functions - WARNING -    Create the stored procedures to merge STG_* → DW_* tables.
+2025-12-21 20:40:01,027 - INFO - ✅ All merge stored procedures completed successfully
+2025-12-21 20:40:01,027 - __main__ - INFO - ✅ All merge stored procedures completed successfully
+2025-12-21 20:40:01,028 - INFO - 
+2025-12-21 20:40:01,028 - __main__ - INFO - 
+2025-12-21 20:40:01,051 - molo_db_functions - INFO - ✅ Database connection closed
+2025-12-21 20:40:01,051 - INFO - 
+======================================================================
+2025-12-21 20:40:01,051 - __main__ - INFO - 
+======================================================================
+2025-12-21 20:40:01,052 - INFO - MOLO DATA PROCESSING SUMMARY
+2025-12-21 20:40:01,052 - __main__ - INFO - MOLO DATA PROCESSING SUMMARY
+2025-12-21 20:40:01,052 - INFO - ======================================================================
+2025-12-21 20:40:01,052 - __main__ - INFO - ======================================================================
+2025-12-21 20:40:01,052 - INFO - ✅ Successfully processed: 50 files
+2025-12-21 20:40:01,052 - __main__ - INFO - ✅ Successfully processed: 50 files
+2025-12-21 20:40:01,053 - INFO - ⚠️  Skipped: 0 files
+2025-12-21 20:40:01,053 - __main__ - INFO - ⚠️  Skipped: 0 files
+2025-12-21 20:40:01,053 - INFO - ❌ Errors: 0 files
+2025-12-21 20:40:01,053 - __main__ - INFO - ❌ Errors: 0 files
+2025-12-21 20:40:01,053 - INFO - 📊 Total records loaded: 136,635
+2025-12-21 20:40:01,053 - __main__ - INFO - 📊 Total records loaded: 136,635
+2025-12-21 20:40:01,054 - INFO - 
+2025-12-21 20:40:01,054 - __main__ - INFO - 
+2025-12-21 20:40:01,054 - INFO - ✅ Successfully processed tables:
+2025-12-21 20:40:01,054 - __main__ - INFO - ✅ Successfully processed tables:
+2025-12-21 20:40:01,055 - INFO -    ✅ DW_MOLO_ACCOUNTS                    →  1,463 records
+2025-12-21 20:40:01,055 - __main__ - INFO -    ✅ DW_MOLO_ACCOUNTS                    →  1,463 records
+2025-12-21 20:40:01,055 - INFO -    ✅ DW_MOLO_ACCOUNT_STATUS              →      3 records
+2025-12-21 20:40:01,055 - __main__ - INFO -    ✅ DW_MOLO_ACCOUNT_STATUS              →      3 records
+2025-12-21 20:40:01,056 - INFO -    ✅ DW_MOLO_BOATS                       →    795 records
+2025-12-21 20:40:01,056 - __main__ - INFO -    ✅ DW_MOLO_BOATS                       →    795 records
+2025-12-21 20:40:01,056 - INFO -    ✅ DW_MOLO_BOAT_TYPES                  →     94 records
+2025-12-21 20:40:01,056 - __main__ - INFO -    ✅ DW_MOLO_BOAT_TYPES                  →     94 records
+2025-12-21 20:40:01,056 - INFO -    ✅ DW_MOLO_CITIES                      →    391 records
+2025-12-21 20:40:01,056 - __main__ - INFO -    ✅ DW_MOLO_CITIES                      →    391 records
+2025-12-21 20:40:01,057 - INFO -    ✅ DW_MOLO_COMPANIES                   →      1 records
+2025-12-21 20:40:01,057 - __main__ - INFO -    ✅ DW_MOLO_COMPANIES                   →      1 records
+2025-12-21 20:40:01,057 - INFO -    ✅ DW_MOLO_CONTACTS                    →  1,463 records
+2025-12-21 20:40:01,057 - __main__ - INFO -    ✅ DW_MOLO_CONTACTS                    →  1,463 records
+2025-12-21 20:40:01,057 - INFO -    ✅ DW_MOLO_CONTACT_AUTO_CHARGE         →      4 records
+2025-12-21 20:40:01,057 - __main__ - INFO -    ✅ DW_MOLO_CONTACT_AUTO_CHARGE         →      4 records
+2025-12-21 20:40:01,058 - INFO -    ✅ DW_MOLO_CONTACT_TYPES               →     17 records
+2025-12-21 20:40:01,058 - __main__ - INFO -    ✅ DW_MOLO_CONTACT_TYPES               →     17 records
+2025-12-21 20:40:01,058 - INFO -    ✅ DW_MOLO_COUNTRIES                   →    239 records
+2025-12-21 20:40:01,058 - __main__ - INFO -    ✅ DW_MOLO_COUNTRIES                   →    239 records
+2025-12-21 20:40:01,058 - INFO -    ✅ DW_MOLO_CURRENCIES                  →    137 records
+2025-12-21 20:40:01,058 - __main__ - INFO -    ✅ DW_MOLO_CURRENCIES                  →    137 records
+2025-12-21 20:40:01,059 - INFO -    ✅ DW_MOLO_DUE_DATE_SETTINGS           →      4 records
+2025-12-21 20:40:01,059 - __main__ - INFO -    ✅ DW_MOLO_DUE_DATE_SETTINGS           →      4 records
+2025-12-21 20:40:01,059 - INFO -    ✅ DW_MOLO_EQUIPMENT                   →      0 records
+2025-12-21 20:40:01,059 - __main__ - INFO -    ✅ DW_MOLO_EQUIPMENT                   →      0 records
+2025-12-21 20:40:01,059 - INFO -    ✅ DW_MOLO_EQUIPMENT_FUEL_TYPES        →      8 records
+2025-12-21 20:40:01,059 - __main__ - INFO -    ✅ DW_MOLO_EQUIPMENT_FUEL_TYPES        →      8 records
+2025-12-21 20:40:01,060 - INFO -    ✅ DW_MOLO_EQUIPMENT_TYPES             →     20 records
+2025-12-21 20:40:01,060 - __main__ - INFO -    ✅ DW_MOLO_EQUIPMENT_TYPES             →     20 records
+2025-12-21 20:40:01,060 - INFO -    ✅ DW_MOLO_INSURANCE_STATUS            →     43 records
+2025-12-21 20:40:01,060 - __main__ - INFO -    ✅ DW_MOLO_INSURANCE_STATUS            →     43 records
+2025-12-21 20:40:01,060 - INFO -    ✅ DW_MOLO_INSURANCE_STATUS_ALT        →      2 records
+2025-12-21 20:40:01,060 - __main__ - INFO -    ✅ DW_MOLO_INSURANCE_STATUS_ALT        →      2 records
+2025-12-21 20:40:01,060 - INFO -    ✅ DW_MOLO_INVOICES                    → 17,374 records
+2025-12-21 20:40:01,060 - __main__ - INFO -    ✅ DW_MOLO_INVOICES                    → 17,374 records
+2025-12-21 20:40:01,061 - INFO -    ✅ DW_MOLO_INVOICE_ITEMS               → 43,796 records
+2025-12-21 20:40:01,061 - __main__ - INFO -    ✅ DW_MOLO_INVOICE_ITEMS               → 43,796 records
+2025-12-21 20:40:01,061 - INFO -    ✅ DW_MOLO_INVOICE_ITEM_TYPES          →      5 records
+2025-12-21 20:40:01,061 - __main__ - INFO -    ✅ DW_MOLO_INVOICE_ITEM_TYPES          →      5 records
+2025-12-21 20:40:01,061 - INFO -    ✅ DW_MOLO_INVOICE_STATUS              →      5 records
+2025-12-21 20:40:01,061 - __main__ - INFO -    ✅ DW_MOLO_INVOICE_STATUS              →      5 records
+2025-12-21 20:40:01,061 - INFO -    ✅ DW_MOLO_INVOICE_TYPES               → 54,689 records
+2025-12-21 20:40:01,061 - __main__ - INFO -    ✅ DW_MOLO_INVOICE_TYPES               → 54,689 records
+2025-12-21 20:40:01,061 - INFO -    ✅ DW_MOLO_ITEM_CHARGE_METHODS         →     18 records
+2025-12-21 20:40:01,061 - __main__ - INFO -    ✅ DW_MOLO_ITEM_CHARGE_METHODS         →     18 records
+2025-12-21 20:40:01,062 - INFO -    ✅ DW_MOLO_ITEM_MASTERS                →    710 records
+2025-12-21 20:40:01,062 - __main__ - INFO -    ✅ DW_MOLO_ITEM_MASTERS                →    710 records
+2025-12-21 20:40:01,062 - INFO -    ✅ DW_MOLO_MARINA_LOCATIONS            →      4 records
+2025-12-21 20:40:01,062 - __main__ - INFO -    ✅ DW_MOLO_MARINA_LOCATIONS            →      4 records
+2025-12-21 20:40:01,062 - INFO -    ✅ DW_MOLO_PAYMENT_METHODS             →      6 records
+2025-12-21 20:40:01,062 - __main__ - INFO -    ✅ DW_MOLO_PAYMENT_METHODS             →      6 records
+2025-12-21 20:40:01,062 - INFO -    ✅ DW_MOLO_PHONE_TYPES                 →      9 records
+2025-12-21 20:40:01,062 - __main__ - INFO -    ✅ DW_MOLO_PHONE_TYPES                 →      9 records
+2025-12-21 20:40:01,063 - INFO -    ✅ DW_MOLO_PIERS                       →     12 records
+2025-12-21 20:40:01,063 - __main__ - INFO -    ✅ DW_MOLO_PIERS                       →     12 records
+2025-12-21 20:40:01,063 - INFO -    ✅ DW_MOLO_POWER_NEEDS                 →     21 records
+2025-12-21 20:40:01,063 - __main__ - INFO -    ✅ DW_MOLO_POWER_NEEDS                 →     21 records
+2025-12-21 20:40:01,063 - INFO -    ✅ DW_MOLO_RECORD_STATUS               →      4 records
+2025-12-21 20:40:01,063 - __main__ - INFO -    ✅ DW_MOLO_RECORD_STATUS               →      4 records
+2025-12-21 20:40:01,063 - INFO -    ✅ DW_MOLO_RECURRING_INVOICE_OPTIONS   →      3 records
+2025-12-21 20:40:01,063 - __main__ - INFO -    ✅ DW_MOLO_RECURRING_INVOICE_OPTIONS   →      3 records
+2025-12-21 20:40:01,063 - INFO -    ✅ DW_MOLO_RESERVATIONS                →    830 records
+2025-12-21 20:40:01,063 - __main__ - INFO -    ✅ DW_MOLO_RESERVATIONS                →    830 records
+2025-12-21 20:40:01,064 - INFO -    ✅ DW_MOLO_RESERVATION_STATUS          →      7 records
+2025-12-21 20:40:01,064 - __main__ - INFO -    ✅ DW_MOLO_RESERVATION_STATUS          →      7 records
+2025-12-21 20:40:01,064 - INFO -    ✅ DW_MOLO_RESERVATION_TYPES           →      2 records
+2025-12-21 20:40:01,064 - __main__ - INFO -    ✅ DW_MOLO_RESERVATION_TYPES           →      2 records
+2025-12-21 20:40:01,064 - INFO -    ✅ DW_MOLO_SEASONAL_CHARGE_METHODS     →      5 records
+2025-12-21 20:40:01,064 - __main__ - INFO -    ✅ DW_MOLO_SEASONAL_CHARGE_METHODS     →      5 records
+2025-12-21 20:40:01,064 - INFO -    ✅ DW_MOLO_SEASONAL_INVOICING_METHODS  →      2 records
+2025-12-21 20:40:01,064 - __main__ - INFO -    ✅ DW_MOLO_SEASONAL_INVOICING_METHODS  →      2 records
+2025-12-21 20:40:01,064 - INFO -    ✅ DW_MOLO_SEASONAL_PRICES             →      4 records
+2025-12-21 20:40:01,064 - __main__ - INFO -    ✅ DW_MOLO_SEASONAL_PRICES             →      4 records
+2025-12-21 20:40:01,065 - INFO -    ✅ DW_MOLO_SLIPS                       →    736 records
+2025-12-21 20:40:01,065 - __main__ - INFO -    ✅ DW_MOLO_SLIPS                       →    736 records
+2025-12-21 20:40:01,065 - INFO -    ✅ DW_MOLO_SLIP_TYPES                  →      7 records
+2025-12-21 20:40:01,065 - __main__ - INFO -    ✅ DW_MOLO_SLIP_TYPES                  →      7 records
+2025-12-21 20:40:01,065 - INFO -    ✅ DW_MOLO_STATEMENTS_PREFERENCE       →      3 records
+2025-12-21 20:40:01,065 - __main__ - INFO -    ✅ DW_MOLO_STATEMENTS_PREFERENCE       →      3 records
+2025-12-21 20:40:01,065 - INFO -    ✅ DW_MOLO_TRANSACTIONS                → 13,634 records
+2025-12-21 20:40:01,065 - __main__ - INFO -    ✅ DW_MOLO_TRANSACTIONS                → 13,634 records
+2025-12-21 20:40:01,066 - INFO -    ✅ DW_MOLO_TRANSACTION_METHODS         →      8 records
+2025-12-21 20:40:01,066 - __main__ - INFO -    ✅ DW_MOLO_TRANSACTION_METHODS         →      8 records
+2025-12-21 20:40:01,066 - INFO -    ✅ DW_MOLO_TRANSACTION_TYPES           →      4 records
+2025-12-21 20:40:01,066 - __main__ - INFO -    ✅ DW_MOLO_TRANSACTION_TYPES           →      4 records
+2025-12-21 20:40:01,066 - INFO -    ✅ DW_MOLO_TRANSIENT_CHARGE_METHODS    →     20 records
+2025-12-21 20:40:01,066 - __main__ - INFO -    ✅ DW_MOLO_TRANSIENT_CHARGE_METHODS    →     20 records
+2025-12-21 20:40:01,066 - INFO -    ✅ DW_MOLO_TRANSIENT_INVOICING_METHODS →      7 records
+2025-12-21 20:40:01,066 - __main__ - INFO -    ✅ DW_MOLO_TRANSIENT_INVOICING_METHODS →      7 records
+2025-12-21 20:40:01,067 - INFO -    ✅ DW_MOLO_TRANSIENT_PRICES            →     20 records
+2025-12-21 20:40:01,067 - __main__ - INFO -    ✅ DW_MOLO_TRANSIENT_PRICES            →     20 records
+2025-12-21 20:40:01,067 - INFO -    ✅ DW_MOLO_VESSEL_ENGINE_CLASS         →      6 records
+2025-12-21 20:40:01,067 - __main__ - INFO -    ✅ DW_MOLO_VESSEL_ENGINE_CLASS         →      6 records
+2025-12-21 20:40:01,067 - INFO - ======================================================================
+2025-12-21 20:40:01,067 - __main__ - INFO - ======================================================================
+2025-12-21 20:40:01,067 - INFO - 
+✅ All MOLO CSV files processed successfully!
+2025-12-21 20:40:01,067 - __main__ - INFO - 
+✅ All MOLO CSV files processed successfully!
+2025-12-21 20:40:01,071 - INFO - ✅ MOLO data processing completed successfully
+2025-12-21 20:40:01,071 - __main__ - INFO - ✅ MOLO data processing completed successfully
+2025-12-21 20:40:01,071 - INFO - 
+================================================================================
+2025-12-21 20:40:01,071 - __main__ - INFO - 
+================================================================================
+2025-12-21 20:40:01,072 - INFO - STEP 2: Processing Stellar Business Data
+2025-12-21 20:40:01,072 - __main__ - INFO - STEP 2: Processing Stellar Business Data
+2025-12-21 20:40:01,072 - INFO - ================================================================================
+2025-12-21 20:40:01,072 - __main__ - INFO - ================================================================================
+2025-12-21 20:40:01,072 - INFO - 
+2025-12-21 20:40:01,072 - __main__ - INFO - 
+2025-12-21 20:40:01,073 - INFO - 📊 Processing Stellar Business data from S3...
+2025-12-21 20:40:01,073 - __main__ - INFO - 📊 Processing Stellar Business data from S3...
+2025-12-21 20:40:01,073 - INFO -    Bucket: resilient-ims-backups
+2025-12-21 20:40:01,073 - __main__ - INFO -    Bucket: resilient-ims-backups
+2025-12-21 20:40:01,073 - INFO -    Region: us-east-1
+2025-12-21 20:40:01,073 - __main__ - INFO -    Region: us-east-1
+2025-12-21 20:40:01,073 - INFO - 
+2025-12-21 20:40:01,073 - __main__ - INFO - 
+2025-12-21 20:40:01,074 - INFO - 📊 Expected tables in backup: 29 tables
+2025-12-21 20:40:01,074 - __main__ - INFO - 📊 Expected tables in backup: 29 tables
+2025-12-21 20:40:01,074 - INFO -    (Reference data, bookings, boats, pricing, POS, etc.)
+2025-12-21 20:40:01,074 - __main__ - INFO -    (Reference data, bookings, boats, pricing, POS, etc.)
+2025-12-21 20:40:01,074 - INFO - 
+2025-12-21 20:40:01,074 - __main__ - INFO - 
+2025-12-21 20:40:01,076 - download_stellar_from_s3 - INFO - ================================================================================
+2025-12-21 20:40:01,076 - download_stellar_from_s3 - INFO - STELLAR BUSINESS DATA PROCESSING - START
+2025-12-21 20:40:01,077 - download_stellar_from_s3 - INFO - ================================================================================
+2025-12-21 20:40:01,080 - download_stellar_from_s3 - INFO - Connected to S3 region: us-east-1, bucket: resilient-ims-backups
+2025-12-21 20:40:01,364 - download_stellar_from_s3 - INFO - Found latest DATA file: prod_resilient_2025-12-21_07_01-DATA.sql.gz
+2025-12-21 20:40:01,365 - download_stellar_from_s3 - INFO -   Last Modified: 2025-12-21 07:01:27+00:00
+2025-12-21 20:40:01,365 - download_stellar_from_s3 - INFO -   Size: 1,339,434 bytes
+2025-12-21 20:40:01,366 - download_stellar_from_s3 - INFO - Downloading: s3://resilient-ims-backups/prod_resilient_2025-12-21_07_01-DATA.sql.gz
+2025-12-21 20:40:01,594 - download_stellar_from_s3 - INFO - Downloaded and decompressed 8,616,960 bytes
+2025-12-21 20:40:01,598 - download_stellar_from_s3 - INFO - Tarball contains 113 files
+2025-12-21 20:40:01,598 - stellar_db_functions - INFO - ✅ TNS_ADMIN already set to: /mnt/c/Users/StefanHolodnick/Documents/aws-retrieve-csv/wallet_demo
+2025-12-21 20:40:01,603 - stellar_db_functions - INFO - 📁 Files in wallet directory: ['cwallet.sso', 'ewallet.p12', 'ewallet.pem', 'keystore.jks', 'ojdbc.properties', 'README', 'rm_wallet_nsaw.zip', 'sqlnet.ora', 'sqlnet.ora.container', 'tnsnames.ora', 'truststore.jks']
+2025-12-21 20:40:01,607 - stellar_db_functions - INFO - ✅ All required wallet files found
+2025-12-21 20:40:01,609 - stellar_db_functions - INFO - 📄 tnsnames.ora first 200 chars: oax4504110443_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-chicago-1.oraclecloud.com))(connect_data=(service_name=g22673cc0c08b7a_oax4504110443_h
+2025-12-21 20:40:01,610 - stellar_db_functions - INFO - Oracle Instant Client initialized from: /opt/oracle/instantclient
+2025-12-21 20:40:01,610 - stellar_db_functions - INFO - Attempting to connect to Oracle database...
+2025-12-21 20:40:01,610 - stellar_db_functions - INFO -    User: API_USER
+2025-12-21 20:40:01,610 - stellar_db_functions - INFO -    DSN: oax4504110443_low
+2025-12-21 20:40:01,964 - stellar_db_functions - INFO - ✅ Oracle database connection successful!
+2025-12-21 20:40:01,964 - download_stellar_from_s3 - INFO - Connected to Oracle database
+2025-12-21 20:40:01,965 - download_stellar_from_s3 - INFO - 
+Processing table: CUSTOMERS
+2025-12-21 20:40:01,966 - download_stellar_from_s3 - INFO - Extracted 237,893 bytes from data/customers.csv
+2025-12-21 20:40:01,988 - download_stellar_from_s3 - INFO - Parsed 1298 customer records
+2025-12-21 20:40:01,989 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_CUSTOMERS...
+2025-12-21 20:40:02,294 - stellar_db_functions - INFO - ✅ Inserted 1298 customer records
+2025-12-21 20:40:02,295 - stellar_db_functions - INFO - Executing merge for CUSTOMERS...
+2025-12-21 20:40:02,375 - stellar_db_functions - INFO -   📋 DW_STELLAR_CUSTOMERS: 0 inserted, 0 updated
+2025-12-21 20:40:02,413 - stellar_db_functions - INFO - ✅ SP_MERGE_STELLAR_CUSTOMERS: 0 inserted, 0 updated
+2025-12-21 20:40:02,414 - download_stellar_from_s3 - INFO - ✅ Successfully processed customers: 1298 records
+2025-12-21 20:40:02,414 - download_stellar_from_s3 - INFO - 
+Processing table: LOCATIONS
+2025-12-21 20:40:02,415 - download_stellar_from_s3 - INFO - Extracted 403 bytes from data/locations.csv
+2025-12-21 20:40:02,415 - download_stellar_from_s3 - INFO - Parsed 1 location records
+2025-12-21 20:40:02,416 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_LOCATIONS...
+2025-12-21 20:40:02,521 - stellar_db_functions - INFO - ✅ Inserted 1 location records
+2025-12-21 20:40:02,522 - download_stellar_from_s3 - INFO - ✅ Successfully processed locations: 1 records
+2025-12-21 20:40:02,522 - download_stellar_from_s3 - INFO - 
+Processing table: SEASONS
+2025-12-21 20:40:02,523 - download_stellar_from_s3 - INFO - Extracted 560 bytes from data/seasons.csv
+2025-12-21 20:40:02,523 - download_stellar_from_s3 - INFO - Parsed 2 season records
+2025-12-21 20:40:02,524 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_SEASONS...
+2025-12-21 20:40:02,628 - stellar_db_functions - INFO - ✅ Inserted 2 season records
+2025-12-21 20:40:02,629 - download_stellar_from_s3 - INFO - ✅ Successfully processed seasons: 2 records
+2025-12-21 20:40:02,629 - download_stellar_from_s3 - INFO - 
+Processing table: ACCESSORIES
+2025-12-21 20:40:02,629 - download_stellar_from_s3 - INFO - Extracted 714 bytes from data/accessories.csv
+2025-12-21 20:40:02,630 - download_stellar_from_s3 - INFO - Parsed 1 accessory records
+2025-12-21 20:40:02,630 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_ACCESSORIES...
+2025-12-21 20:40:02,763 - stellar_db_functions - INFO - ✅ Inserted 1 accessory records
+2025-12-21 20:40:02,763 - download_stellar_from_s3 - INFO - ✅ Successfully processed accessories: 1 records
+2025-12-21 20:40:02,764 - download_stellar_from_s3 - INFO - 
+Processing table: ACCESSORY_OPTIONS
+2025-12-21 20:40:02,764 - download_stellar_from_s3 - INFO - Extracted 237 bytes from data/accessory_options.csv
+2025-12-21 20:40:02,764 - download_stellar_from_s3 - INFO - Parsed 3 accessory option records
+2025-12-21 20:40:02,765 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_ACCESSORY_OPTIONS...
+2025-12-21 20:40:02,901 - stellar_db_functions - INFO - ✅ Inserted 3 accessory option records
+2025-12-21 20:40:02,901 - download_stellar_from_s3 - INFO - ✅ Successfully processed accessory_options: 3 records
+2025-12-21 20:40:02,902 - download_stellar_from_s3 - INFO - 
+Processing table: ACCESSORY_TIERS
+2025-12-21 20:40:02,902 - download_stellar_from_s3 - INFO - Extracted 212 bytes from data/accessory_tiers.csv
+2025-12-21 20:40:02,903 - download_stellar_from_s3 - INFO - Parsed 2 accessory tier records
+2025-12-21 20:40:02,903 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_ACCESSORY_TIERS...
+2025-12-21 20:40:03,011 - stellar_db_functions - INFO - ✅ Inserted 2 accessory tier records
+2025-12-21 20:40:03,012 - download_stellar_from_s3 - INFO - ✅ Successfully processed accessory_tiers: 2 records
+2025-12-21 20:40:03,012 - download_stellar_from_s3 - INFO - 
+Processing table: AMENITIES
+2025-12-21 20:40:03,013 - download_stellar_from_s3 - INFO - Extracted 430 bytes from data/amenities.csv
+2025-12-21 20:40:03,013 - download_stellar_from_s3 - INFO - Parsed 3 amenity records
+2025-12-21 20:40:03,014 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_AMENITIES...
+2025-12-21 20:40:03,150 - stellar_db_functions - INFO - ✅ Inserted 3 amenity records
+2025-12-21 20:40:03,151 - download_stellar_from_s3 - INFO - ✅ Successfully processed amenities: 3 records
+2025-12-21 20:40:03,152 - download_stellar_from_s3 - INFO - 
+Processing table: CATEGORIES
+2025-12-21 20:40:03,152 - download_stellar_from_s3 - INFO - Extracted 530 bytes from data/categories.csv
+2025-12-21 20:40:03,153 - download_stellar_from_s3 - INFO - Parsed 3 category records
+2025-12-21 20:40:03,153 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_CATEGORIES...
+2025-12-21 20:40:03,281 - stellar_db_functions - INFO - ✅ Inserted 3 category records
+2025-12-21 20:40:03,282 - download_stellar_from_s3 - INFO - ✅ Successfully processed categories: 3 records
+2025-12-21 20:40:03,283 - download_stellar_from_s3 - INFO - 
+Processing table: HOLIDAYS
+2025-12-21 20:40:03,283 - download_stellar_from_s3 - INFO - Extracted 90 bytes from data/holidays.csv
+2025-12-21 20:40:03,283 - download_stellar_from_s3 - INFO - Parsed 5 holiday records
+2025-12-21 20:40:03,284 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_HOLIDAYS...
+2025-12-21 20:40:03,391 - stellar_db_functions - INFO - ✅ Inserted 5 holiday records
+2025-12-21 20:40:03,391 - download_stellar_from_s3 - INFO - ✅ Successfully processed holidays: 5 records
+2025-12-21 20:40:03,392 - download_stellar_from_s3 - INFO - 
+Processing table: BOOKINGS
+2025-12-21 20:40:03,393 - download_stellar_from_s3 - INFO - Extracted 596,137 bytes from data/bookings.csv
+2025-12-21 20:40:03,416 - download_stellar_from_s3 - INFO - Parsed 1519 booking records
+2025-12-21 20:40:03,417 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_BOOKINGS...
+2025-12-21 20:40:03,792 - stellar_db_functions - INFO - ✅ Inserted 1519 booking records
+2025-12-21 20:40:03,793 - stellar_db_functions - INFO - Executing merge for BOOKINGS...
+2025-12-21 20:40:03,883 - stellar_db_functions - INFO -   📋 DW_STELLAR_BOOKINGS: 0 inserted, 0 updated
+2025-12-21 20:40:03,926 - stellar_db_functions - INFO - ✅ SP_MERGE_STELLAR_BOOKINGS: 0 inserted, 0 updated
+2025-12-21 20:40:03,927 - download_stellar_from_s3 - INFO - ✅ Successfully processed bookings: 1519 records
+2025-12-21 20:40:03,927 - download_stellar_from_s3 - INFO - 
+Processing table: BOOKING_BOATS
+2025-12-21 20:40:03,928 - download_stellar_from_s3 - INFO - Extracted 478,499 bytes from data/booking_boats.csv
+2025-12-21 20:40:04,002 - download_stellar_from_s3 - INFO - Parsed 1652 booking boat records
+2025-12-21 20:40:04,005 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_BOOKING_BOATS...
+2025-12-21 20:40:04,297 - stellar_db_functions - INFO - ✅ Inserted 1652 booking boat records
+2025-12-21 20:40:04,298 - stellar_db_functions - INFO - Executing merge for BOOKING_BOATS...
+2025-12-21 20:40:04,381 - stellar_db_functions - INFO -   📋 DW_STELLAR_BOOKING_BOATS: 0 inserted, 0 updated
+2025-12-21 20:40:04,421 - stellar_db_functions - INFO - ✅ SP_MERGE_STELLAR_BOOKING_BOATS: 0 inserted, 0 updated
+2025-12-21 20:40:04,422 - download_stellar_from_s3 - INFO - ✅ Successfully processed booking_boats: 1652 records
+2025-12-21 20:40:04,422 - download_stellar_from_s3 - INFO - 
+Processing table: BOOKING_PAYMENTS
+2025-12-21 20:40:04,423 - download_stellar_from_s3 - INFO - Extracted 985,317 bytes from data/booking_payments.csv
+2025-12-21 20:40:04,451 - download_stellar_from_s3 - INFO - Parsed 2930 booking payment records
+2025-12-21 20:40:04,453 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_BOOKING_PAYMENTS...
+2025-12-21 20:40:04,896 - stellar_db_functions - INFO - ✅ Inserted 2930 booking payment records
+2025-12-21 20:40:04,897 - stellar_db_functions - INFO - Executing merge for BOOKING_PAYMENTS...
+2025-12-21 20:40:05,005 - stellar_db_functions - INFO -   📋 DW_STELLAR_BOOKING_PAYMENTS: 0 inserted, 0 updated
+2025-12-21 20:40:05,050 - stellar_db_functions - INFO - ✅ SP_MERGE_STELLAR_BOOKING_PAYMENTS: 0 inserted, 0 updated
+2025-12-21 20:40:05,051 - download_stellar_from_s3 - INFO - ✅ Successfully processed booking_payments: 2930 records
+2025-12-21 20:40:05,051 - download_stellar_from_s3 - INFO - 
+Processing table: BOOKING_ACCESSORIES
+2025-12-21 20:40:05,052 - download_stellar_from_s3 - INFO - Extracted 38,001 bytes from data/booking_accessories.csv
+2025-12-21 20:40:05,054 - download_stellar_from_s3 - INFO - Parsed 663 booking accessory records
+2025-12-21 20:40:05,055 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_BOOKING_ACCESSORIES...
+2025-12-21 20:40:05,179 - stellar_db_functions - INFO - ✅ Inserted 663 booking accessory records
+2025-12-21 20:40:05,180 - download_stellar_from_s3 - INFO - ✅ Successfully processed booking_accessories: 663 records
+2025-12-21 20:40:05,181 - download_stellar_from_s3 - INFO - 
+Processing table: STYLE_GROUPS
+2025-12-21 20:40:05,181 - download_stellar_from_s3 - INFO - Extracted 392 bytes from data/style_groups.csv
+2025-12-21 20:40:05,182 - download_stellar_from_s3 - INFO - Parsed 3 style group records
+2025-12-21 20:40:05,182 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_STYLE_GROUPS...
+2025-12-21 20:40:05,318 - stellar_db_functions - INFO - ✅ Inserted 3 style group records
+2025-12-21 20:40:05,318 - download_stellar_from_s3 - INFO - ✅ Successfully processed style_groups: 3 records
+2025-12-21 20:40:05,319 - download_stellar_from_s3 - INFO - 
+Processing table: STYLES
+2025-12-21 20:40:05,319 - download_stellar_from_s3 - INFO - Extracted 5,727 bytes from data/styles.csv
+2025-12-21 20:40:05,320 - download_stellar_from_s3 - INFO - Parsed 7 style records
+2025-12-21 20:40:05,320 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_STYLES...
+2025-12-21 20:40:05,494 - stellar_db_functions - INFO - ✅ Inserted 7 style records
+2025-12-21 20:40:05,494 - stellar_db_functions - INFO - Executing merge for STYLES...
+2025-12-21 20:40:05,572 - stellar_db_functions - INFO -   📋 DW_STELLAR_STYLES: 0 inserted, 0 updated
+2025-12-21 20:40:05,619 - stellar_db_functions - INFO - ✅ SP_MERGE_STELLAR_STYLES: 0 inserted, 0 updated
+2025-12-21 20:40:05,619 - download_stellar_from_s3 - INFO - ✅ Successfully processed styles: 7 records
+2025-12-21 20:40:05,620 - download_stellar_from_s3 - INFO - 
+Processing table: STYLE_BOATS
+2025-12-21 20:40:05,620 - download_stellar_from_s3 - INFO - Extracted 2,949 bytes from data/style_boats.csv
+2025-12-21 20:40:05,621 - download_stellar_from_s3 - INFO - Parsed 20 style boat records
+2025-12-21 20:40:05,623 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_STYLE_BOATS...
+2025-12-21 20:40:05,730 - stellar_db_functions - INFO - ✅ Inserted 20 style boat records
+2025-12-21 20:40:05,730 - stellar_db_functions - INFO - Executing merge for STYLE_BOATS...
+2025-12-21 20:40:05,797 - stellar_db_functions - INFO -   📋 DW_STELLAR_STYLE_BOATS: 0 inserted, 0 updated
+2025-12-21 20:40:05,837 - stellar_db_functions - INFO - ✅ SP_MERGE_STELLAR_STYLE_BOATS: 0 inserted, 0 updated
+2025-12-21 20:40:05,838 - download_stellar_from_s3 - INFO - ✅ Successfully processed style_boats: 20 records
+2025-12-21 20:40:05,838 - download_stellar_from_s3 - INFO - 
+Processing table: CUSTOMER_BOATS
+2025-12-21 20:40:05,838 - download_stellar_from_s3 - INFO - Extracted 80 bytes from data/customer_boats.csv
+2025-12-21 20:40:05,839 - download_stellar_from_s3 - INFO - Parsed 0 customer boat records
+2025-12-21 20:40:05,839 - download_stellar_from_s3 - WARNING - No data rows parsed for customer_boats
+2025-12-21 20:40:05,839 - download_stellar_from_s3 - INFO - 
+Processing table: SEASON_DATES
+2025-12-21 20:40:05,840 - download_stellar_from_s3 - INFO - Extracted 85 bytes from data/season_dates.csv
+2025-12-21 20:40:05,840 - download_stellar_from_s3 - INFO - Parsed 2 season date records
+2025-12-21 20:40:05,840 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_SEASON_DATES...
+2025-12-21 20:40:05,941 - stellar_db_functions - INFO - ✅ Inserted 2 season date records
+2025-12-21 20:40:05,941 - download_stellar_from_s3 - INFO - ✅ Successfully processed season_dates: 2 records
+2025-12-21 20:40:05,942 - download_stellar_from_s3 - INFO - 
+Processing table: STYLE_HOURLY_PRICES
+2025-12-21 20:40:05,942 - download_stellar_from_s3 - INFO - Extracted 1,349 bytes from data/style_hourly_prices.csv
+2025-12-21 20:40:05,943 - download_stellar_from_s3 - INFO - Parsed 14 style hourly price records
+2025-12-21 20:40:05,943 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_STYLE_HOURLY_PRICES...
+2025-12-21 20:40:06,047 - stellar_db_functions - INFO - ✅ Inserted 14 style hourly price records
+2025-12-21 20:40:06,047 - stellar_db_functions - INFO - Executing merge for STYLE_HOURLY_PRICES...
+2025-12-21 20:40:06,110 - stellar_db_functions - INFO -   📋 DW_STELLAR_STYLE_HOURLY_PRICES: 0 inserted, 0 updated
+2025-12-21 20:40:06,147 - stellar_db_functions - INFO - ✅ SP_MERGE_STELLAR_STYLE_HOURLY_PRICES: 0 inserted, 0 updated
+2025-12-21 20:40:06,148 - download_stellar_from_s3 - INFO - ✅ Successfully processed style_hourly_prices: 14 records
+2025-12-21 20:40:06,149 - download_stellar_from_s3 - INFO - 
+Processing table: STYLE_TIMES
+2025-12-21 20:40:06,149 - download_stellar_from_s3 - INFO - Extracted 1,743 bytes from data/style_times.csv
+2025-12-21 20:40:06,149 - download_stellar_from_s3 - INFO - Parsed 14 style time records
+2025-12-21 20:40:06,150 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_STYLE_TIMES...
+2025-12-21 20:40:06,266 - stellar_db_functions - INFO - ✅ Inserted 14 style time records
+2025-12-21 20:40:06,267 - stellar_db_functions - INFO - Executing merge for STYLE_TIMES...
+2025-12-21 20:40:06,333 - stellar_db_functions - INFO -   📋 DW_STELLAR_STYLE_TIMES: 0 inserted, 0 updated
+2025-12-21 20:40:06,371 - stellar_db_functions - INFO - ✅ SP_MERGE_STELLAR_STYLE_TIMES: 0 inserted, 0 updated
+2025-12-21 20:40:06,372 - download_stellar_from_s3 - INFO - ✅ Successfully processed style_times: 14 records
+2025-12-21 20:40:06,372 - download_stellar_from_s3 - INFO - 
+Processing table: STYLE_PRICES
+2025-12-21 20:40:06,373 - download_stellar_from_s3 - INFO - Extracted 970 bytes from data/style_prices.csv
+2025-12-21 20:40:06,373 - download_stellar_from_s3 - INFO - Parsed 14 style price records
+2025-12-21 20:40:06,373 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_STYLE_PRICES...
+2025-12-21 20:40:06,472 - stellar_db_functions - INFO - ✅ Inserted 14 style price records
+2025-12-21 20:40:06,473 - stellar_db_functions - INFO - Executing merge for STYLE_PRICES...
+2025-12-21 20:40:06,537 - stellar_db_functions - INFO -   📋 DW_STELLAR_STYLE_PRICES: 0 inserted, 0 updated
+2025-12-21 20:40:06,575 - stellar_db_functions - INFO - ✅ SP_MERGE_STELLAR_STYLE_PRICES: 0 inserted, 0 updated
+2025-12-21 20:40:06,576 - download_stellar_from_s3 - INFO - ✅ Successfully processed style_prices: 14 records
+2025-12-21 20:40:06,576 - download_stellar_from_s3 - INFO - 
+Processing table: CLUB_TIERS
+2025-12-21 20:40:06,576 - download_stellar_from_s3 - INFO - Extracted 401 bytes from data/club_tiers.csv
+2025-12-21 20:40:06,577 - download_stellar_from_s3 - INFO - Parsed 0 club tier records
+2025-12-21 20:40:06,577 - download_stellar_from_s3 - WARNING - No data rows parsed for club_tiers
+2025-12-21 20:40:06,578 - download_stellar_from_s3 - INFO - 
+Processing table: COUPONS
+2025-12-21 20:40:06,578 - download_stellar_from_s3 - INFO - Extracted 473 bytes from data/coupons.csv
+2025-12-21 20:40:06,578 - download_stellar_from_s3 - INFO - Parsed 0 coupon records
+2025-12-21 20:40:06,578 - download_stellar_from_s3 - WARNING - No data rows parsed for coupons
+2025-12-21 20:40:06,579 - download_stellar_from_s3 - INFO - 
+Processing table: POS_ITEMS
+2025-12-21 20:40:06,579 - download_stellar_from_s3 - INFO - Extracted 73 bytes from data/pos_items.csv
+2025-12-21 20:40:06,579 - download_stellar_from_s3 - INFO - Parsed 0 POS item records
+2025-12-21 20:40:06,579 - download_stellar_from_s3 - WARNING - No data rows parsed for pos_items
+2025-12-21 20:40:06,580 - download_stellar_from_s3 - INFO - 
+Processing table: POS_SALES
+2025-12-21 20:40:06,580 - download_stellar_from_s3 - INFO - Extracted 110 bytes from data/pos_sales.csv
+2025-12-21 20:40:06,580 - download_stellar_from_s3 - INFO - Parsed 0 POS sale records
+2025-12-21 20:40:06,580 - download_stellar_from_s3 - WARNING - No data rows parsed for pos_sales
+2025-12-21 20:40:06,580 - download_stellar_from_s3 - INFO - 
+Processing table: FUEL_SALES
+2025-12-21 20:40:06,581 - download_stellar_from_s3 - INFO - Extracted 128 bytes from data/fuel_sales.csv
+2025-12-21 20:40:06,581 - download_stellar_from_s3 - INFO - Parsed 0 fuel sale records
+2025-12-21 20:40:06,581 - download_stellar_from_s3 - WARNING - No data rows parsed for fuel_sales
+2025-12-21 20:40:06,581 - download_stellar_from_s3 - INFO - 
+Processing table: WAITLISTS
+2025-12-21 20:40:06,582 - download_stellar_from_s3 - INFO - Extracted 1,927 bytes from data/waitlists.csv
+2025-12-21 20:40:06,582 - download_stellar_from_s3 - INFO - Parsed 13 waitlist records
+2025-12-21 20:40:06,582 - download_stellar_from_s3 - INFO - Truncating STG_STELLAR_WAITLISTS...
+2025-12-21 20:40:06,679 - stellar_db_functions - INFO - ✅ Inserted 13 waitlist records
+2025-12-21 20:40:06,680 - download_stellar_from_s3 - INFO - ✅ Successfully processed waitlists: 13 records
+2025-12-21 20:40:06,681 - download_stellar_from_s3 - INFO - 
+Processing table: CLOSED_DATES
+2025-12-21 20:40:06,681 - download_stellar_from_s3 - INFO - Extracted 145 bytes from data/closed_dates.csv
+2025-12-21 20:40:06,681 - download_stellar_from_s3 - INFO - Parsed 0 closed date records
+2025-12-21 20:40:06,682 - download_stellar_from_s3 - WARNING - No data rows parsed for closed_dates
+2025-12-21 20:40:06,682 - download_stellar_from_s3 - INFO - 
+Processing table: BLACKLISTS
+2025-12-21 20:40:06,683 - download_stellar_from_s3 - INFO - Extracted 88 bytes from data/blacklists.csv
+2025-12-21 20:40:06,683 - download_stellar_from_s3 - INFO - Parsed 0 blacklist records
+2025-12-21 20:40:06,684 - download_stellar_from_s3 - WARNING - No data rows parsed for blacklists
+2025-12-21 20:40:06,704 - download_stellar_from_s3 - INFO - Database connection closed
+2025-12-21 20:40:06,705 - download_stellar_from_s3 - INFO - 
+================================================================================
+2025-12-21 20:40:06,705 - download_stellar_from_s3 - INFO - STELLAR BUSINESS DATA PROCESSING - SUMMARY
+2025-12-21 20:40:06,706 - download_stellar_from_s3 - INFO - ================================================================================
+2025-12-21 20:40:06,706 - download_stellar_from_s3 - INFO - Successfully processed: 21/29 tables
+2025-12-21 20:40:06,706 - download_stellar_from_s3 - INFO - Total records loaded: 8169
+2025-12-21 20:40:06,707 - download_stellar_from_s3 - WARNING - Failed tables: customer_boats, club_tiers, coupons, pos_items, pos_sales, fuel_sales, closed_dates, blacklists
+2025-12-21 20:40:06,707 - download_stellar_from_s3 - INFO - ================================================================================
+2025-12-21 20:40:06,708 - INFO - 
+2025-12-21 20:40:06,708 - __main__ - INFO - 
+2025-12-21 20:40:06,709 - INFO - ================================================================================
+2025-12-21 20:40:06,709 - __main__ - INFO - ================================================================================
+2025-12-21 20:40:06,709 - INFO - ✅ STELLAR DATA PROCESSING COMPLETED
+2025-12-21 20:40:06,709 - __main__ - INFO - ✅ STELLAR DATA PROCESSING COMPLETED
+2025-12-21 20:40:06,709 - INFO - ================================================================================
+2025-12-21 20:40:06,709 - __main__ - INFO - ================================================================================
+2025-12-21 20:40:06,710 - INFO - 📊 Successfully processed: 21/29 tables
+2025-12-21 20:40:06,710 - __main__ - INFO - 📊 Successfully processed: 21/29 tables
+2025-12-21 20:40:06,710 - INFO - 📊 Total records loaded: 8,169
+2025-12-21 20:40:06,710 - __main__ - INFO - 📊 Total records loaded: 8,169
+2025-12-21 20:40:06,710 - INFO - 
+2025-12-21 20:40:06,710 - __main__ - INFO - 
+2025-12-21 20:40:06,710 - INFO - ✅ Successfully processed tables:
+2025-12-21 20:40:06,710 - __main__ - INFO - ✅ Successfully processed tables:
+2025-12-21 20:40:06,711 - INFO -    ✅ DW_STELLAR_ACCESSORIES              →      1 records
+2025-12-21 20:40:06,711 - __main__ - INFO -    ✅ DW_STELLAR_ACCESSORIES              →      1 records
+2025-12-21 20:40:06,711 - INFO -    ✅ DW_STELLAR_ACCESSORY_OPTIONS        →      3 records
+2025-12-21 20:40:06,711 - __main__ - INFO -    ✅ DW_STELLAR_ACCESSORY_OPTIONS        →      3 records
+2025-12-21 20:40:06,711 - INFO -    ✅ DW_STELLAR_ACCESSORY_TIERS          →      2 records
+2025-12-21 20:40:06,711 - __main__ - INFO -    ✅ DW_STELLAR_ACCESSORY_TIERS          →      2 records
+2025-12-21 20:40:06,712 - INFO -    ✅ DW_STELLAR_AMENITIES                →      3 records
+2025-12-21 20:40:06,712 - __main__ - INFO -    ✅ DW_STELLAR_AMENITIES                →      3 records
+2025-12-21 20:40:06,712 - INFO -    ✅ DW_STELLAR_BOOKING_ACCESSORIES      →    663 records
+2025-12-21 20:40:06,712 - __main__ - INFO -    ✅ DW_STELLAR_BOOKING_ACCESSORIES      →    663 records
+2025-12-21 20:40:06,712 - INFO -    ✅ DW_STELLAR_BOOKING_BOATS            →  1,652 records
+2025-12-21 20:40:06,712 - __main__ - INFO -    ✅ DW_STELLAR_BOOKING_BOATS            →  1,652 records
+2025-12-21 20:40:06,712 - INFO -    ✅ DW_STELLAR_BOOKING_PAYMENTS         →  2,930 records
+2025-12-21 20:40:06,712 - __main__ - INFO -    ✅ DW_STELLAR_BOOKING_PAYMENTS         →  2,930 records
+2025-12-21 20:40:06,713 - INFO -    ✅ DW_STELLAR_BOOKINGS                 →  1,519 records
+2025-12-21 20:40:06,713 - __main__ - INFO -    ✅ DW_STELLAR_BOOKINGS                 →  1,519 records
+2025-12-21 20:40:06,713 - INFO -    ✅ DW_STELLAR_CATEGORIES               →      3 records
+2025-12-21 20:40:06,713 - __main__ - INFO -    ✅ DW_STELLAR_CATEGORIES               →      3 records
+2025-12-21 20:40:06,713 - INFO -    ✅ DW_STELLAR_CUSTOMERS                →  1,298 records
+2025-12-21 20:40:06,713 - __main__ - INFO -    ✅ DW_STELLAR_CUSTOMERS                →  1,298 records
+2025-12-21 20:40:06,713 - INFO -    ✅ DW_STELLAR_HOLIDAYS                 →      5 records
+2025-12-21 20:40:06,713 - __main__ - INFO -    ✅ DW_STELLAR_HOLIDAYS                 →      5 records
+2025-12-21 20:40:06,714 - INFO -    ✅ DW_STELLAR_LOCATIONS                →      1 records
+2025-12-21 20:40:06,714 - __main__ - INFO -    ✅ DW_STELLAR_LOCATIONS                →      1 records
+2025-12-21 20:40:06,714 - INFO -    ✅ DW_STELLAR_SEASON_DATES             →      2 records
+2025-12-21 20:40:06,714 - __main__ - INFO -    ✅ DW_STELLAR_SEASON_DATES             →      2 records
+2025-12-21 20:40:06,714 - INFO -    ✅ DW_STELLAR_SEASONS                  →      2 records
+2025-12-21 20:40:06,714 - __main__ - INFO -    ✅ DW_STELLAR_SEASONS                  →      2 records
+2025-12-21 20:40:06,714 - INFO -    ✅ DW_STELLAR_STYLE_BOATS              →     20 records
+2025-12-21 20:40:06,714 - __main__ - INFO -    ✅ DW_STELLAR_STYLE_BOATS              →     20 records
+2025-12-21 20:40:06,714 - INFO -    ✅ DW_STELLAR_STYLE_GROUPS             →      3 records
+2025-12-21 20:40:06,714 - __main__ - INFO -    ✅ DW_STELLAR_STYLE_GROUPS             →      3 records
+2025-12-21 20:40:06,715 - INFO -    ✅ DW_STELLAR_STYLE_HOURLY_PRICES      →     14 records
+2025-12-21 20:40:06,715 - __main__ - INFO -    ✅ DW_STELLAR_STYLE_HOURLY_PRICES      →     14 records
+2025-12-21 20:40:06,715 - INFO -    ✅ DW_STELLAR_STYLE_PRICES             →     14 records
+2025-12-21 20:40:06,715 - __main__ - INFO -    ✅ DW_STELLAR_STYLE_PRICES             →     14 records
+2025-12-21 20:40:06,715 - INFO -    ✅ DW_STELLAR_STYLE_TIMES              →     14 records
+2025-12-21 20:40:06,715 - __main__ - INFO -    ✅ DW_STELLAR_STYLE_TIMES              →     14 records
+2025-12-21 20:40:06,715 - INFO -    ✅ DW_STELLAR_STYLES                   →      7 records
+2025-12-21 20:40:06,715 - __main__ - INFO -    ✅ DW_STELLAR_STYLES                   →      7 records
+2025-12-21 20:40:06,716 - INFO -    ✅ DW_STELLAR_WAITLISTS                →     13 records
+2025-12-21 20:40:06,716 - __main__ - INFO -    ✅ DW_STELLAR_WAITLISTS                →     13 records
+2025-12-21 20:40:06,716 - INFO - 
+2025-12-21 20:40:06,716 - __main__ - INFO - 
+2025-12-21 20:40:06,716 - INFO - ⚠️  Failed/Missing tables:
+2025-12-21 20:40:06,716 - __main__ - INFO - ⚠️  Failed/Missing tables:
+2025-12-21 20:40:06,716 - INFO -    ❌ DW_STELLAR_BLACKLISTS               → No data rows in CSV file
+2025-12-21 20:40:06,716 - __main__ - INFO -    ❌ DW_STELLAR_BLACKLISTS               → No data rows in CSV file
+2025-12-21 20:40:06,717 - INFO -    ❌ DW_STELLAR_CLOSED_DATES             → No data rows in CSV file
+2025-12-21 20:40:06,717 - __main__ - INFO -    ❌ DW_STELLAR_CLOSED_DATES             → No data rows in CSV file
+2025-12-21 20:40:06,717 - INFO -    ❌ DW_STELLAR_CLUB_TIERS               → No data rows in CSV file
+2025-12-21 20:40:06,717 - __main__ - INFO -    ❌ DW_STELLAR_CLUB_TIERS               → No data rows in CSV file
+2025-12-21 20:40:06,717 - INFO -    ❌ DW_STELLAR_COUPONS                  → No data rows in CSV file
+2025-12-21 20:40:06,717 - __main__ - INFO -    ❌ DW_STELLAR_COUPONS                  → No data rows in CSV file
+2025-12-21 20:40:06,717 - INFO -    ❌ DW_STELLAR_CUSTOMER_BOATS           → No data rows in CSV file
+2025-12-21 20:40:06,717 - __main__ - INFO -    ❌ DW_STELLAR_CUSTOMER_BOATS           → No data rows in CSV file
+2025-12-21 20:40:06,718 - INFO -    ❌ DW_STELLAR_FUEL_SALES               → No data rows in CSV file
+2025-12-21 20:40:06,718 - __main__ - INFO -    ❌ DW_STELLAR_FUEL_SALES               → No data rows in CSV file
+2025-12-21 20:40:06,718 - INFO -    ❌ DW_STELLAR_POS_ITEMS                → No data rows in CSV file
+2025-12-21 20:40:06,718 - __main__ - INFO -    ❌ DW_STELLAR_POS_ITEMS                → No data rows in CSV file
+2025-12-21 20:40:06,718 - INFO -    ❌ DW_STELLAR_POS_SALES                → No data rows in CSV file
+2025-12-21 20:40:06,718 - __main__ - INFO -    ❌ DW_STELLAR_POS_SALES                → No data rows in CSV file
+2025-12-21 20:40:06,718 - INFO - 
+2025-12-21 20:40:06,718 - __main__ - INFO - 
+2025-12-21 20:40:06,719 - INFO - ================================================================================
+2025-12-21 20:40:06,719 - __main__ - INFO - ================================================================================
+2025-12-21 20:40:06,719 - INFO - 
+================================================================================
+2025-12-21 20:40:06,719 - __main__ - INFO - 
+================================================================================
+2025-12-21 20:40:06,719 - INFO - ✅ COMPLETE: All requested data processing finished
+2025-12-21 20:40:06,719 - __main__ - INFO - ✅ COMPLETE: All requested data processing finished
+2025-12-21 20:40:06,720 - INFO - Duration: 0:00:21
+2025-12-21 20:40:06,720 - __main__ - INFO - Duration: 0:00:21
+2025-12-21 20:40:06,720 - INFO - ================================================================================
+2025-12-21 20:40:06,720 - __main__ - INFO - ================================================================================
+2025-12-21 20:40:06,720 - INFO - 
+================================================================================
+2025-12-21 20:40:06,720 - __main__ - INFO - 
+================================================================================
+2025-12-21 20:40:06,720 - INFO - COMPREHENSIVE PROCESSING SUMMARY
+2025-12-21 20:40:06,720 - __main__ - INFO - COMPREHENSIVE PROCESSING SUMMARY
+2025-12-21 20:40:06,721 - INFO - ================================================================================
+2025-12-21 20:40:06,721 - __main__ - INFO - ================================================================================
+2025-12-21 20:40:06,721 - INFO - 
+🏢 MOLO System:
+2025-12-21 20:40:06,721 - __main__ - INFO - 
+🏢 MOLO System:
+2025-12-21 20:40:06,722 - INFO -    Total Records: 136,635
+2025-12-21 20:40:06,722 - __main__ - INFO -    Total Records: 136,635
+2025-12-21 20:40:06,722 - INFO -    Tables Processed: 47
+2025-12-21 20:40:06,722 - __main__ - INFO -    Tables Processed: 47
+2025-12-21 20:40:06,722 - INFO -    • ACCOUNTS: 1,463 records
+2025-12-21 20:40:06,722 - __main__ - INFO -    • ACCOUNTS: 1,463 records
+2025-12-21 20:40:06,722 - INFO -    • ACCOUNT_STATUS: 3 records
+2025-12-21 20:40:06,722 - __main__ - INFO -    • ACCOUNT_STATUS: 3 records
+2025-12-21 20:40:06,723 - INFO -    • BOATS: 795 records
+2025-12-21 20:40:06,723 - __main__ - INFO -    • BOATS: 795 records
+2025-12-21 20:40:06,723 - INFO -    • BOAT_TYPES: 94 records
+2025-12-21 20:40:06,723 - __main__ - INFO -    • BOAT_TYPES: 94 records
+2025-12-21 20:40:06,723 - INFO -    • CITIES: 391 records
+2025-12-21 20:40:06,723 - __main__ - INFO -    • CITIES: 391 records
+2025-12-21 20:40:06,723 - INFO -    ... and 42 more tables
+2025-12-21 20:40:06,723 - __main__ - INFO -    ... and 42 more tables
+2025-12-21 20:40:06,724 - INFO - 
+⭐ Stellar Business System:
+2025-12-21 20:40:06,724 - __main__ - INFO - 
+⭐ Stellar Business System:
+2025-12-21 20:40:06,724 - INFO -    Total Records: 8,169
+2025-12-21 20:40:06,724 - __main__ - INFO -    Total Records: 8,169
+2025-12-21 20:40:06,724 - INFO -    Tables Processed: 21
+2025-12-21 20:40:06,724 - __main__ - INFO -    Tables Processed: 21
+2025-12-21 20:40:06,724 - INFO -    • accessories: 1 records
+2025-12-21 20:40:06,724 - __main__ - INFO -    • accessories: 1 records
+2025-12-21 20:40:06,725 - INFO -    • accessory_options: 3 records
+2025-12-21 20:40:06,725 - __main__ - INFO -    • accessory_options: 3 records
+2025-12-21 20:40:06,725 - INFO -    • accessory_tiers: 2 records
+2025-12-21 20:40:06,725 - __main__ - INFO -    • accessory_tiers: 2 records
+2025-12-21 20:40:06,725 - INFO -    • amenities: 3 records
+2025-12-21 20:40:06,725 - __main__ - INFO -    • amenities: 3 records
+2025-12-21 20:40:06,725 - INFO -    • booking_accessories: 663 records
+2025-12-21 20:40:06,725 - __main__ - INFO -    • booking_accessories: 663 records
+2025-12-21 20:40:06,726 - INFO -    ... and 16 more tables
+2025-12-21 20:40:06,726 - __main__ - INFO -    ... and 16 more tables
+2025-12-21 20:40:06,726 - INFO - 
+⚠️ Warnings: 8
+2025-12-21 20:40:06,726 - __main__ - INFO - 
+⚠️ Warnings: 8
+2025-12-21 20:40:06,726 - INFO -    • Failed to process DW_STELLAR_BLACKLISTS: No data rows in CSV file
+2025-12-21 20:40:06,726 - __main__ - INFO -    • Failed to process DW_STELLAR_BLACKLISTS: No data rows in CSV file
+2025-12-21 20:40:06,726 - INFO -    • Failed to process DW_STELLAR_CLOSED_DATES: No data rows in CSV file
+2025-12-21 20:40:06,726 - __main__ - INFO -    • Failed to process DW_STELLAR_CLOSED_DATES: No data rows in CSV file
+2025-12-21 20:40:06,726 - INFO -    • Failed to process DW_STELLAR_CLUB_TIERS: No data rows in CSV file
+2025-12-21 20:40:06,726 - __main__ - INFO -    • Failed to process DW_STELLAR_CLUB_TIERS: No data rows in CSV file
+2025-12-21 20:40:06,727 - INFO -    ... and 5 more warnings
+2025-12-21 20:40:06,727 - __main__ - INFO -    ... and 5 more warnings
+2025-12-21 20:40:06,727 - INFO - 
+================================================================================
+2025-12-21 20:40:06,727 - __main__ - INFO - 
+================================================================================
+2025-12-21 20:40:06,727 - INFO - 
+📧 Sending email notification...
+2025-12-21 20:40:06,727 - __main__ - INFO - 
+📧 Sending email notification...
+2025-12-21 20:40:06,728 - WARNING - ZIP file not found for attachment: 20251221050003.zip
+2025-12-21 20:40:06,728 - __main__ - WARNING - ZIP file not found for attachment: 20251221050003.zip
+2025-12-21 20:40:12,275 - ERROR - Failed to send email notification: (535, b'5.7.139 Authentication unsuccessful, the user credentials were incorrect. [CH2PR14CA0054.namprd14.prod.outlook.com 2025-12-22T01:40:01.506Z 08DE406108AD0ABF]')
+Traceback (most recent call last):
+  File "/mnt/c/Users/StefanHolodnick/Documents/aws-retrieve-csv/download_csv_from_s3.py", line 3743, in send_email_notification
+    server.login(email_config["username"], email_config["password"])
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.139 Authentication unsuccessful, the user credentials were incorrect. [CH2PR14CA0054.namprd14.prod.outlook.com 2025-12-22T01:40:01.506Z 08DE406108AD0ABF]')
+2025-12-21 20:40:12,275 - __main__ - ERROR - Failed to send email notification: (535, b'5.7.139 Authentication unsuccessful, the user credentials were incorrect. [CH2PR14CA0054.namprd14.prod.outlook.com 2025-12-22T01:40:01.506Z 08DE406108AD0ABF]')
+Traceback (most recent call last):
+  File "/mnt/c/Users/StefanHolodnick/Documents/aws-retrieve-csv/download_csv_from_s3.py", line 3743, in send_email_notification
+    server.login(email_config["username"], email_config["password"])
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.139 Authentication unsuccessful, the user credentials were incorrect. [CH2PR14CA0054.namprd14.prod.outlook.com 2025-12-22T01:40:01.506Z 08DE406108AD0ABF]')
