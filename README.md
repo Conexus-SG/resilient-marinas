@@ -1,4 +1,4 @@
-# AWS Marina Data ETL Pipeline - Application Guide
+# AWS Marina Data ETL Pipeline
 
 ## Overview
 
@@ -8,6 +8,75 @@ This application is an **ETL (Extract, Transform, Load) pipeline** that synchron
 2. **Stellar Business System** - Boat rental operations (bookings, payments, customers, pricing, etc.)
 
 The pipeline downloads data from **AWS S3 buckets**, processes it, and loads it into an **Oracle Autonomous Database** data warehouse for business intelligence and reporting.
+
+---
+
+## Project Structure
+
+```
+aws-retrieve-csv/
+├── Configuration & Environment
+│   ├── config.json                 - Database and S3 credentials (DO NOT COMMIT)
+│   ├── config.json.template        - Template for config.json
+│   ├── .env                        - Environment variables (DO NOT COMMIT)
+│   ├── .env.template               - Template for .env
+│   ├── .gitignore                  - Git ignore rules
+│   └── .dockerignore               - Docker build ignore rules
+│
+├── Core ETL Scripts
+│   ├── download_csv_from_s3.py     - Main ETL orchestrator (MOLO processor)
+│   ├── download_stellar_from_s3.py - Stellar system data processor
+│   ├── molo_db_functions.py        - MOLO database connector and operations
+│   ├── stellar_db_functions.py     - Stellar database connector and operations
+│   └── data_validator.py           - CSV field and merge change validator
+│
+├── Deployment & Procedures
+│   ├── deploy_procedures.py        - Deploy stored procedures to database
+│   └── stored_procedures/          - SQL stored procedure files (65 total)
+│       ├── sp_merge_molo_*.sql    - MOLO table merge procedures (43 files)
+│       ├── sp_merge_stellar_*.sql - Stellar table merge procedures (20 files)
+│       ├── sp_run_all_merges.sql  - Master orchestrator procedure
+│       └── deploy_all_procedures.sql - Combined deployment script
+│
+├── Database Schema DDL
+│   ├── tables/
+│   │   ├── oracle_molo_staging_tables.sql     - STG_MOLO_* table definitions
+│   │   ├── oracle_molo_business_tables.sql    - DW_MOLO_* table definitions
+│   │   ├── oracle_stellar_staging_tables.sql  - STG_STELLAR_* table definitions
+│   │   └── oracle_stellar_business_tables.sql - DW_STELLAR_* table definitions
+│   │
+│   └── views/
+│       ├── dw_molo_daily_boat_lengths_vw.sql
+│       ├── dw_molo_daily_slip_count_vw.sql
+│       ├── dw_molo_daily_slip_occupancy_vw.sql
+│       ├── dw_molo_rate_over_linear_foot.sql
+│       ├── dw_molo_rate_over_linear_foot_vw.sql
+│       └── dw_stellar_daily_rentals_vw.sql
+│
+├── Containerization
+│   ├── Dockerfile                  - Container image definition
+│   ├── docker-compose.yml          - Multi-container orchestration
+│   └── deploy-oci.sh               - Oracle Cloud Infrastructure deployment
+│
+├── Dependencies & Logs
+│   ├── requirements.txt            - Python package dependencies
+│   ├── stellar_processing.log      - Stellar ETL execution logs
+│   ├── error_log.txt               - Error log from recent runs
+│   │
+│   ├── wallet/                     - Oracle Autonomous Database wallet
+│   │   ├── cwallet.sso
+│   │   ├── tnsnames.ora
+│   │   └── sqlnet.ora
+│   │
+│   ├── utils/                      - Utility files (environment configs)
+│   │   └── oci-compartment.env
+│   │
+│   └── __pycache__/                - Python cache (generated)
+│
+├── Documentation
+│   ├── README.md                   - This file
+│   └── .git/                       - Git repository
+```
 
 ---
 
@@ -75,7 +144,7 @@ The pipeline downloads data from **AWS S3 buckets**, processes it, and loads it 
 ### Configuration Files
 
 #### `config.json`
-**Purpose**: Centralized credential and configuration management
+**Purpose**: Centralized database and S3 credential management
 
 **Contains**:
 ```json
@@ -98,6 +167,13 @@ The pipeline downloads data from **AWS S3 buckets**, processes it, and loads it 
 ```
 
 **Security**: Never commit to version control. Use `config.json.template` as reference.
+
+#### `.env` and `.env.template`
+**Purpose**: Environment variables for containerized deployments and system configuration
+
+**Usage**: For Docker containers and OCI deployments. Template provided for reference.
+
+**Security**: Never commit `.env` to version control.
 
 #### `wallet/`
 **Purpose**: Oracle Autonomous Database connection wallet
@@ -329,35 +405,114 @@ python3 download_stellar_from_s3.py
 
 ---
 
-### Stored Procedure Scripts
+### Utility & Validation Scripts
 
-#### `generate_merge_procedures_smart.py`
-**Purpose**: Dynamically generate all 65 stored procedures by querying database schema
+#### `data_validator.py`
+**Purpose**: CSV field-level and merge operation validation
+
+**What it does**:
+1. Compares CSV values against database staging tables to detect data corruption
+2. Validates merge operations by comparing staging (STG_*) and data warehouse (DW_*) tables
+3. Reports field-by-field discrepancies and unexpected merge changes
+4. Supports configurable sampling for performance
+
+**Key Functions**:
+- Field validation: Detect CSV corruption before database loading
+- Merge validation: Ensure stored procedures don't modify data unexpectedly
+- Sampling: Validate subset of records for large datasets
+
+**Usage** (called from `download_csv_from_s3.py`):
+```bash
+# Enable field-level validation
+python3 download_csv_from_s3.py --validate-fields
+
+# Enable merge change validation
+python3 download_csv_from_s3.py --validate-merge-changes
+
+# Full validation with custom sample size
+python3 download_csv_from_s3.py \
+    --validate-fields \
+    --validate-merge-changes \
+    --validation-sample-size 20
+```
+
+---
+
+### Stored Procedure Management
+
+#### `deploy_procedures.py`
+**Purpose**: Deploy generated stored procedures to Oracle database
 
 **What it does**:
 1. Connects to Oracle database
-2. Queries `user_tab_columns` to get column names for each STG_* table
-3. Detects primary keys (ID, USER_ID, TIME_ID, composite keys)
-4. Generates MERGE procedures with explicit column mappings
-5. Creates 35 MOLO + 29 Stellar + 1 master procedure
-6. Saves individual .sql files + combined deployment file
+2. Reads stored procedure SQL files from `stored_procedures/` directory
+3. Executes each CREATE OR REPLACE PROCEDURE statement
+4. Tracks deployment success/failure
+5. Reports overall deployment status
 
-**Tables Processed**:
-- **MOLO (35 tables)**:
-  - Core: ACCOUNTS, BOATS, COMPANIES, CONTACTS, MARINA_LOCATIONS, PIERS, SLIPS
-  - Operations: RESERVATIONS, INVOICES, INVOICE_ITEMS, TRANSACTIONS
-  - Products: ITEM_MASTERS, SEASONAL_PRICES, TRANSIENT_PRICES
-  - Reference: BOAT_TYPES, POWER_NEEDS, INVOICE_STATUS, TRANSACTION_TYPES, etc.
+**Usage**:
+```bash
+python3 deploy_procedures.py
+```
 
-- **Stellar (29 tables)**:
-  - Core: CUSTOMERS, LOCATIONS, BOOKINGS, BOOKING_BOATS, BOOKING_PAYMENTS
-  - Style/Boats: STYLE_GROUPS, STYLES, STYLE_BOATS, CUSTOMER_BOATS
-  - Pricing: SEASONS, SEASON_DATES, STYLE_HOURLY_PRICES, STYLE_TIMES, STYLE_PRICES
-  - Accessories: ACCESSORIES, ACCESSORY_OPTIONS, ACCESSORY_TIERS, BOOKING_ACCESSORIES
-  - Sales: POS_ITEMS, POS_SALES, FUEL_SALES
-  - Membership: CLUB_TIERS, COUPONS
-  - Operations: WAITLISTS, CLOSED_DATES, HOLIDAYS, BLACKLISTS
-  - Reference: CATEGORIES, AMENITIES
+**Output**: Deployment status for each of the 65 procedures
+
+---
+
+#### `stored_procedures/` Directory
+**Contents**: 65 generated stored procedure SQL files plus deployment scripts
+
+**File Organization**:
+```
+stored_procedures/
+├── MOLO Procedures (43 files)
+│   ├── sp_merge_molo_accounts.sql
+│   ├── sp_merge_molo_boats.sql
+│   ├── sp_merge_molo_companies.sql
+│   ├── sp_merge_molo_contacts.sql
+│   ├── sp_merge_molo_invoices.sql
+│   ├── sp_merge_molo_transactions.sql
+│   ├── sp_merge_molo_reservations.sql
+│   ├── sp_merge_molo_marina_locations.sql
+│   ├── sp_merge_molo_piers.sql
+│   ├── sp_merge_molo_slips.sql
+│   ├── sp_merge_molo_item_masters.sql
+│   ├── sp_merge_molo_seasonal_prices.sql
+│   ├── sp_merge_molo_transient_prices.sql
+│   ├── ... (29 more MOLO procedures)
+│
+├── Stellar Procedures (20 files)
+│   ├── sp_merge_stellar_customers.sql
+│   ├── sp_merge_stellar_locations.sql
+│   ├── sp_merge_stellar_bookings.sql
+│   ├── sp_merge_stellar_booking_boats.sql
+│   ├── sp_merge_stellar_booking_payments.sql
+│   ├── sp_merge_stellar_styles.sql
+│   ├── sp_merge_stellar_style_boats.sql
+│   ├── sp_merge_stellar_style_groups.sql
+│   ├── sp_merge_stellar_accessories.sql
+│   ├── sp_merge_stellar_amenities.sql
+│   ├── sp_merge_stellar_categories.sql
+│   ├── sp_merge_stellar_seasons.sql
+│   ├── sp_merge_stellar_club_tiers.sql
+│   ├── sp_merge_stellar_coupons.sql
+│   ├── ... (6 more Stellar procedures)
+│
+├── Master Procedure
+│   ├── sp_run_all_merges.sql
+│   └── sp_run_all_molo_stellar_merges.sql (alternative naming)
+│
+└── Deployment Scripts
+    ├── deploy_all_procedures.sql (combined deployment)
+    └── deploy_updated_procedures.sql (incremental deployment)
+```
+
+**Each Procedure**:
+- **Input**: STG_* staging table
+- **Output**: DW_* data warehouse table
+- **Logic**: MERGE (UPDATE existing, INSERT new)
+- **Tracking**: DW_LAST_INSERTED, DW_LAST_UPDATED timestamps
+- **Error Handling**: ROLLBACK on exception
 
 **Procedure Template**:
 ```sql
@@ -389,158 +544,114 @@ EXCEPTION
 END;
 ```
 
-**Master Procedure**:
-```sql
-CREATE OR REPLACE PROCEDURE SP_RUN_ALL_MOLO_STELLAR_MERGES
-IS
-BEGIN
-    -- Execute all 35 MOLO merge procedures
-    SP_MERGE_MOLO_ACCOUNTS;
-    SP_MERGE_MOLO_BOATS;
-    ...
-    
-    -- Execute all 29 Stellar merge procedures
-    SP_MERGE_STELLAR_CUSTOMERS;
-    SP_MERGE_STELLAR_BOOKINGS;
-    ...
-    
-    COMMIT;
-END;
-```
-
-**Usage**:
-```bash
-python3 generate_merge_procedures_smart.py
-```
-
-**Output**:
-- `stored_procedures/sp_merge_molo_*.sql` (35 files)
-- `stored_procedures/sp_merge_stellar_*.sql` (29 files)
-- `stored_procedures/sp_run_all_merges.sql` (master)
-- `stored_procedures/deploy_all_procedures.sql` (combined)
-
 ---
 
-#### `deploy_procedures_simple.py`
-**Purpose**: Deploy all 65 stored procedures to Oracle database
+### Database Schema DDL
 
-**What it does**:
-1. Connects to Oracle database
-2. Reads `stored_procedures/deploy_all_procedures.sql`
-3. Splits into individual CREATE PROCEDURE statements
-4. Executes each procedure with error handling
-5. Reports success/failure for each procedure
+#### `tables/` Directory
+**Purpose**: SQL DDL scripts for creating all database tables
 
-**Key Features**:
-- Parses procedure names from SQL statements
-- Handles statement delimiters (`/`)
-- Skips comment lines (`--`, `PROMPT`)
-- Tracks deployment success count
+**Contents**:
+- `oracle_molo_staging_tables.sql` - Creates 43 STG_MOLO_* tables
+- `oracle_molo_business_tables.sql` - Creates 43 DW_MOLO_* tables with DW tracking columns
+- `oracle_stellar_staging_tables.sql` - Creates 20 STG_STELLAR_* tables
+- `oracle_stellar_business_tables.sql` - Creates 20 DW_STELLAR_* tables with DW tracking columns
 
-**Known Issue Fix**:
-- **Problem**: ACCOUNTS procedure failed due to empty first line in SQL file
-- **Solution**: Parser now handles leading whitespace correctly
-- **Status**: All 65 procedures now deploy successfully
+**Table Naming Convention**:
+- Staging: `STG_{SYSTEM}_{TABLE}` (exact CSV structure)
+- Data Warehouse: `DW_{SYSTEM}_{TABLE}` (CSV structure + DW tracking)
 
-**Usage**:
-```bash
-python3 deploy_procedures_simple.py
-```
-
-**Output**:
-```
-======================================================================
-Deploying Stored Procedures
-======================================================================
-
-Connecting to oax4504110443_low...
-✅ Connected
-
-Reading stored_procedures/deploy_all_procedures.sql...
-Found 65 procedures to deploy
-
-[1/65] Deploying SP_MERGE_MOLO_ACCOUNTS... ✅
-[2/65] Deploying SP_MERGE_MOLO_BOATS... ✅
-...
-[64/65] Deploying SP_MERGE_STELLAR_BLACKLISTS... ✅
-[65/65] Deploying SP_RUN_ALL_MOLO_STELLAR_MERGES... ✅
-
-======================================================================
-✅ Deployed: 65
-======================================================================
-
-To execute merges, run:
-  python3 run_merges.py
-```
-
----
-
-#### `stored_procedures/` Directory
-**Contents**: All 65 generated stored procedure SQL files
-
-**File Organization**:
-```
-stored_procedures/
-├── sp_merge_molo_accounts.sql
-├── sp_merge_molo_boats.sql
-├── sp_merge_molo_companies.sql
-├── sp_merge_molo_contacts.sql
-├── sp_merge_molo_invoices.sql
-├── sp_merge_molo_transactions.sql
-├── ... (29 more MOLO procedures)
-├── sp_merge_stellar_customers.sql
-├── sp_merge_stellar_locations.sql
-├── sp_merge_stellar_bookings.sql
-├── sp_merge_stellar_booking_boats.sql
-├── sp_merge_stellar_styles.sql
-├── ... (24 more Stellar procedures)
-├── sp_run_all_merges.sql (master orchestrator)
-└── deploy_all_procedures.sql (combined file for deployment)
-```
-
-**Each Procedure**:
-- **Input**: STG_* staging table
-- **Output**: DW_* data warehouse table
-- **Logic**: MERGE (UPDATE existing, INSERT new)
-- **Tracking**: DW_LAST_INSERTED, DW_LAST_UPDATED
-- **Error Handling**: ROLLBACK on exception
-
----
-
-## Database Schema
-
-### Staging Tables (STG_*)
-**Purpose**: Temporary staging area for raw S3 data
-
-**Pattern**: `STG_{SYSTEM}_{TABLE}`
-
-**Characteristics**:
-- Exact copy of CSV structure
-- TRUNCATE before each load
-- No DW tracking columns
-- No indexes (fast insert)
-
-**Examples**:
-- `STG_MOLO_MARINA_LOCATIONS` (12 columns)
-- `STG_MOLO_CONTACTS` (43 columns)
-- `STG_STELLAR_CUSTOMERS` (52 columns, USER_ID PK)
-- `STG_STELLAR_BOOKINGS` (82 columns)
-
-### Data Warehouse Tables (DW_*)
-**Purpose**: Production data warehouse with history tracking
-
-**Pattern**: `DW_{SYSTEM}_{TABLE}`
-
-**Additional Columns**:
-- `DW_ID` - Surrogate key (auto-increment)
+**DW Tracking Columns** (added to all DW_* tables):
+- `DW_ID` - Surrogate key (auto-increment primary key)
 - `DW_LAST_INSERTED` - Timestamp of first insert
 - `DW_LAST_UPDATED` - Timestamp of last update
 
-**Indexes**: Primary key on source ID + DW_ID
+#### `views/` Directory
+**Purpose**: Business intelligence and reporting views
 
-**Examples**:
-- `DW_MOLO_MARINA_LOCATIONS` (15 columns = 12 data + 3 DW)
-- `DW_STELLAR_CUSTOMERS` (55 columns = 52 data + 3 DW)
+**Contents**:
+- `dw_molo_daily_boat_lengths_vw.sql` - Daily boat length distribution analytics
+- `dw_molo_daily_slip_count_vw.sql` - Daily slip inventory count
+- `dw_molo_daily_slip_occupancy_vw.sql` - Daily slip occupancy rates
+- `dw_molo_rate_over_linear_foot.sql` - Rate calculation per linear foot
+- `dw_molo_rate_over_linear_foot_vw.sql` - Rate over linear foot view
+- `dw_stellar_daily_rentals_vw.sql` - Daily rental activity analytics
+
+---
+
+### Containerization & Deployment
+
+#### `Dockerfile`
+**Purpose**: Define containerized Python ETL application environment
+
+**Features**:
+- Python 3.x runtime
+- Oracle Instant Client pre-installed
+- Python dependencies from requirements.txt
+- Wallet integration for database access
+
+#### `docker-compose.yml`
+**Purpose**: Orchestrate multi-container deployments
+
+**Usage**:
+```bash
+docker-compose up
+```
+
+#### `deploy-oci.sh`
+**Purpose**: Deploy containerized application to Oracle Cloud Infrastructure
+
+**Features**:
+- OCI Container Registry integration
+- Environment variable configuration
+- Database wallet mounting
+- Scheduled ETL execution
+
+---
+
+### Python Dependencies
+
+#### `requirements.txt`
+**Purpose**: List all Python package dependencies
+
+**Key Dependencies**:
+- `oracledb` - Oracle Python driver
+- `boto3` - AWS SDK for S3 access
+- `pandas` - Data manipulation
+- `python-dotenv` - Environment variable management
+
+---
+
+### Logging
+
+#### `stellar_processing.log`
+**Purpose**: Execution log from Stellar ETL processing
+
+#### `error_log.txt`
+**Purpose**: Error log from recent ETL runs
+
+---
+
+### Additional Files
+
+#### `utils/` Directory
+**Purpose**: Utility files and configuration
+
+**Contents**:
+- `oci-compartment.env` - Oracle Cloud Infrastructure compartment configuration
+
+#### `.gitignore`
+**Purpose**: Prevent committing sensitive files to version control
+
+**Excludes**:
+- `config.json` - Database credentials
+- `.env` - Environment variables
+- `wallet/` - Oracle wallet files
+- `*.log` - Log files
+- `__pycache__/` - Python cache
+
+#### `.dockerignore`
+**Purpose**: Prevent unnecessary files from being copied into Docker images
 
 ---
 
@@ -548,110 +659,71 @@ stored_procedures/
 
 ### Complete ETL Pipeline
 ```bash
-# 1. Process MOLO and Stellar data (downloads, stages, merges)
+# Process MOLO and Stellar data (downloads, stages, merges)
 python3 download_csv_from_s3.py
 
-# This internally executes:
-# - Download MOLO ZIP from S3
-# - Extract and parse 47 MOLO CSVs
-# - TRUNCATE 47 STG_MOLO_* tables
-# - INSERT into STG_MOLO_* tables
-# - Download Stellar .gz files from S3
-# - Decompress and parse 29 Stellar CSVs
-# - TRUNCATE 29 STG_STELLAR_* tables
-# - INSERT into STG_STELLAR_* tables
-# - Execute SP_RUN_ALL_MOLO_STELLAR_MERGES
-# - MERGE all 76 tables (47 MOLO + 29 Stellar: STG_* → DW_*)
+# With validation enabled
+python3 download_csv_from_s3.py --validate-fields --validate-merge-changes
 ```
 
-### Individual System Processing
+**What happens internally**:
+- Download MOLO ZIP from S3 and extract 43 CSVs
+- Download Stellar .gz files from S3 and decompress 20 CSVs
+- TRUNCATE existing staging tables (STG_* tables)
+- INSERT fresh data into staging tables
+- Execute SP_RUN_ALL_MERGES (master orchestrator)
+- MERGE all staging data into data warehouse tables (STG_* → DW_*)
+
+### Deployment & Configuration
 ```bash
-# MOLO only
-python3 download_csv_from_s3.py --molo-only
-
-# Stellar only
-python3 download_csv_from_s3.py --stellar-only
-```
-
-### Manual Merge Execution
-```bash
-# If you want to re-run merges without re-downloading
-python3 run_merges.py
-```
-
-### Stored Procedure Management
-```bash
-# Regenerate all 65 procedures from database schema
-python3 generate_merge_procedures_smart.py
-
-# Deploy all procedures to database
-python3 deploy_procedures_simple.py
+# Deploy stored procedures to database
+python3 deploy_procedures.py
 ```
 
 ---
 
 ## Data Warehouse Tracking
 
-### Insert vs Update Logic
-The MERGE procedures implement intelligent upsert logic:
+The system tracks data freshness through two audit timestamps on all DW_* tables:
 
-```sql
--- If record exists (matched on primary key): UPDATE
-WHEN MATCHED THEN
-    UPDATE SET
-        tgt.COLUMN1 = src.COLUMN1,
-        tgt.COLUMN2 = src.COLUMN2,
-        tgt.DW_LAST_UPDATED = SYSTIMESTAMP  -- Track last update
+- **DW_LAST_INSERTED**: Timestamp of initial insert (never updated)
+- **DW_LAST_UPDATED**: Timestamp of most recent insert or update
 
--- If record is new (not matched): INSERT
-WHEN NOT MATCHED THEN
-    INSERT (columns..., DW_LAST_INSERTED, DW_LAST_UPDATED)
-    VALUES (src.columns..., SYSTIMESTAMP, SYSTIMESTAMP)  -- Track insert
-```
+**MERGE Logic**:
+- **Existing Records**: UPDATE all columns, refresh DW_LAST_UPDATED
+- **New Records**: INSERT with both timestamps set to current time
 
-### Timestamp Tracking
-- **DW_LAST_INSERTED**: Set once on first insert, never updated
-- **DW_LAST_UPDATED**: Updated every time record changes
-- **Use Case**: Track data freshness, audit changes, incremental reporting
+**Use Cases**:
+- Track data recency for reporting
+- Audit change history
+- Enable incremental load strategies
 
 ---
 
 ## Error Handling & Logging
 
-### Logging Configuration
-**Dual Output**:
-- Console: Real-time progress monitoring
-- Files: 
-  - `molo_processing.log` - MOLO ETL logs
-  - `stellar_processing.log` - Stellar ETL logs
+### Log Files
+- **MOLO Processing**: Logged during `download_csv_from_s3.py` execution
+- **Stellar Processing**: Saved to `stellar_processing.log`
+- **Errors**: Captured in `error_log.txt`
 
-**Log Levels**:
-- INFO: Normal operations, record counts
-- WARNING: Missing data, non-fatal errors
-- ERROR: Fatal errors, exceptions
-- DEBUG: Detailed parsing information
+### Common Issues & Solutions
 
-### Common Error Scenarios
-
-#### 1. S3 Connection Failure
+#### S3 Connection Failure
 **Error**: `NoCredentialsError: Unable to locate credentials`
-**Solution**: Check `config.json` has valid AWS credentials
+**Solution**: Verify AWS credentials in `config.json`
 
-#### 2. Oracle Connection Failure
+#### Oracle Connection Failure
 **Error**: `DPI-1047: Cannot locate a 64-bit Oracle Client library`
-**Solution**: Install Oracle Instant Client at `/opt/oracle/instantclient`
+**Solution**: Install Oracle Instant Client; configure wallet path
 
-#### 3. Wallet Not Found
+#### Wallet/TNS Error
 **Error**: `TNS:could not resolve the connect identifier specified`
-**Solution**: Ensure `wallet/` directory exists with wallet files
+**Solution**: Ensure `wallet/` directory contains required connection files
 
-#### 4. Column Mismatch
-**Error**: `ORA-00904: invalid identifier`
-**Solution**: Regenerate procedures with `generate_merge_procedures_smart.py`
-
-#### 5. Primary Key Violation
-**Error**: `ORA-00001: unique constraint violated`
-**Solution**: Check for duplicate IDs in source CSV, investigate data quality
+#### Database Write Failure
+**Error**: `ORA-00904: invalid identifier` or `ORA-00001: unique constraint violated`
+**Solution**: Regenerate procedures with correct schema, validate CSV primary keys
 
 ---
 
@@ -668,151 +740,146 @@ WHEN NOT MATCHED THEN
 - [ ] Copy `config.json.template` to `config.json`
 - [ ] Update AWS credentials in `config.json`
 - [ ] Update Oracle credentials in `config.json`
-- [ ] Verify S3 bucket names
+- [ ] Verify S3 bucket names (MOLO: `cnxtestbucket`, Stellar: `resilient-ims-backups`)
 - [ ] Test Oracle connection with SQL*Plus
 
 ### Database Setup
-- [ ] Create all 152 tables (76 STG_* + 76 DW_*)
-- [ ] Generate 65 stored procedures
-- [ ] Deploy stored procedures
-- [ ] Verify all procedures are VALID
+- [ ] Create all database tables using scripts in `tables/` directory
+- [ ] Deploy all stored procedures: `python3 deploy_procedures.py`
+- [ ] Verify all procedures compiled successfully
+- [ ] Test merge logic with sample data
 
 ### First Run
-- [ ] Test MOLO-only processing
-- [ ] Test Stellar-only processing
-- [ ] Verify staging tables populated
-- [ ] Verify data warehouse tables updated
-- [ ] Check DW_LAST_INSERTED/UPDATED timestamps
+- [ ] Test with `--validate-fields` flag to detect CSV corruption
+- [ ] Verify staging (STG_*) tables populated correctly
+- [ ] Verify data warehouse (DW_*) tables updated
+- [ ] Check DW_LAST_INSERTED and DW_LAST_UPDATED timestamps
 
 ---
 
 ## Monitoring & Maintenance
 
 ### Daily Operations
-1. Run ETL pipeline: `python3 download_csv_from_s3.py`
-2. Check logs for errors
-3. Verify record counts in DW_* tables
-4. Monitor S3 bucket for new files
+1. Execute ETL pipeline: `python3 download_csv_from_s3.py`
+2. Monitor `stellar_processing.log` and `error_log.txt` for issues
+3. Verify record counts in DW_* tables increased appropriately
+4. Check for new data files in S3 buckets
 
 ### Weekly Maintenance
-1. Review data quality issues in logs
-2. Check for new tables in source systems
-3. Regenerate procedures if schema changes
-4. Archive old log files
+1. Review data quality issues in error logs
+2. Check for schema changes in source systems
+3. Validate sample records using: `python3 download_csv_from_s3.py --validate-fields`
+4. Archive old log files to save disk space
 
-### Schema Evolution
-If source CSV structure changes:
-1. Update staging table DDL
-2. Update data warehouse table DDL
-3. Regenerate merge procedures: `python3 generate_merge_procedures_smart.py`
-4. Redeploy procedures: `python3 deploy_procedures_simple.py`
-5. Update parser functions in Python scripts
+### When Source Schema Changes
+1. Update table DDL in `tables/` directory
+2. Deploy updated table definitions to database
+3. Verify new columns are present in STG_* tables
+4. Deploy new stored procedures
 
 ---
 
-## Performance Optimization
+## Performance Tuning
 
-### Current Design
-- **Batch Inserts**: Using `executemany()` for bulk loading
-- **Minimal Indexes**: STG_* tables have no indexes for fast insert
-- **MERGE vs INSERT**: DW_* tables use MERGE for upsert efficiency
-- **Connection Pooling**: Single connection per ETL run
+### Current Implementation
+- **Batch Loading**: Python script uses bulk insert for fast staging load
+- **Index Strategy**: STG_* tables unindexed for speed; DW_* tables indexed
+- **Merge Efficiency**: SQL MERGE statement optimized for upsert operations
+- **Connection**: Single persistent connection per ETL run
 
-### Potential Improvements
-- **Parallel Processing**: Process MOLO and Stellar in parallel threads
-- **Partitioning**: Partition DW_* tables by date for large datasets
-- **Incremental Load**: Load only changed records (requires change tracking)
-- **Compression**: Enable table compression for DW_* tables
-
----
-
-## Troubleshooting Guide
-
-### Issue: All procedures fail to deploy
-**Symptom**: `deploy_procedures_simple.py` reports 0 deployed
-**Diagnosis**: Check SQL syntax in `deploy_all_procedures.sql`
-**Solution**: Regenerate procedures with `generate_merge_procedures_smart.py`
-
-### Issue: ACCOUNTS procedure fails
-**Symptom**: Parser error "list index out of range"
-**Diagnosis**: Empty first line in SQL file
-**Solution**: Fixed in current version - remove leading blank lines
-
-### Issue: Stellar module not available
-**Symptom**: `STELLAR_AVAILABLE = False` in logs
-**Diagnosis**: `download_stellar_from_s3.py` not found
-**Solution**: Verify file exists and is in same directory
-
-### Issue: No data in DW_* tables
-**Symptom**: STG_* tables populated but DW_* empty
-**Diagnosis**: Stored procedures not executed or failed
-**Solution**: Manually run `SP_RUN_ALL_MOLO_STELLAR_MERGES` in SQL*Plus
+### Optimization Opportunities
+- **Parallel Processing**: Load MOLO and Stellar in parallel threads
+- **Incremental Loads**: Track and load only changed records
+- **Compression**: Enable table compression on large DW_* tables
+- **Partitioning**: Partition by date for faster queries
 
 ---
 
 ## Security Considerations
 
 ### Credential Management
-- **Never commit**: `config.json` to version control
-- **Use templates**: Commit `config.json.template` with placeholder values
-- **Rotate credentials**: Update credentials quarterly
-- **Least privilege**: Use database user with minimal required permissions
+- **Version Control**: Never commit `config.json` or `.env` files
+- **Use Templates**: Reference `config.json.template` and `.env.template`
+- **Rotation**: Update credentials quarterly or after team changes
+- **Least Privilege**: Database user should have minimal required permissions
 
 ### Wallet Security
-- **Encrypt wallet**: Use wallet password in production
-- **Restrict access**: Set file permissions to 600 on wallet files
-- **Secure transfer**: Use SCP/SFTP when moving wallet files
-- **Version control**: Never commit wallet files
+- **Encryption**: Use wallet password in production environments
+
+- **File Permissions**: Set wallet files to 600 (read-only)
+- **Secure Transport**: Use SCP/SFTP when transferring wallet files
+- **No Version Control**: Never commit wallet files to git
 
 ### AWS Security
-- **IAM policies**: Restrict S3 access to specific buckets
-- **MFA**: Enable multi-factor authentication for AWS console
-- **Access logs**: Enable S3 access logging
-- **Encryption**: Enable S3 server-side encryption
+- **IAM Policies**: Restrict S3 access to specific buckets
+- **Multi-Factor Auth**: Enable MFA for AWS console
+- **Access Logging**: Enable S3 access logging for audit trail
+- **Encryption**: Enable S3 server-side encryption (SSE-S3 or SSE-KMS)
 
 ---
 
-## Support & Documentation
+## Documentation & Support
 
-### Key Documentation Files
-- `APPLICATION_GUIDE.md` - This file
-- `README.md` - Quick start guide
-- `CONFIG_FILE_GUIDE.md` - Configuration reference
-- `STORED_PROCEDURES_GUIDE.md` - Procedure documentation
-- `CSV_TO_DB_COLUMN_MAPPINGS.md` - Column mapping reference
+### Project Files
+- `README.md` - This file (project overview)
+- `requirements.txt` - Python package dependencies
+- `Dockerfile` - Container image definition
+- `docker-compose.yml` - Multi-container orchestration
+- `deploy-oci.sh` - Oracle Cloud deployment script
 
-### Additional Resources
-- Oracle Autonomous Database documentation
-- Oracle Python Driver (oracledb) documentation
-- AWS SDK for Python (boto3) documentation
-- S3 bucket file listings for latest data
+### Data Files  
+- `tables/` - Database table DDL scripts
+- `views/` - Analytics and reporting views
+- `stored_procedures/` - MERGE procedure definitions
+- `wallet/` - Oracle database connection credentials
+
+### Configuration
+- `config.json.template` - AWS and database credential template
+- `.env.template` - Environment variable template
+- `.gitignore` - Git exclusions for sensitive files
+
+### External Resources
+- [Oracle Autonomous Database Documentation](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/)
+- [Python oracledb Driver](https://python-oracledb.readthedocs.io/)
+- [AWS SDK for Python (boto3)](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+- [Oracle MERGE Statement](https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/MERGE.html)
 
 ---
 
 ## Version History
 
-### Current Version: 2.0
-- **Date**: November 12, 2025
-- **Changes**:
-  - ✅ All 65 stored procedures deploying successfully
-  - ✅ Fixed ACCOUNTS procedure empty line issue
-  - ✅ Stellar module with correct CSV column mappings
-  - ✅ **All 29 Stellar parser functions operational** (completed 20 additional parsers)
-  - ✅ Comprehensive logging to file + console
-  - ✅ Master merge procedure orchestrating all 64 child procedures
+### Version 2.0 - December 2025
+**Current Release**
+
+**Changes**:
+- ✅ Project structure updated to reflect current file organization
+- ✅ 43 MOLO stored procedures (sp_merge_molo_*.sql)
+- ✅ 20 Stellar stored procedures (sp_merge_stellar_*.sql)
+- ✅ Database schema DDL in `tables/` directory
+- ✅ Analytics views in `views/` directory
+- ✅ Docker containerization support
+- ✅ OCI deployment script
+- ✅ Data validation framework
+- ✅ Comprehensive logging
+
+**System Coverage**:
+- **MOLO**: 43 tables (marina management, invoicing, transactions)
+- **Stellar**: 20 tables (boat rental bookings, pricing, customers)
+- **Total**: 63 data tables + multiple views for analytics
 
 ### Known Limitations
-- No incremental loading - full refresh only
-- No data quality validation rules
-- No error notification system
+- Full refresh only (no incremental loading)
+- Manual procedure regeneration required for schema changes
+- Single-threaded processing (sequential MOLO → Stellar)
 
-### Planned Enhancements
-- Implement incremental change detection
-- Add email alerts for ETL failures
-- Create data quality validation framework
-- Build BI dashboard for monitoring
+### Future Enhancements
+- Incremental load with change tracking
+- Parallel processing for MOLO and Stellar
+- Automated alerting on ETL failures
+- Enhanced data quality validation
+- Business intelligence dashboard
 
 ---
 
-*Last Updated: November 12, 2025*
+*Last Updated: December 29, 2025*
 *Maintained by: Stefan Holodnick*
