@@ -32,9 +32,9 @@ aws-retrieve-csv/
 │
 ├── Deployment & Procedures
 │   ├── deploy_procedures.py        - Deploy stored procedures to database
-│   └── stored_procedures/          - SQL stored procedure files (65 total)
-│       ├── sp_merge_molo_*.sql    - MOLO table merge procedures (43 files)
-│       ├── sp_merge_stellar_*.sql - Stellar table merge procedures (20 files)
+│   └── stored_procedures/          - SQL stored procedure files (79 total)
+│       ├── sp_merge_molo_*.sql    - MOLO table merge procedures (48 files)
+│       ├── sp_merge_stellar_*.sql - Stellar table merge procedures (29 files)
 │       ├── sp_run_all_merges.sql  - Master orchestrator procedure
 │       └── deploy_all_procedures.sql - Combined deployment script
 │
@@ -51,7 +51,8 @@ aws-retrieve-csv/
 │       ├── dw_molo_daily_slip_occupancy_vw.sql
 │       ├── dw_molo_rate_over_linear_foot.sql
 │       ├── dw_molo_rate_over_linear_foot_vw.sql
-│       └── dw_stellar_daily_rentals_vw.sql
+│       ├── dw_stellar_daily_rentals_vw.sql
+│       └── DW_NS_X_FIN_*.sql (15 financial reporting views)
 │
 ├── Containerization
 │   ├── Dockerfile                  - Container image definition
@@ -89,7 +90,7 @@ aws-retrieve-csv/
 │  MOLO System                   │  Stellar Business System           │
 │  Bucket: cnxtestbucket         │  Bucket: resilient-ims-backups     │
 │  Format: ZIP files with CSVs   │  Format: .gz DATA files with CSVs  │
-│  Files: 47 MOLO tables         │  Files: 29 Stellar tables          │
+│  Files: 48 MOLO tables         │  Files: 29 Stellar tables          │
 └────────────────────────────────┴────────────────────────────────────┘
                                  ↓
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -106,11 +107,11 @@ aws-retrieve-csv/
 │                     DSN: oax4504110443_low                          │
 ├─────────────────────────────────────────────────────────────────────┤
 │  STG_* Tables (Staging)        DW_* Tables (Data Warehouse)        │
-│  ├── STG_MOLO_*    (47)        ├── DW_MOLO_*    (47)               │
+│  ├── STG_MOLO_*    (48)        ├── DW_MOLO_*    (48)               │
 │  └── STG_STELLAR_* (29)        └── DW_STELLAR_* (29)               │
 │                                                                     │
-│  Stored Procedures: 65 total                                       │
-│  ├── SP_MERGE_MOLO_*    (35 procedures)                            │
+│  Stored Procedures: 79 total                                       │
+│  ├── SP_MERGE_MOLO_*    (48 procedures)                            │
 │  ├── SP_MERGE_STELLAR_* (29 procedures)                            │
 │  └── SP_RUN_ALL_MOLO_STELLAR_MERGES (master orchestrator)          │
 └─────────────────────────────────────────────────────────────────────┘
@@ -128,7 +129,7 @@ aws-retrieve-csv/
 - Parse CSV data
 - Apply data type conversions and validations
 - **TRUNCATE** existing staging tables
-- **INSERT** fresh data into STG_MOLO_* and STG_STELLAR_* tables
+- **INSERT** fresh data into STG_MOLO_* (48 tables) and STG_STELLAR_* (29 tables)
 
 ### Step 3: Merge - Data Warehouse (DW_*)
 - Execute stored procedures
@@ -195,7 +196,7 @@ aws-retrieve-csv/
 2. Initializes Oracle Instant Client and wallet
 3. Connects to AWS S3 and Oracle Database
 4. Downloads latest MOLO ZIP file from S3
-5. Extracts and processes 47 MOLO CSV files:
+5. Extracts and processes 48 MOLO CSV files:
    - MarinaLocations, Piers, Slips, SlipTypes
    - Reservations, Companies, Contacts, Boats, Accounts
    - Invoices, InvoiceItems, Transactions
@@ -465,7 +466,7 @@ python3 deploy_procedures.py
 **File Organization**:
 ```
 stored_procedures/
-├── MOLO Procedures (43 files)
+├── MOLO Procedures (48 files)
 │   ├── sp_merge_molo_accounts.sql
 │   ├── sp_merge_molo_boats.sql
 │   ├── sp_merge_molo_companies.sql
@@ -479,9 +480,10 @@ stored_procedures/
 │   ├── sp_merge_molo_item_masters.sql
 │   ├── sp_merge_molo_seasonal_prices.sql
 │   ├── sp_merge_molo_transient_prices.sql
-│   ├── ... (29 more MOLO procedures)
+│   ├── sp_merge_molo_vessel_engine_class.sql
+│   └── ... (33 more MOLO procedures)
 │
-├── Stellar Procedures (20 files)
+├── Stellar Procedures (29 files)
 │   ├── sp_merge_stellar_customers.sql
 │   ├── sp_merge_stellar_locations.sql
 │   ├── sp_merge_stellar_bookings.sql
@@ -496,7 +498,7 @@ stored_procedures/
 │   ├── sp_merge_stellar_seasons.sql
 │   ├── sp_merge_stellar_club_tiers.sql
 │   ├── sp_merge_stellar_coupons.sql
-│   ├── ... (6 more Stellar procedures)
+│   └── ... (14 more Stellar procedures)
 │
 ├── Master Procedure
 │   ├── sp_run_all_merges.sql
@@ -552,10 +554,10 @@ END;
 **Purpose**: SQL DDL scripts for creating all database tables
 
 **Contents**:
-- `oracle_molo_staging_tables.sql` - Creates 43 STG_MOLO_* tables
-- `oracle_molo_business_tables.sql` - Creates 43 DW_MOLO_* tables with DW tracking columns
-- `oracle_stellar_staging_tables.sql` - Creates 20 STG_STELLAR_* tables
-- `oracle_stellar_business_tables.sql` - Creates 20 DW_STELLAR_* tables with DW tracking columns
+- `oracle_molo_staging_tables.sql` - Creates 48 STG_MOLO_* tables
+- `oracle_molo_business_tables.sql` - Creates 48 DW_MOLO_* tables with DW tracking columns
+- `oracle_stellar_staging_tables.sql` - Creates 29 STG_STELLAR_* tables
+- `oracle_stellar_business_tables.sql` - Creates 29 DW_STELLAR_* tables with DW tracking columns
 
 **Table Naming Convention**:
 - Staging: `STG_{SYSTEM}_{TABLE}` (exact CSV structure)
@@ -569,13 +571,34 @@ END;
 #### `views/` Directory
 **Purpose**: Business intelligence and reporting views
 
-**Contents**:
+**Contents** (21 total views):
+
+**MOLO Marina Views** (5 views):
 - `dw_molo_daily_boat_lengths_vw.sql` - Daily boat length distribution analytics
 - `dw_molo_daily_slip_count_vw.sql` - Daily slip inventory count
 - `dw_molo_daily_slip_occupancy_vw.sql` - Daily slip occupancy rates
 - `dw_molo_rate_over_linear_foot.sql` - Rate calculation per linear foot
 - `dw_molo_rate_over_linear_foot_vw.sql` - Rate over linear foot view
+
+**Stellar Rental Views** (1 view):
 - `dw_stellar_daily_rentals_vw.sql` - Daily rental activity analytics
+
+**NetSuite Financial Reporting Views** (15 views):
+- `DW_NS_X_FIN_CASHSALE_V.sql` - Cash sale transactions
+- `DW_NS_X_FIN_CC_REFUND_V.sql` - Credit card refund transactions
+- `DW_NS_X_FIN_CHECK_V.sql` - Check payment records
+- `DW_NS_X_FIN_CREDIT_CARD_V.sql` - Credit card transactions
+- `DW_NS_X_FIN_CUST_CREDIT_V.sql` - Customer credit transactions
+- `DW_NS_X_FIN_CUST_PAYMENT_V.sql` - Customer payment records
+- `DW_NS_X_FIN_CUST_REFUND_V.sql` - Customer refund records
+- `DW_NS_X_FIN_DEPENTRY_V.sql` - Deposit entry records
+- `DW_NS_X_FIN_DEPOSIT_V.sql` - Deposit transactions
+- `DW_NS_X_FIN_INVOICE_V.sql` - Invoice records
+- `DW_NS_X_FIN_JOURNAL_V.sql` - Journal entry records
+- `DW_NS_X_FIN_REPORT_V.sql` - Financial reporting view
+- `DW_NS_X_FIN_VENDBILL_PAYMENT_V.sql` - Vendor bill payment records
+- `DW_NS_X_FIN_VENDBILL_V.sql` - Vendor bill records
+- `DW_NS_X_FIN_VENDCRED_V.sql` - Vendor credit records
 
 ---
 
@@ -863,9 +886,9 @@ The system tracks data freshness through two audit timestamps on all DW_* tables
 - ✅ Comprehensive logging
 
 **System Coverage**:
-- **MOLO**: 43 tables (marina management, invoicing, transactions)
-- **Stellar**: 20 tables (boat rental bookings, pricing, customers)
-- **Total**: 63 data tables + multiple views for analytics
+- **MOLO**: 48 tables (marina management, invoicing, transactions)
+- **Stellar**: 29 tables (boat rental bookings, pricing, customers)
+- **Total**: 77 data tables + 21 views for analytics and reporting
 
 ### Known Limitations
 - Full refresh only (no incremental loading)
@@ -881,5 +904,5 @@ The system tracks data freshness through two audit timestamps on all DW_* tables
 
 ---
 
-*Last Updated: December 29, 2025*
+*Last Updated: January 11, 2026*
 *Maintained by: Stefan Holodnick*
